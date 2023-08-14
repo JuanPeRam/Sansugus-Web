@@ -9,7 +9,9 @@ const Player: React.FC<{stats: playerData, totalStats: playerData, children: Rea
 
     return (
         <div className='player-card'>
-            {children}
+            <div className='player-controls'>
+                {children}
+            </div>
             <div className='player-card-content'>
                 <div className='player-info' style={{backgroundImage: `url(${getImage(stats.Jugador)??nullPlayer})`, backgroundPosition: 'top', backgroundSize: "cover"}}>
                 </div>

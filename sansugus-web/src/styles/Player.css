@@ -1,6 +1,5 @@
 .player-card{
     box-shadow: var(--light-shadow);
-    padding: 3%;
     border-radius: 5px;
     min-width: 350px;
     width: 60vw;
@@ -16,6 +15,13 @@
     grid-template-columns: repeat(2,1fr);
     width: 100%;
     
+}
+.player-controls{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
 }
 .player-info{
     animation: faderight var(--fade-entry-time);
