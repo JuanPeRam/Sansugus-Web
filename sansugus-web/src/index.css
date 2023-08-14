@@ -1,0 +1,52 @@
+@font-face {
+  font-family: Archivo Light;
+  src: url('./fonts/Archivo-Light.ttf');
+}
+
+@font-face {
+  font-family: Archivo Bold;
+  src: url('./fonts/Archivo-Bold.ttf');
+}
+
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  font-family: Archivo Bold, sans-serif;
+
+  --dark-shadow:  0px 10px 15px -3px rgba(0,0,0,0.1);
+  --orange-main: rgb(227, 127, 12);
+  --background-color: #1d1d1d;
+  --nav-background-color: #3d3d3d;
+  --fade-entry-time: 1s;
+  --border-gray: 2px solid #d1d5db;
+  --white-shadow: 0px 10px 15px -3px rgba(255, 255, 255, 0.1);
+  --text-primary-color: rgb(243, 243, 243);
+  --text-secondary-color: rgb(194, 194, 194);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 74.9vh;
+  padding: 20px 10%;
+  gap: 20px;
+}

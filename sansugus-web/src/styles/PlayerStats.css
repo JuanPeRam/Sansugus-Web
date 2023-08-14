@@ -1,0 +1,16 @@
+.progress-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: large;
+    padding: 20px;
+    background-color: rgb(148, 105, 26);
+    animation: fadeleft var(--fade-entry-time);
+
+}
+
+.progress-comp{
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 3fr 1fr;
+}

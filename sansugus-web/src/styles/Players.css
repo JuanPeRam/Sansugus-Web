@@ -1,0 +1,121 @@
+.players-list{
+    display: grid;
+    grid-auto-rows: 8rem;
+    grid-template-columns: repeat(auto-fill,minmax(15rem, 1fr));
+    gap: 1rem;
+    width: 100%;
+    padding: 2%;
+    z-index: 1;
+    color: var(--text-secondary-color);
+    min-height: 500px;
+    border: var(--border-gray);
+}
+
+.player-item{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--border-gray);
+    padding: 5px;
+    flex-wrap: wrap;
+    position: relative;
+    border-radius: 5px;
+    z-index: 2;
+    flex-direction: column;
+}
+
+.player-item img{
+    height: 150px;
+    position: absolute;
+    top: -20px;
+    left: -5px;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(0deg,transparent,#000000 50px);
+    mask-image: linear-gradient(0deg,transparent,#000000 50px);
+}
+
+.player-description{
+    margin-left: 80px;
+}
+
+.player-item:hover img:not(.empty-photo){
+    -webkit-filter: drop-shadow(5px 5px 5px #9e9e9e);
+    filter: drop-shadow(5px 5px 5px #acacac);
+}
+
+.player-item:hover img{
+    transform: translateX(-5px);
+    transition: all .2s;
+}
+
+.empty-photo{
+    filter: invert(1);
+}
+
+.input-text{
+    color: var(--text-secondary-color);
+    height: 25px;
+    position: relative;   
+    border: none;
+    font-family: Archivo Bold, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    background-color: transparent;
+    outline: none;
+    box-shadow: 0px 4px 20px 0px transparent;
+    border-bottom: 1px solid white;
+    -webkit-appearance: none;
+}
+
+.flex-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.seasons-select{
+    background-color: var(--background-color);
+    color: var(--text-primary-color);
+    padding: 5px 2px;
+    border-radius: 5px;
+}
+
+.form-line{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--orange-main);
+    transform: scale(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+}
+
+.search-bar{
+    position: relative;
+    width: fit-content;
+}
+
+.input-text:focus ~ .form-line{
+    transform: scale(1);
+}
+
+.players-controls{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    border: var(--border-gray);
+    padding: 20px 0;
+}
+
+.player-item:hover{
+    border: 2px solid white;
+    box-shadow: var(--white-shadow);
+}

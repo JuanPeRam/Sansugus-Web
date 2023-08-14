@@ -1,0 +1,30 @@
+.circle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid rgb(202, 202, 202);
+    width: 90px;
+    height: 90px;
+    animation: opacity .5s ease;
+}
+
+.average-stats{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@media screen {
+    @media (max-width: 650px){
+        .average-stats{
+            flex-direction: column;
+            gap: 20px;
+        }
+        .player-description{
+            margin-left: 10px;
+        }
+    }
+}

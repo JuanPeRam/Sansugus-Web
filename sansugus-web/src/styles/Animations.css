@@ -1,0 +1,52 @@
+@keyframes faderight {
+    0%{
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeleft {
+    0%{
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fillAnimation {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+}
+
+@keyframes opacity {
+    0% {
+      opacity: 0;
+    }
+
+    100%{
+      opacity: 1;
+    }
+}
+
+@keyframes notopacity {
+  0% {
+    opacity: 1;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}

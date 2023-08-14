@@ -1,0 +1,40 @@
+.player-card{
+    box-shadow: var(--dark-shadow);
+    background-color: rgb(95, 61, 16);
+    padding: 3%;
+    border-radius: 5px;
+    min-width: 350px;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.player-card-content{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    
+}
+.player-info{
+    background-color: rgb(207, 207, 207);
+    animation: faderight var(--fade-entry-time);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+}
+
+#back-icon{
+    animation: fadeleft var(--fade-entry-time);
+}
+
+@media screen {
+    @media (max-width: 1250px){
+        .player-card-content{
+            grid-template-columns: 1fr;
+        }
+    }
+}
