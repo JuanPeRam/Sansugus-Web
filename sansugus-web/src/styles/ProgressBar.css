@@ -10,7 +10,7 @@
   .filler {
     border-right: 1px solid rgba(194, 194, 194, 0.986);
     height: 100%;
-    background-color: var(--orange-main);
+    background-color: rgb(218, 145, 11);
     position: absolute;
     top: 0;
     left: 0;
