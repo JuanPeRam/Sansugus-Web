@@ -13,14 +13,14 @@ const PlayerStats: React.FC<{ stats: playerData, totalStats: playerData }> = ({ 
     const totalAssists:number = totalStats.Asistencias;
     const totalYellow:number = totalStats.Amarillas;
     const totalReds:number = totalStats.Rojas;
-    const totalMvps:number = totalStats.Mvp;
+    const totalMvps:number = totalStats.MVP;
     const totalGames:number = totalStats.Partidos;
 
     const totalGoalsPercent = calculatePercent(stats.Goles,totalGoals)
     const totalAssistsPercent = calculatePercent(stats.Asistencias,totalAssists)
     const totalYellowsPercent = calculatePercent(stats.Amarillas,totalYellow)
     const totalRedsPercent = calculatePercent(stats.Rojas,totalReds)
-    const totalMVPPercent = calculatePercent(stats.Mvp,totalMvps)
+    const totalMVPPercent = calculatePercent(stats.MVP,totalMvps)
     const totalGamesPercent = calculatePercent(stats.Partidos, totalGames)
 
     return (
@@ -30,7 +30,7 @@ const PlayerStats: React.FC<{ stats: playerData, totalStats: playerData }> = ({ 
             {totalAssists>0 && stats.Partidos>0 &&<StatComponent params={{stat: 'Asistencias',variable:stats.Asistencias,totalVariable:totalAssists,percent:totalAssistsPercent}}></StatComponent>}
             {totalYellow > 0 && stats.Partidos>0 && <StatComponent params={{stat: 'Amarillas',variable:stats.Amarillas,totalVariable:totalYellow,percent:totalYellowsPercent}}></StatComponent>}
             {totalReds>0 && stats.Partidos>0 && <StatComponent params={{stat: 'Rojas',variable:stats.Rojas,totalVariable:totalReds,percent:totalRedsPercent}}></StatComponent>}
-            {totalMvps>0 && <StatComponent params={{stat: 'MVPs',variable:stats.Mvp,totalVariable:totalMvps,percent:totalMVPPercent}}></StatComponent>}
+            {totalMvps>0 && <StatComponent params={{stat: 'MVPs',variable:stats.MVP,totalVariable:totalMvps,percent:totalMVPPercent}}></StatComponent>}
             {totalGames>0 && stats.Partidos && <StatComponent params={{stat: 'Partidos',variable:stats.Partidos,totalVariable:totalGames,percent:totalGamesPercent}}></StatComponent>}
             <div className='average-stats'>
                 <ProgressCircle stats={{goals: stats.Goles, games: stats.Partidos}}></ProgressCircle>

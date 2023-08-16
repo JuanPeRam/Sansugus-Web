@@ -22,7 +22,7 @@ type playerData = {
     Amarillas:number,
     Rojas:number,
     Temporada:string,
-    Mvp:number,
+    MVP:number,
 }
 
 export type {circleStats,progressBarParams,playerData}
