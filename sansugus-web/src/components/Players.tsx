@@ -23,6 +23,14 @@ function Players(){
     const [query, setQuery]: [string, Dispatch<SetStateAction<string>>] = useState('')
     const filteredPlayers:playerData[] = getFilteredPlayers()
 
+    if(currentPlayer){
+        window.onpopstate = ()=>{
+            console.log('popstate')
+            window.location.pathname = '/Players'
+            setCurrentPlayer(undefined)
+        }
+    }
+
     const handleScrollToTop = () => {
         window.scrollTo({
           top: 0,
@@ -129,15 +137,16 @@ function Players(){
         {
         <section className="players-list">
             { isLoading && <p>Cargando datos...</p> || filteredPlayers.length===0 && <p>No se ha encontrado al jugador</p>}
-            {!isLoading && players && filteredPlayers.map((player:playerData, index:number) => (
-                <div key={index} onClick={()=>setCurrentPlayer(player)} className="player-item">
-                    <div className="player-description">
-                        <div>{player.Jugador}</div>
-                        <div>{player.Dorsal}</div>
+            {!isLoading && players && 
+                filteredPlayers.map((player:playerData, index:number) => (
+                    <div key={index} onClick={()=>setCurrentPlayer(player)} className="player-item">
+                        <div className="player-description">
+                            <div>{player.Jugador}</div>
+                            
+                        </div>
+                        <img src={getPlayerImage(player.Jugador)} className={empty?'empty-photo':''}></img>
                     </div>
-                    <img src={getPlayerImage(player.Jugador)} className={empty?'empty-photo':''}></img>
-                </div>
-            ))
+                ))
             }
         </section>
     }

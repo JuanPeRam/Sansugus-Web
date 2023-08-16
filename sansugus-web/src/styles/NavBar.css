@@ -1,6 +1,6 @@
 .options-list{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     list-style-type: none;
     gap: 0 40px;
 }
@@ -19,6 +19,10 @@
     text-transform: none;
     letter-spacing: 1px;
     font-style: normal;
+}
+
+.options-list img{
+    width: 50px;
 }
 
 .options-list{
@@ -78,6 +82,7 @@ li a:hover{
         .navbar{
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             position: fixed;
             top: 0;
             left: 0;

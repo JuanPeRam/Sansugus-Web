@@ -29,16 +29,36 @@
     justify-content: center;
     align-items: center;
     min-height: 500px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.player-info img{
+    -webkit-mask-image: linear-gradient(0deg,transparent,#000000 50px);
+    mask-image: linear-gradient(0deg,transparent,#000000 50px);
+    max-width: 60%;
 }
 
 #back-icon{
     animation: fadeleft var(--fade-entry-time);
+    color: var(--text-secondary-color);
+}
+
+#back-icon:hover{
+    color: var(--text-primary-color);
+    cursor: pointer;
 }
 
 @media screen {
     @media (max-width: 1250px){
         .player-card-content{
             grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 650px) {
+        .player-info img{
+            width: 80%;
         }
     }
 }

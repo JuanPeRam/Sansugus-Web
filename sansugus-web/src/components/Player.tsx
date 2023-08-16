@@ -7,13 +7,18 @@ import { ReactNode } from 'react';
 
 const Player: React.FC<{stats: playerData, totalStats: playerData, children: ReactNode }> = ({ stats, totalStats, children }) => {
 
+    const playerImage = getImage(stats.Jugador)??nullPlayer;
+
+    const isNull = playerImage===nullPlayer
+
     return (
         <div className='player-card'>
             <div className='player-controls'>
                 {children}
             </div>
             <div className='player-card-content'>
-                <div className='player-info' style={{backgroundImage: `url(${getImage(stats.Jugador)??nullPlayer})`, backgroundPosition: 'top', backgroundSize: "cover"}}>
+                <div className='player-info'>
+                    <img src={getImage(stats.Jugador)??nullPlayer} alt={stats.Jugador+" Image"} className={isNull?'empty-photo':''}/>
                 </div>
                 <PlayerStats stats={stats} totalStats={totalStats}/>
             </div>
