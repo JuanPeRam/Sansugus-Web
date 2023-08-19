@@ -23,14 +23,6 @@ function Players(){
     const [query, setQuery]: [string, Dispatch<SetStateAction<string>>] = useState('')
     const filteredPlayers:playerData[] = getFilteredPlayers()
 
-    if(currentPlayer){
-        window.onpopstate = ()=>{
-            console.log('popstate')
-            window.location.pathname = '/Players'
-            setCurrentPlayer(undefined)
-        }
-    }
-
     const handleScrollToTop = () => {
         window.scrollTo({
           top: 0,

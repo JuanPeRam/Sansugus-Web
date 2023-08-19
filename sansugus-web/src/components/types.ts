@@ -25,5 +25,19 @@ type playerData = {
     MVP:number,
 }
 
-export type {circleStats,progressBarParams,playerData}
+type matchData = {
+    ID_Partido:string,
+    Local:string,
+    Visitante:string,
+    Fecha:Date,
+    'Goles Local':string,
+    'Goles Visitante':string,
+    Campo: number,
+    Temporada:string,
+    Competición:string,
+    Jornada:string,
+    Jugado:boolean
+}
+
+export type {circleStats,progressBarParams,playerData,matchData}
 

@@ -5,6 +5,7 @@ import Players from './components/Players'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Footer from './components/Footer'
+import Games from './components/Games'
 
 
 
@@ -21,7 +22,8 @@ function App() {
   const pathNames: { [key: string]: JSX.Element } = {
     '/Players':<Players />,
     '/':<Home/>,
-    '/Home':<Home/>
+    '/Home':<Home/>,
+    '/Games':<Games/>
   }
 
   return (

@@ -14,7 +14,7 @@ function NavBar(){
         <li><a href="/"><img src={sansuguslogo} alt="Sansugus Logo" /></a></li>
         <li><a href='/Home'>Inicio</a></li>
         <li><a href='/Players'>Jugadores</a></li>
-        <li><a href='/Players'>Partidos</a></li>
+        <li><a href='/Games'>Partidos</a></li>
       </ul>
       {!isNavExpanded ? 
       <FontAwesomeIcon icon={faBars} size='xl' color='#aaaaaa' className='hamburguer' onClick={()=>{setIsNavExpanded(true)}}/>:

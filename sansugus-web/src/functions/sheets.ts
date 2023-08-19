@@ -25,6 +25,5 @@ export function sheetResponseToObjects(res:string){
       }
       data.push(rowObject);
     }
-    console.log(typeof(data))
     return data;
 }
