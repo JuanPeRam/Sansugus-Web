@@ -29,7 +29,7 @@ type matchData = {
     ID_Partido:string,
     Local:string,
     Visitante:string,
-    Fecha:Date,
+    Fecha: Date | any,
     'Goles Local':string,
     'Goles Visitante':string,
     Campo: number,

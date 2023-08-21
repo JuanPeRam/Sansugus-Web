@@ -27,10 +27,11 @@
 }
 
 .player-item img{
-    height: 150px;
+    height: 175px;
+    padding: 20px;
     position: absolute;
-    top: -20px;
-    left: -10px;
+    top: -30px;
+    left: -20px;
     z-index: 1;
     -webkit-mask-image: linear-gradient(0deg,transparent,#000000 30px);
     mask-image: linear-gradient(0deg,transparent,#000000 30px);

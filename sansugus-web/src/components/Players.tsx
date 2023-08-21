@@ -110,7 +110,7 @@ function Players(){
         </header>
         <section className="players-controls">
             <div className="flex-column">
-                <span>Filtrar por nombre</span>
+                <span>Buscar por nombre</span>
                 <div className="search-bar">
                     <input type="text" placeholder="Nombre..." className="input-text" onChange={(e)=>setQuery(e.target.value)}/>
                     <div className="form-line"/>
