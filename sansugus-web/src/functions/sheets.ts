@@ -2,6 +2,7 @@
 export function sheetResponseToObjects(res:string){
     const jsData = JSON.parse(res.substring(47).slice(0, -2));
     let data = [];
+    console.log(jsData)
     const columns = jsData.table.cols;
     const rows = jsData.table.rows;
     let rowObject:any;

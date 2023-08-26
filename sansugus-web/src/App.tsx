@@ -17,14 +17,14 @@ function App() {
     setCurrentComponent(pathNames[currentPath] ?? <NotFound/>)
   }, [])
 
-  
-
   const pathNames: { [key: string]: JSX.Element } = {
     '/Players':<Players />,
     '/':<Home/>,
     '/Home':<Home/>,
     '/Games':<Games/>
-  }
+}
+
+
 
   return (
     <>

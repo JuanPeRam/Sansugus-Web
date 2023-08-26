@@ -83,7 +83,25 @@
     color: var(--text-primary-color);
     padding: 5px 2px;
     border-radius: 5px;
+    border-radius: 4px;
+
+    /* Evitar el cambio de estilo en el hover */
+    transition: none;
 }
+
+.seasons-select::after {
+    content: '\25BC'; /* Código Unicode para la flecha hacia abajo */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+  }
+
+  /* Estilos para el hover de la flecha */
+  .seasons-select:hover::after {
+    color: blue; /* Cambiar el color de la flecha cuando se hace hover */
+  }
 
 .form-line{
     position: absolute;

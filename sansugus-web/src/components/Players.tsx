@@ -23,6 +23,10 @@ function Players(){
     const [query, setQuery]: [string, Dispatch<SetStateAction<string>>] = useState('')
     const filteredPlayers:playerData[] = getFilteredPlayers()
 
+    window.addEventListener("popstate", function(event:any) {
+        alert('Espera')
+    });
+
     const handleScrollToTop = () => {
         window.scrollTo({
           top: 0,
