@@ -1,3 +1,10 @@
+:root{
+    --min-secondary-text: 10px;
+    --game-won-bg: rgba(34, 219, 9, 0.247);
+    --game-lost-bg: rgba(216, 24, 24, 0.205);
+    --game-drawn-bg: rgba(124, 124, 124, 0.24);
+}
+
 .game-data{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -39,4 +46,35 @@
 .game-props{
     color: var(--text-secondary-color);
     font-size: small;
+}
+
+.game-won{
+    background-color: var(--game-won-bg);
+}
+
+.game-lost{
+    background-color: var(--game-lost-bg);
+}
+
+.game-drawn{
+    background-color: var(--game-drawn-bg);
+}
+
+@media screen {
+    @media (max-width: 650px) {
+        .game-result{
+            font-size: 25px;
+        }
+
+        .game-props{
+            font-size: var(--min-secondary-text);
+        }
+
+        .game-name{
+            font-size: var(--min-secondary-text);
+        }
+        .game-date{
+            font-size: var(--min-secondary-text);
+        }
+    }
 }
