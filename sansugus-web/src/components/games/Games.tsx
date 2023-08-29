@@ -41,6 +41,9 @@ export default function Games(){
 
     return(
         <>
+        <header>
+            <h1>Partidos</h1>
+        </header>
         <section className='filters-list'>
             
         </section>

@@ -65,6 +65,8 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
                                 <div className='game-field'>
                                     Campo {game.Campo}
                                 </div>}
+                                <div>{game.Temporada}</div>
+                                {!game.Jugado && <div className="game-played">No Jugado</div>} 
                             </div>
                         </div>
                         <div className='game-name'>

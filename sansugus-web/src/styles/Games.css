@@ -60,6 +60,11 @@
     background-color: var(--game-drawn-bg);
 }
 
+.game-played{
+    color: var(--text-primary-color);
+    font-weight: bold;
+}
+
 @media screen {
     @media (max-width: 650px) {
         .game-result{
