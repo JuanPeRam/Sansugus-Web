@@ -3,6 +3,11 @@ import sansugusLogo from '../../img/sansugus-logo.svg'
 import Date from './Date'
 
 const sansugusName = "Sansugus FC"
+const classGame = {
+    "WON":"game-won",
+    "LOST":"game-lost",
+    "DRAW":"game-drawn"
+}
 
 const Game:React.FC<{game:matchData}> = ({game}) => {
 
@@ -10,10 +15,18 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
         return homeGoals>awayGoals
     }
 
+    function getClassGame(won:boolean,lost:boolean){
+        if(won) return classGame["WON"]
+        if(lost) return classGame["LOST"]
+        return classGame["DRAW"]
+    }
+
     let won = false
     let lost = false
     let local:string
     let away:string
+    let gameClass:string
+    
     if(game.Local===sansugusName){
         local = game["Goles Local"]
         away = game["Goles Visitante"]
@@ -25,10 +38,15 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
 
     won = checkWon(local,away)
 
+
     if(!won) lost=local!==away
+
+    gameClass = getClassGame(won,lost)
+
+
     
     return (
-        <div key={game.ID_Partido} className={won?'game-data game-won':'game-data game-drown'}>
+        <div key={game.ID_Partido} className={'game-data '+gameClass}>
                         <div className='game-name'>
                             {game.Local==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:<span>{game.Local}</span>}
                         </div>
