@@ -81,12 +81,17 @@
 .seasons-select{
     background-color: var(--background-color);
     color: var(--text-primary-color);
-    padding: 5px 2px;
+    padding: 5px 5px;
     border-radius: 5px;
     border-radius: 4px;
 
-    /* Evitar el cambio de estilo en el hover */
-    transition: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 25px;
+    background-image: url('https://www.helvetia.com/at/edocs/img/apex_ui/img/ui/select-arrow-dark.svg');
+    background-repeat: no-repeat;
+    background-position: 170% 50%;
+    background-size: contain;
 }
 
 .seasons-select::after {
