@@ -1,8 +1,8 @@
 :root{
     --min-secondary-text: 10px;
     --game-won-bg: rgba(34, 219, 9, 0.247);
-    --game-lost-bg: rgba(216, 24, 24, 0.205);
-    --game-drawn-bg: rgba(124, 124, 124, 0.24);
+    --game-lost-bg: rgba(243, 27, 27, 0.397);
+    --game-drawn-bg: rgba(124, 124, 124, 0.37);
 }
 
 .game-data{

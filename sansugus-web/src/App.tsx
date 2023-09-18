@@ -1,7 +1,7 @@
 import { useState, Dispatch, SetStateAction, useEffect} from 'react'
 import './App.css'
 import NavBar from './components/NavBar'
-import Players from './components/Players'
+import Players from './components/players/Players'
 import Home from './components/home/Home'
 import NotFound from './components/NotFound'
 import Footer from './components/Footer'

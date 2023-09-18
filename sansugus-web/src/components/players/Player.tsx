@@ -1,8 +1,8 @@
 import PlayerStats from './PlayerStats'
-import {playerData} from './types'
-import '../styles/Player.css'
-import nullPlayer from '../img/player.png'
-import { getImage } from '../rendering/players_img';
+import {playerData} from '../types'
+import '../../styles/Player.css'
+import nullPlayer from '../../img/player.png'
+import { getImage } from '../../rendering/players_img';
 import { ReactNode } from 'react';
 
 const Player: React.FC<{stats: playerData, totalStats: playerData, children: ReactNode }> = ({ stats, totalStats, children }) => {

@@ -1,12 +1,12 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react"
-import { sheetResponseToObjects } from "../functions/sheets"
-import { playerData } from "./types"
+import { sheetResponseToObjects } from "../../functions/sheets"
+import { playerData } from "../types"
 import Player from "./Player"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons"
-import '../styles/Players.css'
-import { getImage } from "../rendering/players_img"
-import EmptyPhoto from "../img/player.png"
+import '../../styles/Players.css'
+import { getImage } from "../../rendering/players_img"
+import EmptyPhoto from "../../img/player.png"
 
 const totalCell = 'Total'
 const sheetName = "Estadísticas"

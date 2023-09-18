@@ -1,7 +1,7 @@
-import {playerData} from './types'
-import '../styles/PlayerStats.css'
-import ProgressCircle from './stats-components/ProgressCircle';
-import StatComponent from './stats-components/StatComponent';
+import {playerData} from '../types'
+import '../../styles/PlayerStats.css'
+import ProgressCircle from '../stats-components/ProgressCircle';
+import StatComponent from '../stats-components/StatComponent';
 
 function calculatePercent(number:number, totalNumber:number){
     return (number/totalNumber * 100).toFixed(2)
