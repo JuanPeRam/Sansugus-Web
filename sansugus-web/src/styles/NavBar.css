@@ -33,6 +33,10 @@ li a:hover{
     color: var(--text-primary-color);
 }
 
+.options-list li .selected{
+    color: var(--text-primary-color);
+}
+
 .navbar{
     border-bottom: 1px solid var(--orange-main);
     background-color: var(--nav-background-color);

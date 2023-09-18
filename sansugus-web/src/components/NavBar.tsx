@@ -5,6 +5,9 @@ import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 import sansuguslogo from '../img/sansugus-logo.svg'
 function NavBar(){
   const [isNavExpanded, setIsNavExpanded] = useState(false)
+  const selectedWindow = window.location.pathname;
+
+  console.log(selectedWindow)
 
   return (
     <nav className='navbar'>
@@ -12,9 +15,9 @@ function NavBar(){
         isNavExpanded ? "options-list" : "options-list none"
       }>
         <li><a href="/"><img src={sansuguslogo} alt="Sansugus Logo" /></a></li>
-        <li><a href='/Home'>Inicio</a></li>
-        <li><a href='/Players'>Jugadores</a></li>
-        <li><a href='/Games'>Partidos</a></li>
+        <li><a href='/Home' className={selectedWindow=='/Home'?'selected':''}>Inicio</a></li>
+        <li><a href='/Players' className={selectedWindow=='/Players'?'selected':''}>Jugadores</a></li>
+        <li><a href='/Games' className={selectedWindow=='/Games'?'selected':''}>Partidos</a></li>
       </ul>
       {!isNavExpanded ? 
       <FontAwesomeIcon icon={faBars} size='xl' color='#aaaaaa' className='hamburguer' onClick={()=>{setIsNavExpanded(true)}}/>:
