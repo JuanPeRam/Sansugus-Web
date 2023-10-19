@@ -7,8 +7,6 @@ function NavBar(){
   const [isNavExpanded, setIsNavExpanded] = useState(false)
   const selectedWindow = window.location.pathname;
 
-  console.log(selectedWindow)
-
   return (
     <nav className='navbar'>
       <ul className={
