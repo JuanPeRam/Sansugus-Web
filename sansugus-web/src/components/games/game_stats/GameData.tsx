@@ -25,8 +25,9 @@ const GameData: React.FC<{}> = ({}) => {
         .catch(err=>{
             console.error(err)
         })
-        .finally(()=>
-            setIsLoading(true)
+        .finally(()=>{
+            setIsLoading(false)
+        }
         )
     }, [])
 
@@ -44,7 +45,8 @@ const GameData: React.FC<{}> = ({}) => {
 
     return (
         <>
-        <Field playersInfo={startingSeven}></Field>
+        
+        <Field playersInfo={startingSeven} isLoading={isLoading}></Field>
         </>
     )
 }

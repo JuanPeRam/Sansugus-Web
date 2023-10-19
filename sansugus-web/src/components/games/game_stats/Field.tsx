@@ -2,8 +2,9 @@ import React from "react"
 import { matchPlayerInfo } from "../../types"
 import '../../../styles/game_stats/Field.css'
 import { getShirtImage } from "../../../rendering/shirts_img"
+import NullField from "./NullField"
 
-const Field: React.FC<{playersInfo:Array<any> | null}> = ({playersInfo}) => {
+const Field: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = ({playersInfo,isLoading}) => {
     
     var attackers = new Array<any>
     var midfielders = new Array<any>
@@ -32,7 +33,7 @@ const Field: React.FC<{playersInfo:Array<any> | null}> = ({playersInfo}) => {
     return (
         <>
             <section className="field">
-                {
+                {   !isLoading &&
                     <>
                     <div className="attackers row">
                         {
@@ -68,6 +69,11 @@ const Field: React.FC<{playersInfo:Array<any> | null}> = ({playersInfo}) => {
                     </div>
                     </>
                 }
+
+                {isLoading &&
+                <>
+                    <NullField />
+                </>}
                 
             </section>
         </>

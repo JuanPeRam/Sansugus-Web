@@ -22,3 +22,38 @@
 .row img{
     height: 80px;
 }
+
+.loading-container {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+    height: 100px; /* Ajusta la altura según tus necesidades */
+  }
+  
+  .loading-image {
+    max-width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .loading-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: gradient-slide 2s linear infinite;
+    mask-image: url('../../img/player.png'); 
+    mask-size: cover;
+  }
+  
+  @keyframes gradient-slide {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
