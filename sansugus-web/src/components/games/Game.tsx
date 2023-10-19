@@ -43,7 +43,6 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
 
     gameClass = getClassGame(won,lost)
 
-
     
     return (
         <div key={game.ID_Partido} className={'game-data '+gameClass}>
