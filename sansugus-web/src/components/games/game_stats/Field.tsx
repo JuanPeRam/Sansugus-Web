@@ -3,6 +3,7 @@ import { matchPlayerInfo } from "../../types"
 import '../../../styles/game_stats/Field.css'
 import { getShirtImage } from "../../../rendering/shirts_img"
 import NullField from "./NullField"
+import PlayerInfo from "./PlayerInfo"
 
 const Field: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = ({playersInfo,isLoading}) => {
     
@@ -33,39 +34,31 @@ const Field: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = ({player
     return (
         <>
             <section className="field">
-                {   !isLoading &&
+                {   !isLoading && playersInfo &&
                     <>
                     <div className="attackers row">
                         {
                             attackers.map((playerInfo:matchPlayerInfo)=>(
-                                <div className="player" key={playerInfo.Jugador}>
-                                    <img src={getShirtImage(playerInfo.Jugador)} alt={playerInfo.Alias}/>
-                                </div>
+                                <PlayerInfo playerData={playerInfo} key={playerInfo.Jugador}/>
                             ))
                         }
                     </div>
                     <div className="midfielders row">
                         {
                             midfielders.map((playerInfo:matchPlayerInfo)=>(
-                                <div className="player" key={playerInfo.Jugador}>
-                                    <img src={getShirtImage(playerInfo.Jugador)} alt={playerInfo.Alias}/>
-                                </div>
+                                <PlayerInfo playerData={playerInfo} key={playerInfo.Jugador}/>
                             ))
                         }
                     </div>
                     <div className="defenders row">
                         {
                             defenders.map((playerInfo:matchPlayerInfo)=>(
-                                <div className="player" key={playerInfo.Jugador}>
-                                    <img src={getShirtImage(playerInfo.Jugador)} alt={playerInfo.Alias}/>
-                                </div>
+                                <PlayerInfo playerData={playerInfo} key={playerInfo.Jugador}/>
                             ))
                         }
                     </div>
                     <div className="goalkeeper row">
-                        <div className="player" key={goalkeeper?.Jugador}>
-                            <img src={getShirtImage(goalkeeper?.Jugador)} alt={goalkeeper?.Alias}/>
-                        </div>
+                        <PlayerInfo playerData={goalkeeper} key={goalkeeper?.Jugador}/>
                     </div>
                     </>
                 }
