@@ -8,7 +8,7 @@ function NavBar(){
   const selectedWindow = window.location.pathname;
 
   return (
-    <nav className='navbar'>
+    <nav className='navbaar'>
       <ul className={
         isNavExpanded ? "options-list" : "options-list none"
       }>
