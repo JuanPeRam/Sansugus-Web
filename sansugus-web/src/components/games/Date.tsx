@@ -4,7 +4,7 @@ const Date: React.FC<{date:Date}> = ({date}) => {
 
     const isoDate = date.toLocaleDateString()
 
-    if(min===0) min = '00'
+    if(min===0) min = '000'
 
 
 
