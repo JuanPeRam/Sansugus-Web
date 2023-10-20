@@ -43,9 +43,17 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
 
     gameClass = getClassGame(won,lost)
 
+    function openGame(){
+        if(game.Temporada!='21/22'&&game.Temporada!='22/23'){
+            const match_id = game.ID_Partido;
+            const url = 'Game?game=' + match_id;
+            window.location.href = url;
+        }
+    }
+
     
     return (
-        <div key={game.ID_Partido} className={'game-data '+gameClass}>
+        <div key={game.ID_Partido} className={'game-data '+gameClass} onClick={()=>openGame()}>
                         <div className='game-name'>
                             {game.Local==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:<span>{game.Local}</span>}
                         </div>

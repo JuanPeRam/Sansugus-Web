@@ -7,10 +7,10 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 import '../../styles/Players.css'
 import { getImage } from "../../rendering/players_img"
 import EmptyPhoto from "../../img/player.png"
+import {link} from '../types'
 
 const totalCell = 'Total'
 const sheetName = "Estadísticas"
-const link = "https://docs.google.com/spreadsheets/d/1oC9Iaba_OL_2BWSR0d-IZtrY0MSAynJRAW8jXixc70M/gviz/tq?"
 
 
 function Players(){
@@ -141,7 +141,7 @@ function Players(){
                 ))
             }
         </section>
-    }
+        }
     </>
     }
     { currentPlayer && totalStats &&

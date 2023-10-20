@@ -39,5 +39,20 @@ type matchData = {
     Jugado:boolean
 }
 
-export type {circleStats,progressBarParams,playerData,matchData}
+type matchPlayerInfo = {
+    ID_Partido:string,
+    Jugador:string,
+    Titular:boolean,
+    Posición:string,
+    Goles:number,
+    Asistencias:number,
+    Amarillas:number,
+    Rojas:number,
+    MVP:boolean,
+    Alias:string
+}
+
+export type {circleStats,progressBarParams,playerData,matchData,matchPlayerInfo}
+
+export const link = 'https://docs.google.com/spreadsheets/d/1oC9Iaba_OL_2BWSR0d-IZtrY0MSAynJRAW8jXixc70M/gviz/tq?'
 

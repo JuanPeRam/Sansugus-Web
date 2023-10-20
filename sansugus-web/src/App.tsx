@@ -6,6 +6,8 @@ import Home from './components/home/Home'
 import NotFound from './components/NotFound'
 import Footer from './components/Footer'
 import Games from './components/games/Games'
+import Field from './components/games/game_stats/Field'
+import GameData from './components/games/game_stats/GameData'
 
 
 
@@ -16,7 +18,8 @@ function App() {
     '/Players':<Players />,
     '/':<Home/>,
     '/Home':<Home/>,
-    '/Games':<Games/>
+    '/Games':<Games/>,
+    '/Game':<GameData/>
   }
   useEffect(() => {
     const currentPath  = window.location.pathname
