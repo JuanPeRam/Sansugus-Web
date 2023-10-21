@@ -20,7 +20,7 @@ const imagePaths: { [key: string]: string } = {
   const players_img: { [key: string]: string } = {};
   
 for (const player in imagePaths) {
-    players_img[player] = `src/img/shirts/${imagePaths[player]}`;
+    players_img[player] = `./dir/${imagePaths[player]}`;
 }
 
 
