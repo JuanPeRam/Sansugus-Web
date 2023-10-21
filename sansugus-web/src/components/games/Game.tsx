@@ -82,7 +82,7 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
                                 {!game.Jugado && <div className="game-played">No Jugado</div>}
                                 
                             </div>
-                            {isViewable() && game.Jugado && <div className="more-info" onClick={()=>openGame()}>Ver acta {'>'}</div>}
+                            {isViewable() && !game.Jugado && <div className="more-info" onClick={()=>openGame()}>Ver acta {'>'}</div>}
                         </div>
                         <div className='game-name'>
                             {game.Visitante==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:<span>{game.Visitante}</span>}

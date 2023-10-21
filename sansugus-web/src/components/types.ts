@@ -49,10 +49,20 @@ type matchPlayerInfo = {
     Amarillas:number,
     Rojas:number,
     MVP:boolean,
-    Alias:string
+    Alias:string,
+    Dorsal:number
 }
 
 export type {circleStats,progressBarParams,playerData,matchData,matchPlayerInfo}
 
 export const link = 'https://docs.google.com/spreadsheets/d/1oC9Iaba_OL_2BWSR0d-IZtrY0MSAynJRAW8jXixc70M/gviz/tq?'
+
+export const emojis = {
+    "Goals":"⚽",
+    "Assists":"🅰",
+    "Yellow":"🟨",
+    "Red":"🟥",
+    "MVP":"⭐"
+}
+
 

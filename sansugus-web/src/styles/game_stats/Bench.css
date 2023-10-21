@@ -1,0 +1,31 @@
+.bench-players{
+
+}
+
+.bench-list{
+    border: var(--border-gray);
+    padding: 20px;
+    min-width: 300px;
+}
+
+.bench-player{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    width: 100%;
+}
+
+.bench-data{
+    display: flex;
+}
+
+.match-data{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.bench-stats{
+    display: flex;
+}

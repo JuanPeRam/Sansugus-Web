@@ -31,6 +31,8 @@
 
 .stat-info{
   position: relative;
+  width: fit-content;
+  display: flex;
 }
 
 .stat-info:nth-child(1){
