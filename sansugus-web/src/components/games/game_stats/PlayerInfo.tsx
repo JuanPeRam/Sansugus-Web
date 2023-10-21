@@ -12,11 +12,11 @@ const emojis = {
 
 const PlayerInfo: React.FC<{playerData:matchPlayerInfo}> = ({playerData}) => {
     
-    const goals = playerData.Goles
-    const assists = playerData.Asistencias
+    const goals = playerData?.Goles
+    const assists = playerData?.Asistencias
     const yellowCards = playerData?.Amarillas
-    const redCards = playerData.Rojas
-    const isMVP = playerData.MVP
+    const redCards = playerData?.Rojas
+    const isMVP = playerData?.MVP
 
     return (
         <div className="player">
@@ -38,6 +38,7 @@ const PlayerInfo: React.FC<{playerData:matchPlayerInfo}> = ({playerData}) => {
             </div>
             {isMVP && <div className="MVP">{emojis["MVP"]}</div>}
         </div>
+        
     )
 }
 

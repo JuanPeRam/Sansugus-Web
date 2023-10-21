@@ -33,7 +33,7 @@ const Field: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = ({player
     return (
         <>
             <section className="field">
-                {   !isLoading && playersInfo &&
+                {   !isLoading && playersInfo?.length!=0 &&
                     <>
                     <div className="attackers row">
                         {

@@ -45,8 +45,11 @@ const GameData: React.FC<{}> = ({}) => {
 
     return (
         <>
+        {
+            startingSeven &&  startingSeven.length>0 && 
+            <Field playersInfo={startingSeven} isLoading={isLoading}></Field>
+        }
         
-        <Field playersInfo={startingSeven} isLoading={isLoading}></Field>
         </>
     )
 }

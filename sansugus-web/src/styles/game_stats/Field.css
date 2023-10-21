@@ -48,12 +48,12 @@
   background-color: black;
   color: white;
   border-radius: 50%;
-  width: 13px;
-  font-size: 9px;
+  width: 11px;
+  font-size: 8px;
 }
 
 .player .field-stats div{
-  margin-left: -5px;
+  margin-left: -4px;
 }
 .row{
     display: flex;
@@ -71,8 +71,8 @@
     display: inline-block;
     overflow: hidden;
     position: relative;
-    width: 100px; /* Ajusta el ancho según tus necesidades */
-    height: 100px; /* Ajusta la altura según tus necesidades */
+    width: 100px;
+    height: 100px; 
   }
   
   .loading-image {
