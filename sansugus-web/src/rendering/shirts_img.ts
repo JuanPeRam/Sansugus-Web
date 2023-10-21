@@ -3,7 +3,6 @@ import VicoGK from '../img/shirts/Vico-GK.png'
 import Pepe from '../img/shirts/Pepe.png'
 import Dani from '../img/shirts/Dani.png'
 import Charly from '../img/shirts/Charly.png'
-import Checho from '../img/shirts/Checho.png'
 import Drako from '../img/shirts/Drako.png'
 import Félix from '../img/shirts/Félix.png'
 import Fer from '../img/shirts/Fer.png'
@@ -21,7 +20,7 @@ const players_img: { [key: string]: string } = {
     "Miguel Ángel Rodríguez": Migue,
     "Daniel Sanz": Dani,
     "Marcos Herrero":Dani,
-    "Sergio Hernández 'Checho'":Checho,
+    "Sergio Hernández 'Checho'":Dani,
     "Jorge Muñoz": Drako,
     "Félix Barragán":Félix,
     "Fernando Oteo":Fer,
