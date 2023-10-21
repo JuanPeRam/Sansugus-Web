@@ -1,4 +1,4 @@
-import { matchPlayerInfo } from "../../types"
+import { emojis, matchPlayerInfo } from "../../types"
 import StatsList from "./StatsList"
 import '../../../styles/game_stats/Bench.css'
 
@@ -19,6 +19,7 @@ const BenchPlayers: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = (
                                         <div>{player.Alias}</div>
                                         <div className="bench-stats">
                                             <StatsList stats={player}/>
+                                            {player.MVP && emojis['MVP']}
                                         </div>
                                     </div>
                                 </article>    

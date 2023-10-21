@@ -36,7 +36,11 @@
 }
 
 .game-name img{
-    width: 50px;
+    width: 70px;
+}
+
+img.team{
+    width: 100px;
 }
 
 .game-result{

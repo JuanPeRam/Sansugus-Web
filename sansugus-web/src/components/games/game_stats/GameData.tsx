@@ -6,11 +6,6 @@ import BenchPlayers from "./BenchPlayers";
 
 const sheetName = 'Actas'
 
-function getOpponentName(home:string,away:string):string{
-    if(!(home==='Sansugus FC')) return home
-    else return away
-}
-
 const GameData: React.FC<{}> = ({}) => {
 
     const queryParameters = new URLSearchParams(window.location.search)
@@ -21,6 +16,11 @@ const GameData: React.FC<{}> = ({}) => {
     const [playersInfo,setPlayersInfo] : any = useState(null)
     const [startingSeven, setStartingSeven] : any = useState(null)
     const [benchPlayers, setBenchPlayers] : any = useState(null)
+
+    function getOpponentName():string{
+        if(!(gameData[0]==='Sansugus FC')) return gameData[0].Local
+        else return gameData[0].Visitante
+    }
 
     useEffect(() => {
         setIsLoading(true)
@@ -75,13 +75,21 @@ const GameData: React.FC<{}> = ({}) => {
         }
     }, [playersInfo])
 
+   
+
     return (
         <>
-            <section>
+            <h1>Resumen del partido</h1>
+            <section className="match-info">
                 {!gameDataLoading && gameData && 
-                <div>
-                    {getOpponentName(gameData[0].Local,gameData[0].Visitante)}
-                </div>
+                <>
+                <h3>
+                    {gameData[0].Jornada+' '+gameData[0].Competición}
+                </h3>
+                <h2>
+                    VS {getOpponentName()}
+                </h2>
+                </>
                 }
             </section>
             <section className="match-data">

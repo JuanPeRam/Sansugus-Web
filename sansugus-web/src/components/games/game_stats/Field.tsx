@@ -29,6 +29,9 @@ const Field: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = ({player
         
     })
     
+    function getLineup(){
+        return defenders.length+'-'+midfielders.length+"-"+attackers.length
+    }
 
     return (
         <>
@@ -66,6 +69,11 @@ const Field: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = ({player
                 <>
                     <NullField />
                 </>}
+                <div className="lineup">
+                    {
+                        getLineup()
+                    }
+                </div>
                 
             </article>
         </>

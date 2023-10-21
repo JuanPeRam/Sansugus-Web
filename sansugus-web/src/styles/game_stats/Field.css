@@ -9,6 +9,7 @@
     display: grid;
     grid-template-rows: 4;
     padding-top: 80px;
+    position: relative;
 }
 
 .player{
@@ -102,4 +103,10 @@
     100% {
       left: 100%;
     }
+  }
+
+  .lineup{
+    position: absolute;
+    bottom: 0;
+    left: 5px;
   }

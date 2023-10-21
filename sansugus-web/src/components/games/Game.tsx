@@ -1,6 +1,7 @@
 import { matchData } from "../types"
 import sansugusLogo from '../../img/sansugus-logo.svg'
 import Date from './Date'
+import { getShieldImage } from "../../rendering/teams_img"
 
 const sansugusName = "Sansugus FC"
 const classGame = {
@@ -57,11 +58,17 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
             window.location.href = url;
     }
 
+    function getShield(team:string){
+        const url = getShieldImage(team)
+        if(!url) return (<span>{team}</span>)
+        else return (<img src={url} alt={team} className="team"/>)
+    }
+
     
     return (
         <div key={game.ID_Partido} className={'game-data '+gameClass}>
                         <div className='game-name'>
-                            {game.Local==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:<span>{game.Local}</span>}
+                            {game.Local==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:getShield(game.Local)}
                         </div>
                         <div className="match-info">
                             <div className='game-result'>
@@ -82,10 +89,10 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
                                 {!game.Jugado && <div className="game-played">No Jugado</div>}
                                 
                             </div>
-                            {isViewable() && !game.Jugado && <div className="more-info" onClick={()=>openGame()}>Ver acta {'>'}</div>}
+                            {isViewable() && game.Jugado && <div className="more-info" onClick={()=>openGame()}>Ver acta {'>'}</div>}
                         </div>
                         <div className='game-name'>
-                            {game.Visitante==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:<span>{game.Visitante}</span>}
+                            {game.Visitante==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:getShield(game.Visitante)}
                         </div>
         </div>
     )
