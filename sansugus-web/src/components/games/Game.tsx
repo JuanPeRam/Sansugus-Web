@@ -15,10 +15,18 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
         return homeGoals>awayGoals
     }
 
+    function isViewable() : boolean{
+        let season = game['Temporada']
+        return (season!='22/23'&&season!='21/22')
+    }
+
     function getClassGame(won:boolean,lost:boolean){
-        if(won) return classGame["WON"]
-        if(lost) return classGame["LOST"]
-        return classGame["DRAW"]
+        let gameClass:string = ''
+        if(won) gameClass+=classGame["WON"]
+        else if(lost) gameClass+=classGame["LOST"]
+        else gameClass+=classGame["DRAW"]
+        if(isViewable()) gameClass+=' viewable'
+        return gameClass
     }
 
     let won = false
@@ -44,20 +52,18 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
     gameClass = getClassGame(won,lost)
 
     function openGame(){
-        if(game.Temporada!='21/22'&&game.Temporada!='22/23'){
             const match_id = game.ID_Partido;
             const url = 'Game?game=' + match_id;
             window.location.href = url;
-        }
     }
 
     
     return (
-        <div key={game.ID_Partido} className={'game-data '+gameClass} onClick={()=>openGame()}>
+        <div key={game.ID_Partido} className={'game-data '+gameClass}>
                         <div className='game-name'>
                             {game.Local==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:<span>{game.Local}</span>}
                         </div>
-                        <div>
+                        <div className="match-info">
                             <div className='game-result'>
                                 {game['Goles Local']} - {game['Goles Visitante']}
                             </div>
@@ -73,8 +79,10 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
                                     Campo {game.Campo}
                                 </div>}
                                 <div>{game.Temporada}</div>
-                                {!game.Jugado && <div className="game-played">No Jugado</div>} 
+                                {!game.Jugado && <div className="game-played">No Jugado</div>}
+                                
                             </div>
+                            {isViewable() && game.Jugado && <div className="more-info" onClick={()=>openGame()}>Ver acta {'>'}</div>}
                         </div>
                         <div className='game-name'>
                             {game.Visitante==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:<span>{game.Visitante}</span>}

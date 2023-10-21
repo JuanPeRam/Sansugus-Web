@@ -60,6 +60,23 @@
     background-color: var(--game-drawn-bg);
 }
 
+.more-info{
+    position: absolute;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    text-overflow: hidden;
+}
+
+.more-info:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.match-info{
+    position: relative;
+}
+
 .game-played{
     color: var(--text-primary-color);
     font-weight: bold;
@@ -73,6 +90,7 @@
 
         .game-props{
             font-size: var(--min-secondary-text);
+            display: none;
         }
 
         .game-name{
@@ -80,6 +98,9 @@
         }
         .game-date{
             font-size: var(--min-secondary-text);
+        }
+        .more-info{
+            font-size: var(--max-secondary-text);
         }
     }
 }
