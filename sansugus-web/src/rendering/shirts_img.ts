@@ -20,8 +20,10 @@ const imagePaths: { [key: string]: string } = {
   const players_img: { [key: string]: string } = {};
   
 for (const player in imagePaths) {
-    players_img[player] = `./img/shirts/${imagePaths[player]}`;
+    players_img[player] = `src/img/shirts/${imagePaths[player]}`;
 }
+
+
 
 export function getShirtImage(name:string){
     return players_img[name]
