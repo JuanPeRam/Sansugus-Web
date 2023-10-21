@@ -4,11 +4,11 @@ const imagePaths: { [key: string]: string } = {
     "Pepe": 'Pepe.png',
     "Miguel Ángel Rodríguez": 'Migue.png',
     "Daniel Sanz": 'Dani.png',
-    "Marcos Herrero":'Mark.png', //Esta
-    "Sergio Hernández 'Checho'":'Checho.png', //Esta
-    "Jorge Muñoz": 'Drako.png', //Esta
-    "Félix Barragán":'Félix.png', //Esta
-    "Fernando Oteo":'Fer.png',//Esta
+    "Marcos Herrero":'Mark.png', 
+    "Sergio Hernández 'Checho'":'Checho.png', 
+    "Jorge Muñoz": 'Drako.png',
+    "Félix Barragán":'Félix.png', 
+    "Fernando Oteo":'Fer.png',
     "Iñigo Sáez Mesas": 'Inigol.png',
     "Jose Delgado":'Joselu.png',
     "Juan Pereira":'Pere.png',
@@ -20,7 +20,7 @@ const imagePaths: { [key: string]: string } = {
   const players_img: { [key: string]: string } = {};
   
 for (const player in imagePaths) {
-    players_img[player] = `src/img/shirts/${imagePaths[player]}`;
+    players_img[player] = `./src/img/shirts/${imagePaths[player]}`;
 }
 
 export function getShirtImage(name:string){
