@@ -7,7 +7,7 @@
 
 .game-data{
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
     text-align: center;
     place-items: center;
     gap: 20px;
