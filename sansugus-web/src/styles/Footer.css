@@ -6,14 +6,14 @@
     background-color: var(--orange-main);
     border-top: var(--border-gray);
     padding: 20px 0;
-    height: 20vh;
+    min-height: 20vh;
     
 }
 
 .footer-item{
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    gap: 20px;
     align-items: center;
 }
 
@@ -27,4 +27,12 @@
 .footer-item a:hover img{
     transform: scale(1.1);
     transition: .1s all ease;
+}
+
+.footer-item svg:hover{
+    cursor: pointer;
+}
+
+.footer-item svg:hover path{
+    fill: white;
 }

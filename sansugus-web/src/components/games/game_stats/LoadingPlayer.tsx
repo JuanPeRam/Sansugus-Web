@@ -1,4 +1,4 @@
-import playerImage from '../../../img/player.png'
+const loadingShirtURL = '/resources/img/shirts/Shirt.png'
 
 const LoadingPlayer: React.FC<{}> = ({}) => {
 
@@ -7,7 +7,7 @@ const LoadingPlayer: React.FC<{}> = ({}) => {
             <div className="loading-container">
                 <div className="loading-image">
                     <div className="loading-gradient"></div>
-                    <img src={playerImage} alt='null player image'/>
+                    <img src={loadingShirtURL} alt='null player image'/>
                 </div>
             </div>
         </div>

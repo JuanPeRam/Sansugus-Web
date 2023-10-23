@@ -92,7 +92,7 @@
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
     animation: gradient-slide 2s linear infinite;
-    mask-image: url('../../img/player.png'); 
+    mask-image: url('/resources/img/shirts/Shirt.png'); 
     mask-size: cover;
   }
   
