@@ -1,6 +1,6 @@
 const imagePaths: { [key: string]: string } = {
     "Luis Vico GK": 'Vico-GK.png',
-    "Charly": 'Charly.png',
+    "Carlos Pérez": 'Charly.png',
     "Pepe": 'Pepe.png',
     "Miguel Ángel Rodríguez": 'Migue.png',
     "Daniel Sanz": 'Dani.png',
