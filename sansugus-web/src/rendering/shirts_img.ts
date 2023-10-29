@@ -17,10 +17,11 @@ const imagePaths: { [key: string]: string } = {
     "Luis Vico": 'Vico.png'
   };
   
+  const dir = '/resources/img/shirts/'
   const players_img: { [key: string]: string } = {};
   
 for (const player in imagePaths) {
-    players_img[player] = `/resources/img/shirts/${imagePaths[player]}`;
+    players_img[player] = `${dir+imagePaths[player]}`;
 }
 
 
