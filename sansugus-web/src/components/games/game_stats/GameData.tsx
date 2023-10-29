@@ -18,7 +18,7 @@ const GameData: React.FC<{}> = ({}) => {
     const [benchPlayers, setBenchPlayers] : any = useState(null)
 
     function getOpponentName():string{
-        if(!(gameData[0]==='Sansugus FC')) return gameData[0].Local
+        if(!(gameData[0].Local==='Sansugus FC')) return gameData[0].Local
         else return gameData[0].Visitante
     }
 
