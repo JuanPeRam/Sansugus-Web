@@ -8,7 +8,6 @@
     z-index: 1;
     color: var(--text-secondary-color);
     min-height: 500px;
-    border: var(--border-gray);
     border-radius: 5px;
 }
 
@@ -17,7 +16,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: var(--border-gray);
     padding: 5px;
     flex-wrap: wrap;
     position: relative;
@@ -133,11 +131,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 15px;
+    align-items: flex-end;
+    gap: 50px;
     width: 100%;
-    border: var(--border-gray);
-    padding: 20px 0;
+    padding: 20px 10px;
     border-radius: 5px;
 }
 

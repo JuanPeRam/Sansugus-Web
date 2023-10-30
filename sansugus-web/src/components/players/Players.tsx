@@ -8,6 +8,9 @@ import '../../styles/Players.css'
 import { getImage } from "../../rendering/players_img"
 import EmptyPhoto from "../../img/player.png"
 import {link} from '../types'
+import { Card } from "../ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select"
+import { SelectValue } from "@radix-ui/react-select"
 
 const totalCell = 'Total'
 const sheetName = "Estadísticas"
@@ -63,7 +66,7 @@ function Players(){
     useEffect(() => {
         if(!season) return
         setIsLoading(true)
-        const query = `SELECT * WHERE H = '${season}'`
+        const query = `SELECT * WHERE H = '${season}' ORDER BY C DESC,D DESC,E DESC`
         fetch(`${link}&sheet=${sheetName}&tq=${query}`)
         .then(res => res.text())
             .then(rep => {
@@ -108,7 +111,7 @@ function Players(){
         <header>
             <h1>Jugadores</h1>
         </header>
-        <section className="players-controls">
+        <Card className="players-controls">
             <div className="flex-column">
                 <span>Buscar por nombre</span>
                 <div className="search-bar">
@@ -119,28 +122,33 @@ function Players(){
             
             <div className="flex-column">
                 <span>Temporada</span>
-                <select onChange={(e)=> setSeason(e.target.value)} className="seasons-select" value={season  ?? seasons[seasons.length-1].Temporada}>
-                    {seasons.map((seasonAux:any, index:number) => (
-                        <option key={`season-${index}`} value={seasonAux.Temporada}>{seasonAux.Temporada}</option>
-                    ))}
-                </select>
+                <Select onValueChange={(e)=> setSeason(e)} value={season  ?? seasons[seasons.length-1].Temporada}>
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {seasons.map((seasonAux:any, index:number) => (
+                            <SelectItem key={`season-${index}`} value={seasonAux.Temporada}>{seasonAux.Temporada}</SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
-        </section>
+        </Card>
         {
-        <section className="players-list">
+        <Card className="players-list">
             { isLoading && <p>Cargando datos...</p> || filteredPlayers.length===0 && <p>No se ha encontrado al jugador</p>}
             {!isLoading && players && 
                 filteredPlayers.map((player:playerData, index:number) => (
-                    <div key={index} onClick={()=>setCurrentPlayer(player)} className="player-item">
+                    <Card key={index} onClick={()=>setCurrentPlayer(player)} className="player-item rounded-lg">
                         <div className="player-description">
                             <div>{player.Jugador}</div>
                             
                         </div>
                         <img src={getPlayerImage(player.Jugador)} className={empty?'empty-photo':''}></img>
-                    </div>
+                    </Card>
                 ))
             }
-        </section>
+        </Card>
         }
     </>
     }

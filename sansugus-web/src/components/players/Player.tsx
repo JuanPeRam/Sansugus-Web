@@ -4,6 +4,7 @@ import '../../styles/Player.css'
 import nullPlayer from '../../img/player.png'
 import { getImage } from '../../rendering/players_img';
 import { ReactNode } from 'react';
+import { Card } from '../ui/card';
 
 const Player: React.FC<{stats: playerData, totalStats: playerData, children: ReactNode }> = ({ stats, totalStats, children }) => {
 
@@ -12,7 +13,7 @@ const Player: React.FC<{stats: playerData, totalStats: playerData, children: Rea
     const isNull = playerImage===nullPlayer
 
     return (
-        <div className='player-card'>
+        <Card className='player-card'>
             <div className='player-controls'>
                 {children}
             </div>
@@ -22,7 +23,7 @@ const Player: React.FC<{stats: playerData, totalStats: playerData, children: Rea
                 </div>
                 <PlayerStats stats={stats} totalStats={totalStats}/>
             </div>
-        </div>
+        </Card>
 
         
     )
