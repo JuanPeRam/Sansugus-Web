@@ -2,7 +2,6 @@ import { matchData } from "../types"
 import sansugusLogo from '../../img/sansugus-logo.svg'
 import Date from './Date'
 import { getShieldImage } from "../../rendering/teams_img"
-import { Card } from "../ui/card"
 
 const sansugusName = "Sansugus FC"
 const classGame = {
