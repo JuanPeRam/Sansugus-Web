@@ -136,7 +136,14 @@
     width: 100%;
     padding: 20px 10px;
     border-radius: 5px;
-    flex-direction: row-reverse;
+}
+
+@media screen {
+    @media (max-width: 400px){
+        .players-controls{
+            flex-direction: column-reverse;
+        }
+    }
 }
 
 .player-item:hover{
