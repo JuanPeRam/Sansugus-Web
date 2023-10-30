@@ -136,6 +136,7 @@
     width: 100%;
     padding: 20px 10px;
     border-radius: 5px;
+    flex-direction: row-reverse;
 }
 
 .player-item:hover{
