@@ -13,9 +13,9 @@ function NavBar(){
         isNavExpanded ? "options-list" : "options-list none"
       }>
         <li><a href="/"><img src={sansuguslogo} alt="Sansugus Logo" /></a></li>
-        <li><a href='/Home' className={selectedWindow=='/Home'?'selected':''}>Inicio</a></li>
-        <li><a href='/Players' className={selectedWindow=='/Players'?'selected':''}>Jugadores</a></li>
-        <li><a href='/Games' className={selectedWindow=='/Games'?'selected':''}>Partidos</a></li>
+        <li><a href='/Home' className={selectedWindow=='/Home' || selectedWindow=='/'?'selected':'text-muted-foreground'}>Inicio</a></li>
+        <li><a href='/Players' className={selectedWindow=='/Players'?'selected':'text-muted-foreground'}>Jugadores</a></li>
+        <li><a href='/Games' className={selectedWindow=='/Games'?'selected':'text-muted-foreground'}>Partidos</a></li>
       </ul>
       {!isNavExpanded ? 
       <FontAwesomeIcon icon={faBars} size='xl' color='#aaaaaa' className='hamburguer' onClick={()=>{setIsNavExpanded(true)}}/>:
