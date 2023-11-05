@@ -4,7 +4,8 @@ const imagePaths: { [key: string]: string } = {
     "Marcos Herrero":'Mark_Frente.png', 
     "Félix Barragán":'Félix.png', 
     "Iñigo Sáez Mesas": 'Inigol.png',
-    "Javier Delgado":'Portu.png'
+    "Javier Delgado":'Portu.png',
+    "Miguel Ángel Rodríguez":"Migue.png"
   };
 
 const players_img: { [key: string]: string } = {
