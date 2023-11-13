@@ -21,7 +21,8 @@ const imagePaths: { [key: string]: string } = {
     "Calvix Team":"Calvix.PNG",
     "Scissors FC":"Scissors.PNG",
     "Manza Football Club":"manza.png",
-    "The Gorronalboys":"GorronalBoys.PNG"
+    "The Gorronalboys":"GorronalBoys.PNG",
+    "Leyendas FC":"Leyendas.png"
   };
   
   const teams_img: { [key: string]: string } = {};
