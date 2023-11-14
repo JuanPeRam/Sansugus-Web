@@ -9,8 +9,7 @@ import { getImage } from "../../rendering/players_img"
 import EmptyPhoto from "../../img/player.png"
 import {link} from '../types'
 import { Card } from "../ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select"
-import { SelectValue } from "@radix-ui/react-select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 
 const totalCell = 'Total'
 const sheetName = "Estadísticas"
@@ -25,6 +24,10 @@ function Players(){
     const [seasons, setSeasons]:any = useState()
     const [query, setQuery]: [string, Dispatch<SetStateAction<string>>] = useState('')
     const filteredPlayers:playerData[] = getFilteredPlayers()
+
+    const handleSetCurrentPlayer = (playerId:playerData)=>{
+        setCurrentPlayer(playerId)
+    }
 
     const handleScrollToTop = () => {
         window.scrollTo({
@@ -122,7 +125,7 @@ function Players(){
             
             <div className="flex-column">
                 <span>Temporada</span>
-                <Select onValueChange={(e)=> setSeason(e)} value={season  ?? seasons[seasons.length-1].Temporada}>
+                <Select onValueChange={(e:any)=> setSeason(e)} value={season  ?? seasons[seasons.length-1].Temporada}>
                     <SelectTrigger>
                         <SelectValue />
                     </SelectTrigger>
@@ -139,7 +142,7 @@ function Players(){
             { isLoading && <p>Cargando datos...</p> || filteredPlayers.length===0 && <p>No se ha encontrado al jugador</p>}
             {!isLoading && players && 
                 filteredPlayers.map((player:playerData, index:number) => (
-                    <Card key={index} onClick={()=>setCurrentPlayer(player)} className="player-item rounded-lg">
+                    <Card key={index} onClick={()=>handleSetCurrentPlayer(player)} className="player-item rounded-lg">
                         <div className="player-description">
                             <div>{player.Jugador}</div>
                             
