@@ -36,7 +36,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/Players' Component={Players} />
-          <Route path={'/'||'/Home'} Component={Home} />
+          <Route path={'/'&&'/Home'} Component={Home} />
           <Route path='/Games' Component={Games}/>
           <Route path='/Game' Component={GameData}/>
         </Routes>
