@@ -10,12 +10,15 @@ import EmptyPhoto from "../../img/player.png"
 import {link} from '../types'
 import { Card } from "../ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const totalCell = 'Total'
 const sheetName = "Estadísticas"
 
 
-function Players(){
+const Players = ()=> {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [players,setPlayers]:any[]|playerData[]= useState([])
     const [isLoading, setIsLoading]:[boolean, Dispatch<SetStateAction<boolean>>] = useState(false)
     const [currentPlayer, setCurrentPlayer]:[playerData | undefined, Dispatch<SetStateAction<playerData | undefined>>] = useState()
@@ -27,6 +30,9 @@ function Players(){
 
     const handleSetCurrentPlayer = (playerId:playerData)=>{
         setCurrentPlayer(playerId)
+        const params = new URLSearchParams(location.search);
+        params.set('player', playerId.Jugador);
+        navigate(`?${params.toString()}`);
     }
 
     const handleScrollToTop = () => {
@@ -53,6 +59,17 @@ function Players(){
             console.error(err)
         })
     }, [])
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const playerIdFromUrl = params.get('player');
+        const playerFromUrl = players?.find((player:playerData) => player.Jugador === playerIdFromUrl);
+        
+        // Establecer el estado solo si hay un jugador en la URL
+        if (playerFromUrl) {
+          setCurrentPlayer(playerFromUrl);
+        } else setCurrentPlayer(undefined)
+      }, [location.search, players]);
 
     useEffect(() => {
         handleScrollToTop()
@@ -166,4 +183,4 @@ function Players(){
     </>)
 }
 
-export default Players
+export default Players;

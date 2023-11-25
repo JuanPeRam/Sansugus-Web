@@ -7,12 +7,12 @@ import NotFound from './components/NotFound'
 import Footer from './components/Footer'
 import Games from './components/games/Games'
 import GameData from './components/games/game_stats/GameData'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 
 function App() {
   const [currentComponent, setCurrentComponent] : [undefined | JSX.Element, Dispatch<SetStateAction<undefined | JSX.Element>>] = useState()
-
   const pathNames: { [key: string]: JSX.Element } = {
     '/Players':<Players />,
     '/':<Home/>,
@@ -33,7 +33,14 @@ function App() {
     <>
       <NavBar/>
       <main className='main-content'>
-        {currentComponent}
+      <Router>
+        <Routes>
+          <Route path='/Players' Component={Players} />
+          <Route path={'/'||'/Home'} Component={Home} />
+          <Route path='/Games' Component={Games}/>
+          <Route path='/Game' Component={GameData}/>
+        </Routes>
+      </Router>
       </main>
       <Footer/>
     </>
