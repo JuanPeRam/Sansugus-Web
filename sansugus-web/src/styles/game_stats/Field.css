@@ -74,8 +74,6 @@
     display: inline-block;
     overflow: hidden;
     position: relative;
-    width: 100px;
-    height: 100px; 
   }
   
   .loading-image {
