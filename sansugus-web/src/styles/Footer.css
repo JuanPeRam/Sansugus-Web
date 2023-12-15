@@ -17,6 +17,12 @@
     align-items: center;
 }
 
+.footer-item a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .footer-item img{
     max-width: 100%;
     min-width: 20%;
