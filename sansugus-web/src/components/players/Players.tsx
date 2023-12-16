@@ -123,6 +123,11 @@ const Players = ()=> {
         })
         return filteredPlayers
     }
+
+    function goBack(){
+        setCurrentPlayer(undefined)
+        navigate(``);
+    }
     
     return (
     <>
@@ -176,7 +181,7 @@ const Players = ()=> {
         <>
             
             <Player stats={currentPlayer} totalStats={totalStats} >
-                <FontAwesomeIcon icon={faAngleLeft} size="xl" onClick={()=>setCurrentPlayer(undefined)} id="back-icon"></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faAngleLeft} size="xl" onClick={()=>goBack()} id="back-icon"></FontAwesomeIcon>
             </Player>
         </>
     }
