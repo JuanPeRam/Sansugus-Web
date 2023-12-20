@@ -1,0 +1,60 @@
+.grid-home{
+    display: grid;
+    border: 1px solid rgb(202, 202, 202);
+    padding: 20px;
+    grid-template-areas: 
+    "one two three"
+    "four four three"
+    ;
+    column-gap: 20px;
+    row-gap: 15px;
+    width: 80%;
+}
+
+@media (width < 450px) {
+    .grid-home{
+        grid-template-areas: 
+    "one two "
+    "four four "
+    "three three"
+    ;
+    }
+}
+
+.grid-home article{
+    padding: 20px;
+    background-position-x: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    transition: all .5s ease-in-out;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.one{
+    grid-area: one;
+    background-image: url("../../public/resources/img/blog/players.jpeg");
+}
+
+.two{
+    grid-area: two;
+    background-image: url("../../public/resources/img/blog/games.jpeg");
+}
+
+.three{
+    grid-area: three;
+}
+
+.four{
+    grid-area: four;
+    background-image: url("../../public/resources/img/blog/Sansugus-VS-Texas.jpeg");
+    height: 70vh;
+}
+
+.grid-home article:hover{
+    background-size: 120%;
+}
