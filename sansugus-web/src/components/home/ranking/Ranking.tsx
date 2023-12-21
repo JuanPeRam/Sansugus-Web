@@ -4,7 +4,6 @@ import  RankingSkeleton  from "./RankingSkeleton"
 import { teamData } from "@/types/competitionTypes"
 import { getShieldImage } from "@/rendering/teams_img"
 import { datosPrueba } from "@/aa/prueba"
-import { faL } from "@fortawesome/free-solid-svg-icons"
 
 export const Ranking = () => {
 
@@ -12,7 +11,7 @@ export const Ranking = () => {
   const loading = false
   const result:any = datosPrueba
   return (
-    <table className="">
+    <table className="text-m w-full border-collapse ranking-table">
       <tr>
         <th>Pos</th>
         <th>Equipo</th>
@@ -25,9 +24,9 @@ export const Ranking = () => {
       }
       {
         !loading && result && result.newStanding.map((team:teamData)=>(
-          <tr key={team.teamName}>
+          <tr key={team.teamName} className="p-2">
             <td>{team.position}</td>
-            <td className="flex gap-x-5 items-center"><img src={getShieldImage(team.teamName)} className='w-5'></img> <p className="text-left">{team.teamName}</p></td>
+            <td className="flex gap-x-1 items-center"><img src={getShieldImage(team.teamName)} className=''></img> <p className="text-left">{team.teamName}</p></td>
             <td>{team.points}</td>
           </tr>
         ))

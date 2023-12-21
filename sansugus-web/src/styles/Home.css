@@ -1,22 +1,38 @@
+.ranking-table tbody tr{
+ margin-bottom: 20px;
+}
+
 .grid-home{
     display: grid;
     border: 1px solid rgb(202, 202, 202);
     padding: 20px;
     grid-template-areas: 
-    "one two three"
-    "four four three"
+    "one one two two three"
+    "four four four four three"
     ;
     column-gap: 20px;
     row-gap: 15px;
-    width: 80%;
+    min-width: 80%;
+    min-height: 50vh;
 }
 
-@media (width < 450px) {
+@media (width < 950px) {
     .grid-home{
         grid-template-areas: 
     "one two "
     "four four "
     "three three"
+    ;
+    }
+}
+
+@media (width < 550px) {
+    .grid-home{
+        grid-template-areas: 
+    "one"
+    "two"
+    "four "
+    "three"
     ;
     }
 }
@@ -29,7 +45,6 @@
     transition: all .5s ease-in-out;
     min-height: 20vh;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
     
@@ -52,9 +67,34 @@
 .four{
     grid-area: four;
     background-image: url("../../public/resources/img/blog/Sansugus-VS-Texas.jpeg");
-    height: 70vh;
 }
 
 .grid-home article:hover{
     background-size: 120%;
 }
+
+.table-container {
+    width: 100%;
+  }
+  
+  .ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ranking-table th, .ranking-table td {
+    padding: 2px;
+  }
+  
+  .ranking-table th {
+    background-color: #f2f2f2; /* Fondo gris claro para las celdas del encabezado */
+    color: black;
+}
+  
+  .ranking-table tr {
+    border-bottom: 1px solid #ddd; /* Línea entre las filas */
+  }
+  
+  .ranking-table img {
+    width: 30px; /* Ajusta el ancho de la imagen según sea necesario */
+  }
