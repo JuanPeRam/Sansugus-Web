@@ -1,4 +1,3 @@
-import {entries} from '../../assets/blog/entries'
 import '../../styles/Home.css'
 import { Ranking } from './ranking/Ranking'
 
@@ -11,7 +10,10 @@ function Home() {
             <section className='grid-home'>
                 <article className='one rounded-xl'><p className='p-2 bg-opacity-75 bg-[#a7b8bf] rounded-xl'>Ver Jugadores</p></article>
                 <article className='two rounded-xl'><p className='p-2 bg-opacity-75 bg-[#599d9c] rounded-xl'>Ver partidos</p></article>
-                <article className='three'><Ranking/></article>
+                <article className='three flex flex-col gap-2'>
+                    <h2>Clasificación</h2>
+                    <Ranking/>    
+                </article>
                 <article className='four rounded-xl'></article>
             </section>
         </>
