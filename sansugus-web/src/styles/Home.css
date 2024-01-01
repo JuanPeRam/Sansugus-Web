@@ -1,78 +1,3 @@
-.ranking-table tbody tr{
- margin-bottom: 20px;
-}
-
-.grid-home{
-    display: grid;
-    border: 1px solid rgb(202, 202, 202);
-    padding: 20px;
-    grid-template-areas: 
-    "one one two two three"
-    "four four four four three"
-    ;
-    column-gap: 20px;
-    row-gap: 15px;
-    min-width: 80%;
-    min-height: 50vh;
-}
-
-@media (width < 950px) {
-    .grid-home{
-        grid-template-areas: 
-    "one two "
-    "four four "
-    "three three"
-    ;
-    }
-}
-
-@media (width < 550px) {
-    .grid-home{
-        grid-template-areas: 
-    "one"
-    "two"
-    "four "
-    "three"
-    ;
-    }
-}
-
-.grid-home article{
-    padding: 20px;
-    background-position-x: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    transition: all .5s ease-in-out;
-    min-height: 20vh;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    
-}
-
-.one{
-    grid-area: one;
-    background-image: url("../../public/resources/img/blog/players.jpeg");
-}
-
-.two{
-    grid-area: two;
-    background-image: url("../../public/resources/img/blog/games.jpeg");
-}
-
-.three{
-    grid-area: three;
-}
-
-.four{
-    grid-area: four;
-    background-image: url("../../public/resources/img/blog/Sansugus-VS-Texas.jpeg");
-}
-
-.grid-home article:hover{
-    background-size: 120%;
-}
-
 .table-container {
     width: 100%;
   }
@@ -93,8 +18,4 @@
   
   .ranking-table tr {
     border-bottom: 1px solid #ddd; /* Línea entre las filas */
-  }
-  
-  .ranking-table img {
-    width: 30px; /* Ajusta el ancho de la imagen según sea necesario */
   }

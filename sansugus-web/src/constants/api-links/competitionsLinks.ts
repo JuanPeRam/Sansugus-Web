@@ -1,6 +1,8 @@
-const getCompetitions = "https://moral-api-production.up.railway.app/competitions"
-const getCompetition = "https://moral-api-production.up.railway.app/competition/"
+const link = 'https://moral-api-production.up.railway.app'
+const getCompetitions = `${link}/competitions`
+const getCompetition = `${link}/competition`
+const getTeam = `${link}/team`
 
 export {
-    getCompetition,getCompetitions
+    getCompetition,getCompetitions,getTeam
 }

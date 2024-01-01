@@ -7,16 +7,18 @@ import { datosPrueba } from "@/aa/prueba"
 
 export const Ranking = () => {
 
-  //const {error,loading,result} = useFetch(`${getCompetition}Grupo C`)
+  //const {error,loading,result} = useFetch(`${getCompetition}/Grupo C`)
   const loading = false
   const result:any = datosPrueba
   return (
     <table className="text-m w-full border-collapse ranking-table">
-      <tr>
-        <th>Pos</th>
-        <th>Equipo</th>
-        <th>Puntos</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Equipo</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
       <tbody>
       {
         loading && <RankingSkeleton></RankingSkeleton>
@@ -24,9 +26,9 @@ export const Ranking = () => {
       }
       {
         !loading && result && result.newStanding.map((team:teamData)=>(
-          <tr key={team.teamName} className="p-2">
+          <tr key={team.teamName} className="">
             <td>{team.position}</td>
-            <td className="flex gap-x-1 items-center"><img src={getShieldImage(team.teamName)} className=''></img> <p className="text-left">{team.teamName}</p></td>
+            <td className="flex gap-x-1 items-center"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap">{team.teamName}</p></td>
             <td>{team.points}</td>
           </tr>
         ))
