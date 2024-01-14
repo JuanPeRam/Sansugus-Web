@@ -2,7 +2,7 @@ const imagePaths: { [key: string]: string } = {
     "Boca Roners":"BocaRoners.png",
     "El Chimbón VC":"Chimbon.PNG",
     "Élite FC":"Élite.png",
-    "Enfurbaos FC":"Enfurbaos.png",
+    "Enfurbaos CF":"Enfurbaos.png",
     "Ínter Strada":"InterStrada.png",
     "Internacionales FC":"Internacionales.png",
     "National Team":"NationalTeam.png",
