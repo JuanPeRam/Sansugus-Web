@@ -25,7 +25,8 @@ const imagePaths: { [key: string]: string } = {
     "Leyendas FC":"Leyendas.png",
     "Aston Birra":"AstonBirra.PNG",
     "Los Guerreros":"Guerreros.PNG",
-    "Black&White":"Black&White.png"
+    "Black&White":"Black&White.png",
+    "Olimpiakojos FC":"Olimpiakojos.png"
   };
   
   const teams_img: { [key: string]: string } = {};
