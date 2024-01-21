@@ -3,7 +3,7 @@ const imagePaths: { [key: string]: string } = {
     "Daniel Sanz": 'Dani.png',
     "Marcos Herrero":'Mark_Frente.png', 
     "Félix Barragán":'Félix.png', 
-    "Iñigo Sáez Mesas": 'Inigol.png',
+    "Iñigo Saenz Mesas": 'Inigol.png',
     "Javier Delgado":'Portu.png',
     "Miguel Ángel Rodríguez":"Migue.png",
     "Roberto Lage":"Robert.png",

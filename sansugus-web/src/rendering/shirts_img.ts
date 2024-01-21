@@ -9,7 +9,7 @@ const imagePaths: { [key: string]: string } = {
     "Jorge Muñoz": 'Drako.png',
     "Félix Barragán":'Félix.png', 
     "Fernando Oteo":'Fer.png',
-    "Iñigo Saez Mesas": 'Inigol.png',
+    "Iñigo Saenz Mesas": 'Inigol.png',
     "José Delgado":'Joselu.png',
     "Juan Pereira":'Pere.png',
     "Javier Delgado":'Portu.png',
