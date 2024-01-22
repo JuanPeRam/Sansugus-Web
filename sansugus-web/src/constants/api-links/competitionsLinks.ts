@@ -1,4 +1,4 @@
-const link = 'https://moral-api.up.railway.app'
+import {link} from './global'
 const getCompetitions = `${link}/competitions`
 const getCompetition = `${link}/competition`
 const getTeam = `${link}/team`
