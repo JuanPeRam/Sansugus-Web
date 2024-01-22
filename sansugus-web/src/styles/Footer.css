@@ -7,7 +7,6 @@
     border-top: var(--border-gray);
     padding: 20px 0;
     min-height: 20vh;
-    
 }
 
 .footer-item{
@@ -41,4 +40,10 @@
 
 .footer-item svg:hover path{
     fill: white;
+}
+
+@media  (max-width: 470px) {
+    .footer-social{
+        grid-column: span 2;
+    }
 }
