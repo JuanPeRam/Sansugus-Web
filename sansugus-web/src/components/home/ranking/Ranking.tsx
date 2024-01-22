@@ -7,9 +7,7 @@ import { datosPrueba } from "@/aa/prueba"
 
 export const Ranking = () => {
 
-  //const {error,loading,result} = useFetch(`${getCompetition}/Grupo C`)
-  const loading = false
-  const result:any = datosPrueba
+  const {error,loading,result} = useFetch(`${getCompetition}/Grupo C`)
   return (
     <table className="text-m w-full border-collapse ranking-table">
       <thead>
@@ -25,7 +23,7 @@ export const Ranking = () => {
 
       }
       {
-        !loading && result && result.newStanding.map((team:teamData)=>(
+        !loading && result && result[0].newStanding.map((team:teamData)=>(
           <tr key={team.teamName} className="">
             <td>{team.position}</td>
             <td className="flex gap-x-1 items-center"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap">{team.teamName}</p></td>
