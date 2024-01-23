@@ -26,7 +26,8 @@ const imagePaths: { [key: string]: string } = {
     "Aston Birra":"AstonBirra.PNG",
     "Los Guerreros":"Guerreros.PNG",
     "Black&White":"Black&White.png",
-    "Sansugus FC":"sansugus-logo.svg"
+    "Sansugus FC":"sansugus-logo.svg",
+    "Real Suciedad":"Suciedad.png"
   };
   
   const teams_img: { [key: string]: string } = {};
