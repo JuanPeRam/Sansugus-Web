@@ -6,7 +6,7 @@ const imagePaths: { [key: string]: string } = {
     "Ínter Strada":"InterStrada.png",
     "Internacionales FC":"Internacionales.png",
     "National Team":"NationalTeam.png",
-    "Team Peru":"TeamPeru.png",
+    "Team Perú":"TeamPeru.png",
     "Sporting Brugal":"SportingBrugal.png",
     "Texas Guadarrama":"Texas-nuevo.PNG",
     "Tracas FC":"Tracas.png",
@@ -26,7 +26,9 @@ const imagePaths: { [key: string]: string } = {
     "Aston Birra":"AstonBirra.PNG",
     "Los Guerreros":"Guerreros.PNG",
     "Black&White":"Black&White.png",
-    "Olimpiakojos FC":"Olimpiakojos.png"
+    "Olimpiakojos FC":"Olimpiakojos.png",
+    "Sansugus FC":"sansugus-logo.svg",
+    "Real Suciedad":"Suciedad.png"
   };
   
   const teams_img: { [key: string]: string } = {};
