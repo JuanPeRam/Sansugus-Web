@@ -26,7 +26,7 @@ const imagePaths: { [key: string]: string } = {
     "Aston Birra":"AstonBirra.PNG",
     "Los Guerreros":"Guerreros.PNG",
     "Black&White":"Black&White.png",
-    "Olimpiakojos FC":"Olimpiakojos.png"
+    "Olimpiakojos FC":"Olimpiakojos.png",
     "Sansugus FC":"sansugus-logo.svg",
     "Real Suciedad":"Suciedad.png"
   };
