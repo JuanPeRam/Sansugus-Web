@@ -3,7 +3,6 @@ import useFetch from "@/hooks/useFetch"
 import  RankingSkeleton  from "./RankingSkeleton"
 import { teamData } from "@/types/competitionTypes"
 import { getShieldImage } from "@/rendering/teams_img"
-import { datosPrueba } from "@/aa/prueba"
 
 export const Ranking = () => {
 
@@ -27,6 +26,9 @@ export const Ranking = () => {
       {
         loading && <RankingSkeleton></RankingSkeleton>
 
+      }
+      {
+        !loading && error && <div>Ha ocurrido un error</div>
       }
       {
         !loading && result && result[0].newStanding.map((team:teamData)=>(
