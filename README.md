@@ -37,14 +37,10 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 3. Ejecuta la aplicación con `npm run dev`.
 4. ¡Visita [http://localhost:3000](http://localhost:3000) en tu navegador y disfruta de la experiencia Sansugus FC!
 
-## Contribuir
-
-¡Siéntete libre de contribuir! Ya sea informando problemas, proponiendo mejoras o enviando solicitudes de extracción. Nos encantaría ver a la comunidad de Sansugus FC crecer.
-
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
 
 ---
 
-¡Esperamos que disfrutes explorando la página web de Sansugus FC tanto como nosotros disfrutamos creándola!
+¡Esperamos que disfrutes explorando la página web del Sansugus FC tanto como nosotros disfrutamos creándola!
