@@ -1,2 +1,38 @@
-# Sansugus Web
- Official website of the Sansugus FC football team.
+# Sansugus FC - Página Web Oficial
+
+Bienvenido a la página web oficial de Sansugus FC, el equipo de fútbol que lleva la pasión a otro nivel.
+
+## Descripción
+
+Esta aplicación web fue creada para proporcionar a nuestros seguidores la información más reciente y emocionante sobre Sansugus FC. Desde noticias del equipo hasta estadísticas de jugadores, ¡aquí encontrarás todo lo que necesitas para seguir apoyando a nuestro equipo favorito!
+
+## Tecnologías Utilizadas
+
+- **React.js:** La interfaz de usuario de nuestra página está construida con React.js, lo que garantiza una experiencia de usuario fluida e interactiva.
+
+- **Typescript:** Hemos utilizado Typescript para garantizar un desarrollo más robusto y una mejor mantenibilidad del código.
+
+- **Tailwind CSS:** El diseño elegante y moderno de la página se ha logrado con la ayuda de Tailwind CSS, una herramienta utilísima para el desarrollo de estilos.
+
+- **Puppeteer:** Para mantenernos actualizados con las últimas noticias y estadísticas, utilizamos Puppeteer para realizar scraping de datos de diversas fuentes en línea.
+
+- **Excel como Base de Datos:** Hemos optado por utilizar Excel como nuestra base de datos para poder dar un acceso mucho más fácil para los contribuyentes para almacenar y gestionar información detallada sobre el equipo, jugadores y estadísticas. 
+
+## Instrucciones de Ejecución
+
+1. Clona este repositorio en tu máquina local.
+2. Instala las dependencias con `npm install`.
+3. Ejecuta la aplicación con `npm run dev`.
+4. ¡Visita [http://localhost:3000](http://localhost:3000) en tu navegador y disfruta de la experiencia Sansugus FC!
+
+## Contribuir
+
+¡Siéntete libre de contribuir! Ya sea informando problemas, proponiendo mejoras o enviando solicitudes de extracción. Nos encantaría ver a la comunidad de Sansugus FC crecer.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
+
+---
+
+¡Esperamos que disfrutes explorando la página web de Sansugus FC tanto como nosotros disfrutamos creándola!
