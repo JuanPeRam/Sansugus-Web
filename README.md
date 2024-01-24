@@ -26,7 +26,7 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 
 - **Tailwind CSS:** El diseño elegante y moderno de la página se ha logrado con la ayuda de Tailwind CSS, una herramienta utilísima para el desarrollo de estilos.
 
-- **Shadcn: ** En la parte del diseño, hemos utilizado la librería de código abierto Shadcn, utilizando sus componentes como base para nuestra interfaz.
+- **Shadcn:** En la parte del diseño, hemos utilizado la librería de código abierto Shadcn, utilizando sus componentes como base para nuestra interfaz.
 
 - **Puppeteer:** Para mantenernos actualizados con las últimas noticias y estadísticas, utilizamos Puppeteer para realizar scraping de datos de diversas fuentes en línea.
 
