@@ -11,7 +11,7 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 
 <div align="center">
 
-![React Badge](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=black&style=flat-square)
+![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000)
 ![Typescript Badge](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF)
 ![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat)
 ![Puppeteer Badge](https://img.shields.io/badge/Puppeteer-40B5A4?logo=puppeteer&logoColor=fff)
