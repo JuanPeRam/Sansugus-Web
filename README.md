@@ -9,6 +9,17 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 
 ## Tecnologías Utilizadas
 
+<div align="center">
+
+![React Badge](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=black&style=flat-square)
+![Typescript Badge](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF)
+![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat)
+![Puppeteer Badge](https://img.shields.io/badge/Puppeteer-40B5A4?logo=puppeteer&logoColor=fff)
+![Google Sheets Badge](https://img.shields.io/badge/Google%20Sheets-34A853?logo=googlesheets&logoColor=fff)
+
+
+</div>
+
 - **React.js:** La interfaz de usuario de nuestra página está construida con React.js, lo que garantiza una experiencia de usuario fluida e interactiva.
 
 - **Typescript:** Hemos utilizado Typescript para garantizar un desarrollo más robusto y una mejor mantenibilidad del código.
@@ -17,7 +28,7 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 
 - **Puppeteer:** Para mantenernos actualizados con las últimas noticias y estadísticas, utilizamos Puppeteer para realizar scraping de datos de diversas fuentes en línea.
 
-- **Excel como Base de Datos:** Hemos optado por utilizar Excel como nuestra base de datos para poder dar un acceso mucho más fácil para los contribuyentes para almacenar y gestionar información detallada sobre el equipo, jugadores y estadísticas. 
+- **Google Sheets como Base de Datos:** Hemos optado por utilizar Excel como nuestra base de datos para poder dar un acceso mucho más fácil para los contribuyentes para almacenar y gestionar información detallada sobre el equipo, jugadores y estadísticas. 
 
 ## Instrucciones de Ejecución
 
