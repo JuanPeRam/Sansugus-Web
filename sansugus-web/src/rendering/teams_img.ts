@@ -12,7 +12,7 @@ const imagePaths: { [key: string]: string } = {
     "Tracas FC":"Tracas.png",
     "Recreativo de Juerga":"RecreativoJuerga.PNG",
     "Valhalla Club":"Valhalla.png",
-    "Manchester Piti":"Piti.png",
+    "Manchester Piti ":"Piti.png",
     "Paketenaikos FC":"Paketenaikos.png",
     "Cactus FC":"Cactus.png",
     "Buniatis Cleb":"Buniatis.png",
