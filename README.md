@@ -9,7 +9,7 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 
 ## Tecnologías Utilizadas
 
-<div align="center">
+<div>
 
 ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000)
 ![Typescript Badge](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF)
