@@ -34,6 +34,9 @@ export const NextMatch: React.FC<TeamProps> = ({loading, error, result}) => {
           </section>
         </article>
       }
+      {
+        !loading && !error && !nextMatch && <div>Por determinar...</div>
+      }
     </>
   )
 }
