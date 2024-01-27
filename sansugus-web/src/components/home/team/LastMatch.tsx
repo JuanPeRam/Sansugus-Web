@@ -3,8 +3,8 @@ import { LastMatchSkeleton } from "./LastMatchSkeleton"
 import { getShieldImage } from "@/rendering/teams_img"
 
 export const LastMatch: React.FC<TeamProps> = ({loading, error, result}) => {
+  const last_result = Object.keys(result?.last_result || {}).length > 0 ? result.last_result : null;
 
-  const last_result = result?.last_result
   return (
     <>
       {loading && <LastMatchSkeleton/>}
@@ -33,6 +33,9 @@ export const LastMatch: React.FC<TeamProps> = ({loading, error, result}) => {
             <div>{last_result.lastResultDate}</div>
           </section>
         </article>
+      }
+      {
+        !loading && !error && !last_result && <div className="min-h-[45vh] flex justify-center items-center">Por determinar...</div>
       }
     </>
   )

@@ -5,7 +5,7 @@ import { getShieldImage } from "@/rendering/teams_img"
 
 export const NextMatch: React.FC<TeamProps> = ({loading, error, result}) => {
 
-  const nextMatch = result?.next_match
+  const nextMatch = Object.keys(result?.next_match || {}).length > 0 ? result.next_match : null;
   
   return (
     <>
@@ -35,7 +35,7 @@ export const NextMatch: React.FC<TeamProps> = ({loading, error, result}) => {
         </article>
       }
       {
-        !loading && !error && !nextMatch && <div>Por determinar...</div>
+        !loading && !error && !nextMatch && <div className="min-h-[26vh] flex justify-center items-center">Por determinar...</div>
       }
     </>
   )
