@@ -6,7 +6,7 @@ import { getShieldImage } from "@/rendering/teams_img"
 
 export const Ranking = () => {
 
-  const {error,loading,result} = useFetch(`${getCompetition}/1ª DIVISIÓN`)
+  const {error,loading,result} = useFetch(`${getCompetition}/1ªDIVISIÓN`)
   return (
     <table className="text-m w-full border-collapse ranking-table">
       <thead>
