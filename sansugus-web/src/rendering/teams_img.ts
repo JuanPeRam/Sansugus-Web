@@ -1,6 +1,7 @@
 const imagePaths: { [key: string]: string } = {
     "Boca Roners":"BocaRoners.png",
     "El Chimbón VC":"Chimbon.PNG",
+    "El Chimbón":"Chimbon.PNG",
     "Élite FC":"Élite.png",
     "Enfurbaos CF":"Enfurbaos.png",
     "Ínter Strada":"InterStrada.png",
@@ -17,6 +18,7 @@ const imagePaths: { [key: string]: string } = {
     "Cactus FC":"Cactus.png",
     "Buniatis Cleb":"Buniatis.png",
     "Real Astrazeneca FC":"Astrazeneca.PNG",
+    "Real Astrazeneca":"Astrazeneca.PNG",
     "Talleres Pinho":"TalleresPinho.png",
     "Calvix Team":"Calvix.PNG",
     "Scissors FC":"Scissors.PNG",
@@ -28,7 +30,10 @@ const imagePaths: { [key: string]: string } = {
     "Black&White":"Black&White.png",
     "Olimpiakojos FC":"Olimpiakojos.png",
     "Sansugus FC":"sansugus-logo.svg",
-    "Real Suciedad":"Suciedad.png"
+    "Real Suciedad":"Suciedad.png",
+    "D. Sierra Bares":"D.SierraBares.png",
+    "Los Bichos Gang":"Bichos.png",
+    "New Rolls":"NewRolls.png"
   };
   
   const teams_img: { [key: string]: string } = {};
