@@ -18,7 +18,7 @@ const imagePaths: { [key: string]: string } = {
     "Cactus FC":"Cactus.png",
     "Buniatis Cleb":"Buniatis.png",
     "Real Astrazeneca FC":"Astrazeneca.PNG",
-    "Real Astrazeneca":"Astrazeneca.PNG",
+    "Real Astrazeneca ":"Astrazeneca.PNG",
     "Talleres Pinho":"TalleresPinho.png",
     "Calvix Team":"Calvix.PNG",
     "Scissors FC":"Scissors.PNG",
