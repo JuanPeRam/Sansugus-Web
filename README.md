@@ -17,6 +17,7 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 ![shadcn/ui Badge](https://img.shields.io/badge/shadcn%2Fui-000?logo=shadcnui&logoColor=fff)
 ![Puppeteer Badge](https://img.shields.io/badge/Puppeteer-40B5A4?logo=puppeteer&logoColor=fff)
 ![Google Sheets Badge](https://img.shields.io/badge/Google%20Sheets-34A853?logo=googlesheets&logoColor=fff)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/72d61b3d-d44d-4f80-8679-57b354146f98/deploy-status)](https://app.netlify.com/sites/sansugusfc/deploys)
 
 </div>
 
@@ -31,7 +32,8 @@ Esta aplicación web fue creada para proporcionar a nuestros seguidores la infor
 - **Puppeteer:** Para mantenernos actualizados con las últimas noticias y estadísticas, utilizamos Puppeteer para realizar scraping de datos de diversas fuentes en línea.
 
 - **Google Sheets como Base de Datos:** Hemos optado por utilizar Excel como nuestra base de datos para poder dar un acceso mucho más fácil para los contribuyentes para almacenar y gestionar información detallada sobre el equipo, jugadores y estadísticas.
-  
+
+- **Netlify:** Desplegada en netlify.
 
 ## Instrucciones de Ejecución
 
