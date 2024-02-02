@@ -11,7 +11,7 @@ export const LastMatch: React.FC<TeamProps> = ({loading, error, result}) => {
       {!loading && error && <div>Ha ocurrido un error</div>}
       {
         !loading && last_result && 
-        <article className="flex flex-col justify-center items-center min-h-[45vh] p-6">
+        <article className="flex flex-col justify-center items-center h-full p-6">
           <section className="flex gap-4 items-center flex-wrap justify-center">
             <div className="flex justify-center items-center gap-2">
               <img src={getShieldImage(last_result.home_team.team_name)} className="h-20 min-w-fit"/>

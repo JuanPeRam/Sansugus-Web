@@ -19,7 +19,7 @@ export const NextMatch: React.FC<TeamProps> = ({loading, error, result}) => {
 
       {
         !loading && nextMatch &&
-        <article className="flex flex-col justify-center items-center min-h-[26vh] p-6">
+        <article className="flex flex-col justify-center items-center h-full p-6">
           <section className="flex gap-4 items-center flex-wrap justify-center">
             <div className="flex justify-center items-center gap-2"><img src={getShieldImage(nextMatch.home_team.team_name)} className="h-20 min-w-fit"/>
             {nextMatch.home_team.team_name}</div>
