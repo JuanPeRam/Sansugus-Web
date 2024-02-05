@@ -9,7 +9,8 @@ const imagePaths: { [key: string]: string } = {
     "Roberto Lage":"Robert.png",
     "Luis Vico GK":"Vico-GK.png",
     "Juan Pereira":"Pere.png",
-    "José Delgado":"Jose.png"
+    "José Delgado":"Jose.png",
+    "Sergio Hernández 'Checho'":"Checho.png"
   };
 
 const players_img: { [key: string]: string } = {
