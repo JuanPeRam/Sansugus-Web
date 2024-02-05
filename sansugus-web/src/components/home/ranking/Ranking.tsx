@@ -19,7 +19,7 @@ export const Ranking = () => {
           <th className="max-[1250px]:hidden">PP</th>
           <th className="max-[1250px]:hidden">GF</th>
           <th className="max-[1250px]:hidden">GC</th>
-          <th className="max-[1250px]:block hidden">G</th>
+          <th className="max-[1250px]:table-cell hidden">G</th>
           <th>Puntos</th>
         </tr>
       </thead>
@@ -42,7 +42,7 @@ export const Ranking = () => {
             <td className="max-[1250px]:hidden">{team.lost}</td>
             <td className="max-[1250px]:hidden">{team.goals}</td>
             <td className="max-[1250px]:hidden">{team.goalsAgainst}</td>
-            <td className="max-[1250px]:block hidden">{team.goals+':'+team.goalsAgainst}</td>
+            <td className="max-[1250px]:table-cell hidden">{team.goals+':'+team.goalsAgainst}</td>
             <td className="bg-[#c9c9c9] text-black">{team.points}</td>
           </tr>
         ))
