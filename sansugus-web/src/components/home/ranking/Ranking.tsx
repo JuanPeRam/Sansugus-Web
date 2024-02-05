@@ -8,7 +8,7 @@ export const Ranking = () => {
 
   const {error,loading,result} = useFetch(`${getCompetition}/1ª División`)
   return (
-    <table className="text-m w-full border-collapse ranking-table max-[1250px]:text-sm">
+    <table className="text-m w-full border-collapse ranking-table max-[1250px]:text-xs">
       <thead>
         <tr>
           <th>Pos</th>
@@ -35,7 +35,7 @@ export const Ranking = () => {
         !loading && result && result[0].newStanding.map((team:teamData)=>(
           <tr key={team.teamName} className="">
             <td>{team.position}</td>
-            <td className="flex gap-x-1 items-center mr-2"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap text-sm">{team.teamName}</p></td>
+            <td className="flex gap-x-1 items-center mr-2"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap">{team.teamName}</p></td>
             <td className="">{team.played}</td>
             <td className="max-[1250px]:hidden">{team.won}</td>
             <td className="max-[1250px]:hidden">{team.drawn}</td>

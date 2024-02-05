@@ -13,7 +13,7 @@ function Home() {
     return (
         <>
             <h1 className='text-4xl md:text-2xl lg:text-4xl sm:text-2xl'>Bienvenido al sitio web oficial del <span>Sansugus FC</span></h1>
-            <section className='grid lg:grid-cols-10 auto-rows-[10rem] gap-5 w-full max-w-[1500px] md:grid-cols-5'>
+            <section className='grid lg:grid-cols-10 auto-rows-[10rem] gap-5 max-w-[1500px] md:grid-cols-5'>
                 <article className='one rounded-xl justify-center col-span-5 row-span-3 border p-5 flex flex-col'>
                     <h2 className='text-2xl text-center w-full'>Anterior Partido</h2>
                     <LastMatch error={teamInfoError} result={teamInfoResult} loading={teamInfoLoading}/>
