@@ -2,7 +2,7 @@ import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 import { matchData } from '../types'
 import { sheetResponseToObjects } from '../../functions/sheets'
 import {setNewDate} from '../../functions/dates'
-
+import { link } from '../types'
 import '../../styles/Games.css'
 import Game from './Game'
 import { Card } from '../ui/card'
@@ -10,7 +10,6 @@ import { Select, SelectContent, SelectTrigger,SelectItem, SelectValue } from '..
 import LoadingGame from './LoadingGame'
 
 const sheetName = "Partidos"
-const link = "https://docs.google.com/spreadsheets/d/1oC9Iaba_OL_2BWSR0d-IZtrY0MSAynJRAW8jXixc70M/gviz/tq?"
 
 function setDates(games:any){
     games.map((game:matchData) => {
