@@ -1,4 +1,6 @@
-USE railway;
+use sansugus;
+DROP TABLE IF EXISTS Player_Stats;
+DROP TABLE IF EXISTS Player_Game;
 DROP TABLE IF EXISTS Players_Info;
 DROP TABLE IF EXISTS Players;
 DROP TABLE IF EXISTS Games;
@@ -31,6 +33,35 @@ CREATE TABLE Games(
     Round VARCHAR(50) NOT NULL,
     Played BIT NOT NULL,
     Primary key(Game_ID)
+);
+
+CREATE TABLE Player_Game (
+	Game_ID INT NOT NULL,
+    Player_ID INT NOT NULL,
+    Starter BIT DEFAULT 0,
+    Position VARCHAR(50) NOT NULL,
+    Goals INT DEFAULT 0,
+    Assists  INT DEFAULT 0,
+    Yellows INT DEFAULT 0,
+    Reds INT DEFAULT 0,
+    IsMVP BIT DEFAULT 0,
+    Season VARCHAR(50) NOT NULL,
+    primary key(Game_ID,Player_ID),
+    FOREIGN KEY (Game_ID) REFERENCES Games(Game_ID),
+    FOREIGN key (Player_ID) REFERENCES Players(Player_ID)
+);
+
+CREATE TABLE Player_Stats(
+    Player_ID INT NOT NULL,
+    Season VARCHAR(50) NOT NULL,
+    Goals INT DEFAULT 0,
+    Assists INT,
+    Games INT NOT NULL,
+    Yellows INT NOT NULL,
+    Reds INT NOT NULL,
+    MVPs INT,
+    primary key (Player_ID, Season),
+    FOREIGN KEY (Player_ID) REFERENCES Players(Player_ID)
 );
 
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Juan Pereira','Pere');
@@ -130,3 +161,5 @@ INSERT INTO Games VALUES (NULL,'Sansugus FC','Enfurbaos CF','2024-01-14 10:30:00
 INSERT INTO Games VALUES (NULL,'Olimpiakojos FC','Sansugus FC','2024-01-21 10:30:00','4','4','1','23/24','Torneo Apertura','Jornada 10',1);
 INSERT INTO Games VALUES (NULL,'Sansugus FC','Real Suciedad','2024-01-27 15:15:00','3','1','3','23/24','Torneo Apertura','Jornada 11',1);
 INSERT INTO Games VALUES (NULL,'Real Astrazeneca ','Sansugus FC','2024-02-04 9:30:00','0','3','2','23/24','Torneo Clausura','Jornada 1',1);
+
+SELECT * FROM Games;
