@@ -69,7 +69,7 @@ INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Iñigo Saenz Mesas','Iñi
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Roberto Lage','Robert');
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Javier Delgado','Portu');
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('José Delgado','Joselu');
-INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Luis Vico GK','Vico');
+INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Luis Vico','Vico');
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Félix Barragán','Félix');
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Marcos Herrero','Mark');
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Jorge Muñoz','Drako');
@@ -81,13 +81,17 @@ INSERT INTO Players (Player_Name, Player_Aka) VALUES ('David Berdiales','Berdi')
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Jorge Heras','Jorge');
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Fernando Oteo','Fer');
 INSERT INTO Players (Player_Name, Player_Aka) VALUES ('P.P','Propia Puerta');
+INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Diego López','Goyón');
+INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Gabriel Valle Silva','Gabri');
+INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Álvaro Cea','Cea');
+INSERT INTO Players (Player_Name, Player_Aka) VALUES ('Pepe Mesas','Pepe');
 
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Juan Pereira'),'Delantero',9,'23/24');
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Iñigo Saenz Mesas'),'Medio',22,'23/24');
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Roberto Lage'),'Medio',24,'23/24');
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Javier Delgado'),'Defensa',5,'23/24');
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'José Delgado'),'Defensa',2,'23/24');
-INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico GK'),'Portero',1,'23/24');
+INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),'Portero',1,'23/24');
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),'Medio',3,'23/24');
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Marcos Herrero'),'Delantero',7,'23/24');
 INSERT INTO Players_Info VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Jorge Muñoz'),'Defensa',4,'23/24');
@@ -171,7 +175,7 @@ INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_N
 INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'Sergio Hernández'),1,'Defensa',0,0,1,0,0,'23/24');
 INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'Javier Delgado'),1,'Defensa',1,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'Roberto Lage'),0,'Defensa',0,1,0,0,0,'23/24');
-INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico GK'),1,'Portero',0,0,0,0,0,'23/24');
+INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),1,'Portero',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'José Delgado'),1,'Defensa',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),0,'Defensa',1,0,1,0,0,'23/24');
 INSERT INTO Player_Game VALUES (52,(SELECT Player_ID FROM Players WHERE Player_Name = 'Daniel Sanz'),0,'Medio',0,0,1,0,0,'23/24');
@@ -182,7 +186,7 @@ INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_N
 INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'Carlos Pérez'),1,'Medio',1,1,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'Jorge Muñoz'),1,'Defensa',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),1,'Defensa',0,0,0,0,0,'23/24');
-INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico GK'),1,'Portero',0,0,0,0,0,'23/24');
+INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),1,'Portero',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'José Delgado'),0,'Defensa',0,2,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'Javier Delgado'),0,'Defensa',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (53,(SELECT Player_ID FROM Players WHERE Player_Name = 'Marcos Herrero'),0,'Delantero',4,0,0,0,1,'23/24');
@@ -205,7 +209,7 @@ INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_N
 INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'Roberto Lage'),1,'Defensa',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'Javier Delgado'),1,'Defensa',1,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'José Delgado'),1,'Defensa',0,0,0,0,0,'23/24');
-INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico GK'),1,'Portero',0,2,0,0,1,'23/24');
+INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),1,'Portero',0,2,0,0,1,'23/24');
 INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),0,'Defensa',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'Marcos Herrero'),0,'Delantero',2,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (55,(SELECT Player_ID FROM Players WHERE Player_Name = 'Jorge Muñoz'),0,'Defensa',0,0,0,0,0,'23/24');
@@ -217,7 +221,7 @@ INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_N
 INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'Roberto Lage'),0,'Medio',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'Javier Delgado'),1,'Defensa',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'José Delgado'),0,'Defensa',0,0,0,0,0,'23/24');
-INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico GK'),1,'Portero',0,0,0,0,0,'23/24');
+INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),1,'Portero',0,0,0,0,0,'23/24');
 INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),1,'Medio',0,0,1,0,0,'23/24');
 INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'Marcos Herrero'),1,'Delantero',0,0,1,0,0,'23/24');
 INSERT INTO Player_Game VALUES (56,(SELECT Player_ID FROM Players WHERE Player_Name = 'Jorge Muñoz'),1,'Defensa',0,1,0,0,0,'23/24');
@@ -296,6 +300,7 @@ INSERT INTO Player_Game VALUES (63,(SELECT Player_ID FROM Players WHERE Player_N
 INSERT INTO Player_Game VALUES (63,(SELECT Player_ID FROM Players WHERE Player_Name = 'Sergio Hernández'),0,'Defensa',1,0,0,0,1,'23/24');
 INSERT INTO Player_Game VALUES (63,(SELECT Player_ID FROM Players WHERE Player_Name = 'Fernando Oteo'),1,'Medio',0,0,0,0,0,'23/24');
 
+DELETE FROM Player_Stats;
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Miguel Ángel Rodríguez'),'21/22',9,null,14,2,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Fernando Oteo'),'21/22',6,null,21,0,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Iñigo Saenz Mesas'),'21/22',14,null,19,4,0,null);
@@ -304,15 +309,15 @@ INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Nam
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Daniel Sanz'),'21/22',10,null,19,0,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),'21/22',0,null,9,0,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Juan Pereira'),'21/22',1,null,15,3,0,null);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Diego López  "Goyón"'),'21/22',0,null,4,0,0,null);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Diego López'),'21/22',0,null,4,0,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),'21/22',1,null,11,0,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Roberto Lage'),'21/22',1,null,12,0,0,null);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'PP (Propia puerta)'),'21/22',1,null,0,0,0,null);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'P.P'),'21/22',1,null,0,0,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Sergio Hernández'),'21/22',3,null,15,1,1,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Gabriel Valle Silva'),'21/22',1,null,15,0,0,null);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Álvaro Cea'),'21/22',6,null,5,0,0,null);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Pepe'),'21/22',3,null,6,0,0,null);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Total'),'21/22',64,null,24,11,1,0);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Pepe Mesas'),'21/22',3,null,6,0,0,null);
+
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Miguel Ángel Rodríguez'),'22/23',25,4,14,2,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Fernando Oteo'),'22/23',16,11,21,0,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Iñigo Saenz Mesas'),'22/23',9,15,19,4,0,1);
@@ -323,14 +328,14 @@ INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Nam
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),'22/23',2,4,9,0,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Juan Pereira'),'22/23',2,2,15,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Carlos Pérez'),'22/23',1,2,3,0,0,0);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Diego López  "Goyón"'),'22/23',1,null,4,0,0,0);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Diego López'),'22/23',1,null,4,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Jose Delgado'),'22/23',1,1,5,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),'22/23',1,2,11,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Roberto Lage'),'22/23',1,1,12,0,0,0);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'PP (Propia puerta)'),'22/23',1,null,0,0,0,0);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'P.P'),'22/23',1,null,0,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Sergio Hernández'),'22/23',0,3,15,1,1,0);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Pepe'),'22/23',0,1,6,0,0,0);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Total'),'22/23',76,54,21,9,1,1);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Pepe Mesas'),'22/23',0,1,6,0,0,0);
+
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Miguel Ángel Rodríguez'),'23/24',7,6,10,1,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Fernando Oteo'),'23/24',0,null,1,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Iñigo Saenz Mesas'),'23/24',6,3,8,0,0,1);
@@ -338,17 +343,14 @@ INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Nam
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Javier Delgado'),'23/24',2,1,10,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Daniel Sanz'),'23/24',0,2,11,1,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Jorge Muñoz'),'23/24',0,1,10,0,0,0);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico GK'),'23/24',0,2,4,0,0,1);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Luis Vico'),'23/24',0,2,4,0,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Juan Pereira'),'23/24',5,4,12,1,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Carlos Pérez'),'23/24',3,2,4,0,0,1);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Diego López  "Goyón"'),'23/24',0,null,0,0,0,0);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Diego López'),'23/24',0,null,0,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'José Delgado'),'23/24',3,2,12,2,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Félix Barragán'),'23/24',1,null,7,2,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Roberto Lage'),'23/24',1,2,12,0,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'P.P'),'23/24',1,null,0,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Sergio Hernández'),'23/24',2,1,12,2,0,1);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Pepe'),'23/24',0,null,0,0,0,0);
+INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Pepe Mesas'),'23/24',0,null,0,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'David Berdiales'),'23/24',0,null,3,0,0,0);
-INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Total'),'23/24',43,32,12,11,0,1);
-
-SELECT * FROM Games;
