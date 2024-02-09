@@ -3,14 +3,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 export const LeftBar = () => {
   return (
-    <nav className="h-screen border-r p-2">
+    <nav className="h-screen border-r p-2 max-w-[20vw]">
         <Card>
             <CardHeader className="text-center">
                 <CardTitle>
                     Bienvenid@
                 </CardTitle>
                 <CardDescription>
-                    Al dashboard del Sansugus FC
+                    Al dashboard del Sansugus FC 
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center">
