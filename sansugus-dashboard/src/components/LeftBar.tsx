@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 export const LeftBar = () => {
   return (
-    <nav className="h-screen border-r p-2 max-w-[20vw]">
+    <nav className="h-screen border-r p-2 max-w-[300px]">
         <Card>
             <CardHeader className="text-center">
                 <CardTitle>
@@ -17,8 +17,8 @@ export const LeftBar = () => {
                 <img src="./img/sansugus-logo.svg" alt="" className="h-32"/>
             </CardContent>
             <CardFooter className="flex flex-wrap gap-2">
-            <a href="https://sansugusfc.netlify.app" target="_blank"><Button>Visitar Web</Button></a>
-                <a href="https://competiciones-moralzarzal.envinya.es/ligaf7moral/clasificacion" target="_blank"><Button variant={"secondary"}>Ver Web de la Liga</Button></a>
+                <a href="https://sansugusfc.netlify.app" target="_blank"><Button>Visitar Web</Button></a>
+                <a href="https://competiciones-moralzarzal.envinya.es/ligaf7moral/clasificacion" target="_blank"><Button variant={"secondary"} className="text-xs">Ver Web de la Liga</Button></a>
             </CardFooter>
         </Card>
     </nav>
