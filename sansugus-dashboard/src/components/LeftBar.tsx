@@ -5,7 +5,7 @@ export const LeftBar = () => {
   return (
     <nav className="h-screen border-r p-2">
         <Card>
-            <CardHeader>
+            <CardHeader className="text-center">
                 <CardTitle>
                     Bienvenid@
                 </CardTitle>
@@ -13,11 +13,12 @@ export const LeftBar = () => {
                     Al dashboard del Sansugus FC
                 </CardDescription>
             </CardHeader>
-            <CardContent>
-
+            <CardContent className="flex justify-center">
+                <img src="./img/sansugus-logo.svg" alt="" className="h-32"/>
             </CardContent>
-            <CardFooter>
-                <Button><a href="https://sansugusfc.netlify.app" target="_blank">Visitar Web</a></Button>
+            <CardFooter className="flex flex-wrap gap-2">
+            <a href="https://sansugusfc.netlify.app" target="_blank"><Button>Visitar Web</Button></a>
+                <a href="https://competiciones-moralzarzal.envinya.es/ligaf7moral/clasificacion" target="_blank"><Button variant={"secondary"}>Ver Web de la Liga</Button></a>
             </CardFooter>
         </Card>
     </nav>
