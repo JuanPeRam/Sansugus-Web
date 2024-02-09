@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 export const LeftBar = () => {
   return (
-    <nav className="h-screen border-r p-2 max-w-[300px]">
+    <nav className="h-screen border-r p-2 max-w-[350px]">
         <Card>
             <CardHeader className="text-center">
                 <CardTitle>
