@@ -1,7 +1,7 @@
 import './App.css'
 import { Home } from './components/Home'
 import { LeftBar } from './components/left-bar/LeftBar'
-import { Players } from './components/Players'
+import { Players } from './components/players/Players'
 import { TopBar } from './components/TopBar'
 import { ThemeProvider } from './components/theme/theme-provider'
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
