@@ -1,20 +1,29 @@
 import './App.css'
-import { LeftBar } from './components/LeftBar'
+import { Home } from './components/Home'
+import { LeftBar } from './components/left-bar/LeftBar'
+import { Players } from './components/Players'
 import { TopBar } from './components/TopBar'
-import { ModeToggle } from './components/mode-toggle'
-import { ThemeProvider } from './components/theme-provider'
+import { ThemeProvider } from './components/theme/theme-provider'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { NotFound } from './components/NotFound'
 
 function App() {
 
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <div className='flex items-center min-h-screen'>
-        <LeftBar/>
-        <main className='flex flex-col h-screen w-full'>
-          <TopBar/>
-        </main>
-        
-      </div>
+      <Router>
+        <div className='flex items-center min-h-screen'>
+          <LeftBar/>
+          <main className='flex flex-col h-screen w-full'>
+            <TopBar/>
+            <Routes>
+              <Route path='/' Component={Home}/>
+              <Route path='/players' Component={Players}/>
+              <Route path='/*' Component={NotFound}/>
+            </Routes>
+          </main>
+        </div>
+      </Router>
     </ThemeProvider>
   )
 }
