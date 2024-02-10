@@ -1,35 +1,41 @@
-import { FileBarChart, Home, Swords, Users2 } from "lucide-react"
-import { Separator } from "../ui/separator"
-import { Link } from "react-router-dom"
+import { FileBarChart, Home, Swords, Users2 } from "lucide-react";
+import { ListItemLinkType } from "@/types";
+import { ListItemLink } from "./ListItemLink";
+
+const listItemLinkArray: ListItemLinkType[] = [
+    {  
+        icon: <Home/>,
+        title: "Home",
+        path: '/'
+    },
+    {  
+        icon: <Users2/>,
+        title: "Jugadores",
+        path: '/players'
+    },
+    {  
+        icon: <Swords/>,
+        title: "Partidos",
+        path: '/games'
+    },
+    {  
+        icon: <FileBarChart/>,
+        title: "Estadísticas",
+        path: '/stats'
+    },
+
+] 
 
 export const AppRoutes = () => {
   return (
     <section>
-            <ul className="font-bold">
-                <li>
-                    <Link to={'/'} className="flex justify-between p-3 hover:bg-secondary">
-                        <h3 className="select-none">Home</h3>
-                        <Home/>
-                    </Link>
-                </li>
-                <Separator/>
-                <li>
-                    <Link to={'/players'} className="flex justify-between p-3 hover:bg-secondary">
-                        <h3 className="select-none">Jugadores</h3>
-                        <Users2/>
-                    </Link>
-                </li>
-                <li>
-                    <Link to={'/games'} className="flex justify-between p-3 hover:bg-secondary">
-                        <h3 className="select-none">Partidos</h3>
-                        <Swords/>
-                    </Link>
-                </li>
-                <li className="flex justify-between p-3 hover:bg-secondary">
-                    <h3 className="select-none">Estadísticas</h3>
-                    <FileBarChart/>
-                </li>
-            </ul>
-        </section>
-  )
-}
+      <ul className="font-bold">
+        {
+            listItemLinkArray.map((item) => (
+                <ListItemLink params={item} key={item.title}/>
+            ))
+        }
+      </ul>
+    </section>
+  );
+};
