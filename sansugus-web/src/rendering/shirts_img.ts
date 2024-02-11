@@ -15,7 +15,8 @@ const imagePaths: { [key: string]: string } = {
     "Javier Delgado":'Portu.png',
     "Roberto Lage":'Robert.png',
     "Luis Vico": 'Vico.png',
-    "David Berdiales":"Berdi.png"
+    "David Berdiales":"Berdi.png",
+    "Jorge Heras":"Hera.png"
   };
   
   const dir = '/resources/img/shirts/'
