@@ -1,5 +1,6 @@
 
 type playerData = {
+    ID:string,
     Jugador:string,
     Dorsal?:string,
     Goles:number,

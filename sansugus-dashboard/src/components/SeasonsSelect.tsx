@@ -2,7 +2,7 @@ import useFetch from "@/hooks/useFetch";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Skeleton } from "./ui/skeleton";
 
-const componentWidth = 'w-[180px]'
+const componentWidth = 'w-[140px]'
 
 interface SeasonsSelectProps {
     onSeasonChange: (season: string) => void;
@@ -30,7 +30,7 @@ export const SeasonsSelect: React.FC<SeasonsSelectProps> = ({ onSeasonChange,api
                 <SelectContent>
                     <SelectGroup>
                         {result.map((season:any)=>(
-                            <SelectItem value={season.Season}>
+                            <SelectItem value={season.Season} key={season.Season}>
                                 {season.Season}
                             </SelectItem>
                         ))}

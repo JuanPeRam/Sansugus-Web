@@ -4,7 +4,7 @@ import { AppRoutes } from "./AppRoutes"
 
 export const LeftBar = () => {
   return (
-    <nav className="h-screen border-r max-w-[350px] w-[450px]">
+    <nav className="h-screen border-r min-w-[150px] w-3/12">
         <TopCard/>
         <Separator/>
         <AppRoutes/>
