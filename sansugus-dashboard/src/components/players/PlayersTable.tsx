@@ -52,6 +52,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
                 placeholder="Jugador"
                 value={player.Jugador}
                 onChange={(event) => handleInputChange(event, index, 'Jugador')}
+                className='bg-secondary'
               />
             </td>
             <td className="p-2">
@@ -60,7 +61,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
                 placeholder="Gol"
                 value={player.Goles}
                 onChange={(event) => handleInputChange(event, index, 'Goles')}
-                className="w-[50px] text-center m-auto"
+                className="w-[50px] text-center m-auto bg-secondary"
               />
             </td>
             <td className="p-2">
@@ -69,7 +70,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
                 placeholder="Asistencias"
                 value={player.Asistencias}
                 onChange={(event) => handleInputChange(event, index, 'Asistencias')}
-                className="w-[50px] text-center m-auto"
+                className="w-[50px] text-center m-auto bg-secondary"
               />
             </td>
             <td className="p-2">
@@ -78,7 +79,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
                 placeholder="Partidos"
                 value={player.Partidos}
                 onChange={(event) => handleInputChange(event, index, 'Partidos')}
-                className="w-[50px] text-center m-auto"
+                className="w-[50px] text-center m-auto bg-secondary"
               />
             </td>
             <td className="p-2">
@@ -87,7 +88,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
                 placeholder="Amarillas"
                 value={player.Amarillas}
                 onChange={(event) => handleInputChange(event, index, 'Amarillas')}
-                className="w-[50px] text-center m-auto"
+                className="w-[50px] text-center m-auto bg-secondary"
               />
             </td>
             <td className="p-2">
@@ -96,7 +97,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
                 placeholder="Rojas"
                 value={player.Rojas}
                 onChange={(event) => handleInputChange(event, index, 'Rojas')}
-                className="w-[50px] text-center m-auto"
+                className="w-[50px] text-center m-auto bg-secondary"
               />
             </td>
             <td className="p-2">
@@ -105,7 +106,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
                 placeholder="MVP"
                 value={player.MVP}
                 onChange={(event) => handleInputChange(event, index, 'MVP')}
-                className="w-[50px] text-center m-auto"
+                className="w-[50px] text-center m-auto bg-secondary"
               />
             </td>
           </tr>
