@@ -354,3 +354,20 @@ INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Nam
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Sergio Hernández'),'23/24',2,1,12,2,0,1);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'Pepe Mesas'),'23/24',0,null,0,0,0,0);
 INSERT INTO Player_Stats VALUES ((SELECT Player_ID FROM Players WHERE Player_Name = 'David Berdiales'),'23/24',0,null,3,0,0,0);
+
+DELIMITER //
+CREATE TRIGGER update_player_stats_after_insert
+AFTER INSERT ON Player_Game
+FOR EACH ROW
+BEGIN
+    UPDATE Player_Stats
+    SET Goals = Goals + NEW.Goals,
+        Assists = Assists + NEW.Assists,
+        Yellows = Yellows + NEW.Yellows,
+        Reds = Reds + NEW.Reds,
+        IsMVP = IsMVP + (CASE WHEN NEW.IsMVP > 0 THEN 1 ELSE 0 END),
+        Games = Games + 1
+    WHERE player_id = NEW.player_id AND season = NEW.season;
+END;
+//
+DELIMITER ;

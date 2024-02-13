@@ -7,6 +7,8 @@ type ListItemLinkType = {
     icon: ReactElement
 }
 
+type EndPointFunction = (param:string)=>string
+
 export type {
-    ListItemLinkType
+    ListItemLinkType,EndPointFunction
 }

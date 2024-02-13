@@ -21,11 +21,11 @@ export const DialogSave: React.FC<DialogSaveProps> = ({confirmTrigger,buttonText
                 Se guardarán todos los cambios
             </DialogDescription>
             <DialogFooter className='flex justify-between'>
-                <DialogClose>
+                <DialogClose asChild>
                     <Button variant={'destructive'}>Cancelar</Button>
                 </DialogClose>
-                <DialogClose>
-                    <Button onClick={confirmTrigger} type='submit'>Confirmar</Button>
+                <DialogClose asChild>
+                    <Button onClick={confirmTrigger}>Confirmar</Button>
                 </DialogClose>
             </DialogFooter>
         </DialogContent>

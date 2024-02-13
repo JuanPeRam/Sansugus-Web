@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import useFetch from '@/hooks/useFetch';
+import React, { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { playersEndPoint } from '@/constants/api';
 import { TableRowLoading } from './loading/TableRowLoading';
 import { Input } from '../ui/input';
@@ -9,19 +8,59 @@ interface PlayersTableProps {
   season: string;
 }
 
-export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
+function getEditedRows(editedData: playerData[], originalData: playerData[]): playerData[] {
+  const editedRows: playerData[] = [];
+  // Iterar sobre cada objeto en editedData
+  editedData.forEach(editedPlayer => {
+    // Encontrar el jugador correspondiente en originalData
+    const originalPlayer = originalData.find(player => player.ID === editedPlayer.ID);
+    
+    // Si no se encuentra el jugador en originalData o si algún campo es diferente, agregarlo a editedRows
+    if (!originalPlayer || !comparePlayers(originalPlayer, editedPlayer)) {
+      editedRows.push(editedPlayer);
+    }
+  });
+
+  return editedRows;
+}
+
+// Función para comparar dos objetos playerData y verificar si tienen algún campo diferente
+function comparePlayers(playerA: playerData, playerB: playerData): boolean {
+  return (
+    playerA.Jugador === playerB.Jugador &&
+    playerA.Dorsal === playerB.Dorsal &&
+    playerA.Goles === playerB.Goles &&
+    playerA.Asistencias === playerB.Asistencias &&
+    playerA.Partidos === playerB.Partidos &&
+    playerA.Amarillas === playerB.Amarillas &&
+    playerA.Rojas === playerB.Rojas &&
+    playerA.Temporada === playerB.Temporada &&
+    playerA.MVP === playerB.MVP
+  );
+}
+
+export const PlayersTable = forwardRef ( (props: PlayersTableProps, ref: ForwardedRef<unknown>) => {
+  useImperativeHandle(ref, ()=>{
+    return {
+      getEditedRows: testEditedRows
+    }
+  })
   // Estado local para los datos de los jugadores
   const [playersData, setPlayersData] = useState<playerData[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>();
+  const [fetchedPlayersData, setFetchedPlayersData] = useState<playerData[]>([]);
+  const [error,setError] = useState();
 
-  // Hook para obtener los datos de los jugadores
-  const { result: fetchedPlayersData, error, loading: playersDataLoading } = useFetch(playersEndPoint(season));
+  useEffect(()=>{
+    setIsLoading(true)
+    fetch(playersEndPoint(props.season)).then((res)=>res.json()).then((data)=>{setFetchedPlayersData(data) 
+      setPlayersData(JSON.parse(JSON.stringify(data)))}).catch((error)=>setError(error)).finally(()=>setIsLoading(false))
+  },[props.season])
 
-  // Actualizar los datos de los jugadores cuando se obtienen de la API
-  React.useEffect(() => {
-    if (fetchedPlayersData) {
-      setPlayersData(fetchedPlayersData);
-    }
-  }, [fetchedPlayersData]);
+  const testEditedRows = ()=>{
+    const editedRows = getEditedRows(playersData,fetchedPlayersData)
+    return editedRows;
+  }
 
   // Función para manejar cambios en los inputs de los jugadores
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, field: keyof playerData) => {
@@ -44,7 +83,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
         </tr>
       </thead>
       <tbody>
-        {!playersDataLoading && playersData && playersData.map((player: playerData, index: number) => (
+        {!isLoading && playersData && playersData.map((player: playerData, index: number) => (
           <tr key={index} className="text-center border-t">
             <td className="p-2">
               <Input
@@ -68,7 +107,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
               <Input
                 type="text"
                 placeholder="Asistencias"
-                value={player.Asistencias}
+                value={player.Asistencias ?? ''}
                 onChange={(event) => handleInputChange(event, index, 'Asistencias')}
                 className="w-[50px] text-center m-auto bg-secondary"
               />
@@ -104,7 +143,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
               <Input
                 type="text"
                 placeholder="MVP"
-                value={player.MVP}
+                value={player.MVP ?? ''}
                 onChange={(event) => handleInputChange(event, index, 'MVP')}
                 className="w-[50px] text-center m-auto bg-secondary"
               />
@@ -112,7 +151,7 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
           </tr>
         ))}
          {
-            playersDataLoading && 
+            isLoading && 
             <>
                 <TableRowLoading/>
                 <TableRowLoading/>
@@ -132,4 +171,4 @@ export const PlayersTable: React.FC<PlayersTableProps> = ({ season }) => {
       </tbody>
     </table>
   );
-};
+});
