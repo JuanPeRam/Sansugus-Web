@@ -7,6 +7,7 @@ import { ThemeProvider } from './components/theme/theme-provider'
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { NotFound } from './components/NotFound'
 import { Games } from './components/games/Games'
+import { Toaster } from './components/ui/toaster'
 
 function App() {
 
@@ -20,12 +21,14 @@ function App() {
             <section className='overflow-y-auto scrollbar-thin scrollbar-thumb-primary/70 scrollbar-track-primary/20 h-full'>
               <Routes>
                 <Route path='/' Component={Home}/>
+                <Route path='/home' Component={Home}/>
                 <Route path='/players' Component={Players}/>
                 <Route path='/games' Component={Games}/>
                 <Route path='/*' Component={NotFound}/>
               </Routes>
             </section>
           </main>
+          <Toaster/>
         </div>
       </Router>
     </ThemeProvider>
