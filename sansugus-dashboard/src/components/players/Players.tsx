@@ -1,9 +1,11 @@
 import { playersEndPoint, seasonsEndPoint } from "@/constants/api"
 import { useEffect, useState } from "react";
-import { playerData } from "@/types/players";
+import { playerData } from "@/types/objects";
 import { useToast } from "../ui/use-toast";
 import { Loader2 } from "lucide-react";
 import { TableDashboard } from "../templates/TableDashboard";
+
+const excludedRows = ['ID','Temporada']
 
 
 function getEditedRows(editedData: playerData[], originalData: playerData[]): playerData[] {
@@ -35,6 +37,8 @@ function comparePlayers(playerA: playerData, playerB: playerData): boolean {
     playerA.MVP === playerB.MVP
   );
 }
+
+
 
 export const Players = () => {
   const [season, setSeason] = useState<string | undefined>()
@@ -84,8 +88,11 @@ export const Players = () => {
 
   return (
     <>
-      <TableDashboard data={playersData} excludedRows={['ID','Temporada']} handleConfirm={handleConfirm} season={season} handleSeasonChanged={handleSeasonChanged}
-      onDataChanged={onDataChanged} seasonsEndPoint={seasonsEndPoint} isLoading={loading}/>
+    {
+      error && <div>Ha ocurrido un error</div>
+    }
+      <TableDashboard handleConfirm={handleConfirm} season={season} handleSeasonChanged={handleSeasonChanged}seasonsEndPoint={seasonsEndPoint}
+       tableProps={{data:playersData, isLoading: loading, onDataChanged: onDataChanged, excludedRows: excludedRows}}/>
     </>
   )
 }

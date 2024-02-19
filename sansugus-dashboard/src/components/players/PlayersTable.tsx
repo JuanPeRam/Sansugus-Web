@@ -1,8 +1,8 @@
 import React, { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { playersEndPoint } from '@/constants/api';
-import { TableRowLoading } from './loading/TableRowLoading';
+import { TableRowLoading } from '../templates/loading/TableRowLoading';
 import { Input } from '../ui/input';
-import { playerData } from '@/types/players';
+import { playerData } from '@/types/objects';
 
 interface PlayersTableProps {
   season: string;
@@ -153,16 +153,7 @@ export const PlayersTable = forwardRef ( (props: PlayersTableProps, ref: Forward
          {
             isLoading && 
             <>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
-                <TableRowLoading/>
+                <TableRowLoading numberOfColumns={2}/>
             </>
           }
           {
