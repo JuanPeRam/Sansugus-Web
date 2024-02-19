@@ -1,25 +1,56 @@
 import { playersEndPoint, seasonsEndPoint } from "@/constants/api"
-import { useEffect, useRef, useState } from "react";
-import { SeasonsSelect } from "../SeasonsSelect";
-import { PlayersTable } from "./PlayersTable";
-import { Separator } from "../ui/separator";
-import { DialogSave } from "../DialogSave";
+import { useEffect, useState } from "react";
 import { playerData } from "@/types/players";
 import { useToast } from "../ui/use-toast";
 import { Loader2 } from "lucide-react";
-import { DataTable } from "../templates/DataTable";
+import { TableDashboard } from "../templates/TableDashboard";
 
+
+function getEditedRows(editedData: playerData[], originalData: playerData[]): playerData[] {
+  const editedRows: playerData[] = [];
+  // Iterar sobre cada objeto en editedData
+  editedData.forEach(editedPlayer => {
+    // Encontrar el jugador correspondiente en originalData
+    const originalPlayer = originalData.find(player => player.ID === editedPlayer.ID);
+    
+    // Si no se encuentra el jugador en originalData o si algún campo es diferente, agregarlo a editedRows
+    if (!originalPlayer || !comparePlayers(originalPlayer, editedPlayer)) {
+      editedRows.push(editedPlayer);
+    }
+  });
+
+  return editedRows;
+}
+
+function comparePlayers(playerA: playerData, playerB: playerData): boolean {
+  return (
+    playerA.Jugador === playerB.Jugador &&
+    playerA.Dorsal === playerB.Dorsal &&
+    playerA.Goles === playerB.Goles &&
+    playerA.Asistencias === playerB.Asistencias &&
+    playerA.Partidos === playerB.Partidos &&
+    playerA.Amarillas === playerB.Amarillas &&
+    playerA.Rojas === playerB.Rojas &&
+    playerA.Temporada === playerB.Temporada &&
+    playerA.MVP === playerB.MVP
+  );
+}
 
 export const Players = () => {
   const [season, setSeason] = useState<string | undefined>()
-  const playersTableRef:any = useRef()
   const {toast} = useToast();
-  const [playersData, setPlayersData] = useState<playerData[]>();
+  const [playersData, setPlayersData] = useState<playerData[]>([]);
+  const [rawData, setRawData] = useState<playerData[]>([]);
+  const [error, setError] = useState<string>();
+  const [loading, setIsLoading] = useState<boolean>(false);
 
   useEffect(()=>{
     if(season)
-    {fetch(playersEndPoint(season)).then((res)=>res.json()).then((data)=>{ 
-      setPlayersData(JSON.parse(JSON.stringify(data)))}).catch().finally()}
+    {
+      setIsLoading(true)
+      fetch(playersEndPoint(season)).then((res)=>res.json()).then((data)=>{setRawData(data) 
+        setPlayersData(JSON.parse(JSON.stringify(data)))}).catch((error)=>setError(error)).finally(()=>setIsLoading(false))
+    }
   },[season])
   
   const handleSeasonChanged = (season:string) => {
@@ -27,7 +58,7 @@ export const Players = () => {
   }
 
   const handleConfirm = () => {
-    const editedRows : playerData[] = playersTableRef.current.getEditedRows()
+    const editedRows : any[] = getEditedRows(playersData,rawData)
     if(editedRows && editedRows.length>0){
       toast({
         title: "Actualizando los datos",
@@ -52,27 +83,9 @@ export const Players = () => {
   }
 
   return (
-    <section className="p-7 px-5 flex flex-col gap-2 w-11/12 m-auto">
-      <article className="flex justify-between w-full">
-        <SeasonsSelect onSeasonChange={handleSeasonChanged} apiEndPoint={seasonsEndPoint}></SeasonsSelect>
-        {
-          season && <DialogSave buttonText="Guardar cambios" confirmTrigger={handleConfirm}/>
-        }
-        
-      </article>
-      <Separator/>
-      <article className="flex justify-center items-center flex-col">
-      {
-        season && <PlayersTable season={season} ref={playersTableRef} />
-      }
-      {
-        playersData && <DataTable data={playersData} excludedRows={['ID','Temporada']} onDataChanged={onDataChanged}></DataTable>
-      }
-      {
-        !season && <div>Selecciona una temporada</div>
-      }
-      </article>
-    </section>
-    
+    <>
+      <TableDashboard data={playersData} excludedRows={['ID','Temporada']} handleConfirm={handleConfirm} season={season} handleSeasonChanged={handleSeasonChanged}
+      onDataChanged={onDataChanged} seasonsEndPoint={seasonsEndPoint} isLoading={loading}/>
+    </>
   )
 }
