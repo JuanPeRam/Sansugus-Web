@@ -3,10 +3,35 @@ import useFetch from "@/hooks/useFetch"
 import  RankingSkeleton  from "./RankingSkeleton"
 import { teamData } from "@/types/competitionTypes"
 import { getShieldImage } from "@/rendering/teams_img"
+import { competitionsLink } from "@/constants/data/sheetsData/competitions"
+import { useEffect, useState } from "react"
+import { sheetResponseToObjects } from "@/functions/sheets"
+import { CompetitonResponse, getTeamCompetition, parseCompResponseToTeamData } from "@/constants/data/sheetsData/types"
 
 export const Ranking = () => {
 
-  const {error,loading,result} = useFetch(`${getCompetition}/1ª División`)
+  const [loading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState()
+  const  [data, setData] = useState<teamData[]>([])
+
+  useEffect(()=>{
+    setIsLoading(true)
+    fetch(competitionsLink)
+        .then(res => res.text())
+            .then(rep => {
+                const data: Array<CompetitonResponse> = sheetResponseToObjects(rep)
+                const result = parseCompResponseToTeamData(data)
+                const sansugusCompetition = getTeamCompetition('Sansugus FC', result)
+                if(sansugusCompetition) setData(sansugusCompetition)
+            })
+        .catch((err)=>{
+            setError(err)
+        })
+        .finally(()=>{
+            setIsLoading(false)
+        })
+  }, [])
+
   return (
     <table className="text-m w-full border-collapse ranking-table max-[1250px]:text-xs">
       <thead>
@@ -32,10 +57,10 @@ export const Ranking = () => {
         !loading && error && <td>Ha ocurrido un error</td>
       }
       {
-        !loading && result && result[0].newStanding.map((team:teamData)=>(
+        !loading && data.length>0 && data.map((team:teamData)=>(
           <tr key={team.teamName} className="">
             <td>{team.position}</td>
-            <td className="flex gap-x-1 items-center mr-2"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap">{team.teamName}</p></td>
+            <td className="flex gap-x-1 justify-stretch mr-2"><img src={getShieldImage(team.teamName)} className='h-7 w-fit object-cover object-center'></img> <p className="text-left text-ellipsis whitespace-nowrap">{team.teamName}</p></td>
             <td className="">{team.played}</td>
             <td className="max-[1250px]:hidden">{team.won}</td>
             <td className="max-[1250px]:hidden">{team.drawn}</td>
