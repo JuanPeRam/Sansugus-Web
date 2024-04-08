@@ -58,7 +58,7 @@ export const Ranking = () => {
         !loading && data.length>0 && data.map((team:teamData)=>(
           <tr key={team.teamName} className="">
             <td>{team.position}</td>
-            <td className="flex gap-x-1 justify-stretch mr-2"><img src={getShieldImage(team.teamName)} className='h-7 w-fit object-cover object-center'></img> <p className="text-left text-ellipsis whitespace-nowrap">{team.teamName}</p></td>
+            <td className="flex gap-x-1 mr-2 w-full items-center"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap flex-1 overflow-hidden">{team.teamName}</p></td>
             <td className="">{team.played}</td>
             <td className="max-[1250px]:hidden">{team.won}</td>
             <td className="max-[1250px]:hidden">{team.drawn}</td>
