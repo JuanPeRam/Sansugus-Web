@@ -1,5 +1,3 @@
-import { getCompetition } from "@/constants/api-links/competitionsLinks"
-import useFetch from "@/hooks/useFetch"
 import  RankingSkeleton  from "./RankingSkeleton"
 import { teamData } from "@/types/competitionTypes"
 import { getShieldImage } from "@/rendering/teams_img"
