@@ -12,6 +12,18 @@ type CompetitonResponse = {
       DG: string
 }
 
+type MatchInfo = {
+      competition: string,
+      group: string,
+      round: string,
+      homeTeam: string,
+      awayTeam: string,
+      field: string,
+      stadium:string,
+      date: Date,
+      result:string
+}
+
 const parseCompResponseToTeamData = (teamsData: Array<CompetitonResponse>)=>{
       const result:Array<teamData> = []
       teamsData.map((teamData : CompetitonResponse)=>{
@@ -53,10 +65,8 @@ const getTeamCompetition = (teamName:string, teamsData: Array<teamData>) => {
             const leagueIndex = Math.floor(i/teamsPerLeague)
             const  firstIndex = leagueIndex * teamsPerLeague;
             const lastIndex = (leagueIndex+1) *teamsPerLeague
-
             for(let j=firstIndex ; j<lastIndex;j++){
-                  console.log(teamsData[j])
-                  competition.push(teamsData[j])
+                  if(teamsData[j]) competition.push(teamsData[j])
             }
 
             return competition;
@@ -64,7 +74,7 @@ const getTeamCompetition = (teamName:string, teamsData: Array<teamData>) => {
 }
 
 export type{
-      CompetitonResponse
+      CompetitonResponse,MatchInfo
 }
 
 export {parseCompResponseToTeamData,getTeamCompetition}

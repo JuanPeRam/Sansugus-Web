@@ -5,10 +5,32 @@ import { LastMatch } from './team/LastMatch'
 import { NextMatch } from './team/NextMatch'
 import { getTeam } from '@/constants/api-links/teamsLinks'
 import { sansugusID } from '@/constants/ids'
+import { webgamesLink } from '@/constants/data/sheetsData/webmatches'
+import { useEffect, useState } from 'react'
+import { sheetResponseToObjects, sheetResponseToObjects2 } from '@/functions/sheets'
 
 function Home() {
 
     const {error: teamInfoError, result:teamInfoResult, loading:teamInfoLoading} = useFetch(getTeam(sansugusID));
+
+    const [error, setError] = useState()
+
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    useEffect(()=>{
+        fetch(webgamesLink)
+        .then(res => res.text())
+            .then(rep => {
+                const data = sheetResponseToObjects2(rep)
+                console.log(data)
+            })
+        .catch((err)=>{
+            setError(err)
+        })
+        .finally(()=>{
+            setIsLoading(false)
+        })
+    },[])
     
     return (
         <>
