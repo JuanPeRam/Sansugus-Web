@@ -4,7 +4,7 @@ import { getImage } from '@/rendering/players_img'
 import nullPlayer from '../../img/player.png'
 import '@/styles/Players/PlayerCard.css'
 
-const PlayerCard : React.FC<{player:playerData, onclick: ()=>void}>= ({player, onclick}) => {
+const PlayerCard : React.FC<{player:playerData, onclick: ()=>void, key: number}>= ({player, onclick}) => {
 
     const playerImage = getImage(player.Jugador)??nullPlayer
     const isNull = playerImage===nullPlayer
