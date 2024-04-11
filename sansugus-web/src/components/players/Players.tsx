@@ -5,12 +5,11 @@ import Player from "./Player"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 import '../../styles/Players.css'
-import { getImage } from "../../rendering/players_img"
-import EmptyPhoto from "../../img/player.png"
 import {link} from '../types'
 import { Card } from "../ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { useLocation, useNavigate } from "react-router-dom"
+import PlayerCard from "./PlayerCard"
 
 const totalCell = 'Total'
 const sheetName = "Estadísticas"
@@ -102,19 +101,6 @@ const Players = ()=> {
             setIsLoading(false)
         })
     }, [season])
-
-    let empty = false
-
-    function getPlayerImage(name:string){
-        const image = getImage(name)
-        if(!image){
-            empty = true
-            return EmptyPhoto
-        }
-        empty = false
-        return image
-    }
-
     function getFilteredPlayers(){
         if(!query || query==='') return players
         const filteredPlayers:playerData[] = []
@@ -164,13 +150,15 @@ const Players = ()=> {
             { isLoading && <p>Cargando datos...</p> || filteredPlayers.length===0 && <p>No se ha encontrado al jugador</p>}
             {!isLoading && players && 
                 filteredPlayers.map((player:playerData, index:number) => (
-                    <Card key={index} onClick={()=>handleSetCurrentPlayer(player)} className="player-item rounded-lg">
+                    <PlayerCard player={player} key={index} onclick={()=>handleSetCurrentPlayer(player)}>
+                    </PlayerCard>
+                    /*<Card key={index} onClick={()=>handleSetCurrentPlayer(player)} className="player-item rounded-lg">
                         <div className="player-description">
                             <div>{player.Jugador}</div>
                             
                         </div>
                         <img src={getPlayerImage(player.Jugador)} className={empty?'empty-photo':''}></img>
-                    </Card>
+                    </Card>*/
                 ))
             }
         </Card>

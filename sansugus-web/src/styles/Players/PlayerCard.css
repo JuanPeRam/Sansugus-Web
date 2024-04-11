@@ -1,0 +1,27 @@
+.card-image{
+    flex-shrink: 0;
+    height: 180px;
+    width: 130px;
+    max-width: 136px;
+    position: relative;
+}
+
+.card-image img{
+    height: 175px;
+    z-index: 3;
+    mask-image: linear-gradient( black 70%, transparent);
+}
+
+
+.card-stats div{
+    @apply rounded-xl;
+    @apply bg-secondary;
+    padding: 0.5rem;
+    width: 50px;
+    
+}
+
+.card-stats div h4{
+    @apply text-primary/50;
+    font-size: .6rem;
+}
