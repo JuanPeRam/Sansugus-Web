@@ -150,8 +150,7 @@ const Players = ()=> {
             { isLoading && <p>Cargando datos...</p> || filteredPlayers.length===0 && <p>No se ha encontrado al jugador</p>}
             {!isLoading && players && 
                 filteredPlayers.map((player:playerData, index:number) => (
-                    <PlayerCard player={player} key={index} onclick={()=>handleSetCurrentPlayer(player)}>
-                    </PlayerCard>
+                    <PlayerCard player={player} key={index} onclick={()=>handleSetCurrentPlayer(player)} />
                     /*<Card key={index} onClick={()=>handleSetCurrentPlayer(player)} className="player-item rounded-lg">
                         <div className="player-description">
                             <div>{player.Jugador}</div>
