@@ -12,7 +12,7 @@ const PlayerCard : React.FC<{player:playerData, onclick: ()=>void, key: number}>
     <article className='flex gap-2 border rounded-xl card p-5 md:h-56 h-full group hover:cursor-pointer md:flex-row flex-col items-center' onClick={onclick}>
         <div className='flex gap-2'>
             <div className='card-image rounded-xl shadow-lg group-hover:scale-110 transition'>
-                <img src={playerImage} alt={player.Jugador+" Image"} className={`object-center ${isNull?'empty-photo':''}`}/>
+                <img src={playerImage} alt={player.Jugador+" Image"} loading='lazy' className={`object-center ${isNull?'empty-photo':''}`}/>
             </div>
             <div className='flex-1 flex flex-col justify-between'>
                 <div className='flex flex-col justify-between h-full items-center'>
