@@ -1,4 +1,4 @@
-const days = ['Domingo','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+const days = ['domingo','lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 const months = [
     'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
   ];

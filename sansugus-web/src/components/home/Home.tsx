@@ -50,8 +50,8 @@ function Home() {
                     <h2 className='text-2xl text-center w-full'>Clasificación Actual</h2>
                     <Ranking/>    
                 </article>
-                <article className='four rounded-xl col-span-5 row-span-2  border p-5'>
-
+                <article className='four rounded-xl col-span-5 row-span-2  border p-5 flex items-center justify-center'>
+                        <h2 className='text-2xl'>Próximamente...</h2>
                 </article>
             </section>
         </>
