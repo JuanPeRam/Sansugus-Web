@@ -22,14 +22,14 @@ export const NextMatch: React.FC<TeamProps> = ({loading, error, result}) => {
           <section className="grid sm:grid-cols-5 gap-2 w-full text-sm grid-cols-2 justify-center">
             <div className="flex justify-center items-center gap-2 text-sm col-span-2"><img src={getShieldImage(result.home_team)} className="h-20 min-w-fit"/>
             {result.home_team}</div>
-            <div className="p-4 bg-primary/10 col-span-2 sm:col-span-1 w-fit m-auto rounded-xl border border-white/20">{result.hour}</div>
+            <div className="p-4 bg-primary/10 col-span-2 sm:col-span-1 w-fit m-auto rounded-xl border border-white/20 text-teamOrange">{result.hour}</div>
             <div className="flex justify-center items-center gap-2 text-sm col-span-2">{result.away_team}
             <img src={getShieldImage(result.away_team)} className="h-20"/></div>
           </section>
           <section className="text-gray-300 text-sm my-0 m-auto">
             <div>{result.stadium}</div>
-            <div>{result.competition + " - "+result.field}</div>
-            <div>{dateToString(result.date)}</div>
+            <div className="text-teamOrange">{result.competition + " - "+result.field}</div>
+            <div className="text-teamOrange">{dateToString(result.date)}</div>
           </section>
         </article>
       }

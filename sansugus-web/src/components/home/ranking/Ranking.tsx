@@ -56,7 +56,7 @@ export const Ranking = () => {
       }
       {
         !loading && data.length>0 && data.map((team:teamData)=>(
-          <tr key={team.teamName} className="">
+          <tr key={team.teamName} className={`${team.teamName === 'Sansugus FC'? 'text-teamOrange bg-white/10':''}`}>
             <td>{team.position}</td>
             <td className="flex gap-x-1 mr-2 w-full items-center"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap flex-1 overflow-hidden">{team.teamName}</p></td>
             <td className="">{team.played}</td>
@@ -66,7 +66,7 @@ export const Ranking = () => {
             <td className="max-[1250px]:hidden">{team.goals}</td>
             <td className="max-[1250px]:hidden">{team.goalsAgainst}</td>
             <td className="max-[1250px]:table-cell hidden goals-difference">{team.goals+':'+team.goalsAgainst}</td>
-            <td className="bg-[#c9c9c9] text-black">{team.points}</td>
+            <td className={`${team.teamName === 'Sansugus FC'? 'text-teamOrange bg-white/20':'bg-[#c9c9c9] text-black'}`}>{team.points}</td>
           </tr>
         ))
       }
