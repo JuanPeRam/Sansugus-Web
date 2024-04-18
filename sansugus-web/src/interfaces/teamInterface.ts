@@ -1,7 +1,9 @@
+import { Game } from "@/types/games"
+
 interface TeamProps {
     error: String,
     loading: boolean,
-    result: teamInfo
+    result: Game | undefined
 }
 
 export type {
