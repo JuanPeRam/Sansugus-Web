@@ -1,4 +1,4 @@
-
+type gameStatus = "Won" | "Drawn" | "Lost"
 
 type circleStats = {
     goals:number,
@@ -53,7 +53,7 @@ type matchPlayerInfo = {
     Dorsal:number
 }
 
-export type {circleStats,progressBarParams,playerData,matchData,matchPlayerInfo}
+export type {circleStats,progressBarParams,playerData,matchData,matchPlayerInfo,gameStatus}
 
 export const link = 'https://docs.google.com/spreadsheets/d/1oC9Iaba_OL_2BWSR0d-IZtrY0MSAynJRAW8jXixc70M/gviz/tq?'
 

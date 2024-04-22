@@ -20,7 +20,6 @@ function Home() {
                 const res = await fetchGames()
                 setLastMatch(getLastMatch(res))
                 setNextMatch(getNextMatch(res))
-                console.log(res)
             }
             catch(error){
                 setError(error)
