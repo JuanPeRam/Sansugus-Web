@@ -2,6 +2,7 @@
 // Import External Packages
 import { useState } from 'react';
 import Confetti from '@/components/ui/Confetti';
+import audioString from '@/assets/sounds/effects/Aplausos.mp3';
 // Import Functions & Actions & Hooks & State
 // Import Data
 // Import Assets & Icons
@@ -13,7 +14,7 @@ type Props = {
 export const ConfettiButton : React.FC<Props> = ({text})=> {
 	const [isConfettiActive, setIsConfettiActive] = useState(false);
     const playApplauses = ()=>{
-        var audio = new Audio("src/assets/sounds/effects/Aplausos.mp3")
+        var audio = new Audio(audioString)
         audio.play()
     }
 	return (
