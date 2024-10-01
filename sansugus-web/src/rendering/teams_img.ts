@@ -35,6 +35,10 @@ const imagePaths: { [key: string]: string } = {
     "Los Bichos Gang":"Bichos.png",
     "New Rolls":"NewRolls.png",
     "Jabatos FC":"JabatosFC.png",
+    "Rayo de la Sierra FC":"RayoSierraFC.png",
+    "Cervecería La Cala":"CerveceriaCala.png",
+    "Bayern Meister":"BayernMeister.png",
+    "Deportivo Cinco Estrellas":"Deportivo5Estrellas.png"
   };
   
   const teams_img: { [key: string]: string } = {};
