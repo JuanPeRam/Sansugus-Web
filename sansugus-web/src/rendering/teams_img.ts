@@ -33,7 +33,8 @@ const imagePaths: { [key: string]: string } = {
     "Real Suciedad":"Suciedad.png",
     "D. Sierra Bares":"D.SierraBares.png",
     "Los Bichos Gang":"Bichos.png",
-    "New Rolls":"NewRolls.png"
+    "New Rolls":"NewRolls.png",
+    "Jabatos FC":"JabatosFC.png",
   };
   
   const teams_img: { [key: string]: string } = {};
