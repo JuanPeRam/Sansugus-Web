@@ -2,6 +2,7 @@ import { Game } from '@/types/games'
 import { fetchSheetsData } from '../sheets/fetchData'
 import {link} from '../sheetsData/global'
 const sheetName = 'WebPartidos'
+const NOT_DETERMINATED = 'N/D'
 
 export const webgamesLink = `${link}&sheet=${sheetName}`
 
@@ -21,9 +22,23 @@ const getGamesArrayByResponse = (response:Array<{[key:string]:string}>)=>{
         const splittedSecondPart = secondPart['B'].split("\n")
         const gamePlayed = isGamePlayed(splittedSecondPart[0])
         const dateSplitted = splittedSecondPart[1].split('-')[0].split('.')
-        const dateString = dateSplitted[2].trim()+"-"+dateSplitted[1]+"-"+dateSplitted[0];
+        let dateString;
+            try{
+                dateString = dateSplitted[2].trim()+"-"+dateSplitted[1]+"-"+dateSplitted[0];
+            } catch(error){
+                dateString = NOT_DETERMINATED;
+            }
+            
+        
+        
         const date = new Date(dateString)
-        const stadium = splittedSecondPart[1].split('-')[1].trim()
+        let stadium;
+        try{
+            stadium = splittedSecondPart[1].split('-')[1].trim()
+        } catch(error){
+            stadium = NOT_DETERMINATED;
+        }
+        
         const field = splittedSecondPart[1].split('-')[2]
         let home_goals
         let away_goals
