@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import Field from "./Field";
-import {link} from '../../types'
+import {link, matchData} from '../../types'
 import { sheetResponseToObjects } from "../../../functions/sheets";
 import BenchPlayers from "./BenchPlayers";
 
@@ -12,12 +12,13 @@ const GameData: React.FC<{}> = ({}) => {
     const game = queryParameters.get("game")
     const [isLoading,setIsLoading] = useState(false)
     const [gameDataLoading, setGameDataLoading] = useState(false)
-    const [gameData, setGameData]:any = useState(null)
+    const [gameData, setGameData] = useState<matchData[] | undefined>()
     const [playersInfo,setPlayersInfo] : any = useState(null)
     const [startingSeven, setStartingSeven] : any = useState(null)
     const [benchPlayers, setBenchPlayers] : any = useState(null)
 
     function getOpponentName():string{
+        if(!gameData) return '';
         if(!(gameData[0].Local==='Sansugus FC')) return gameData[0].Local
         else return gameData[0].Visitante
     }
@@ -79,16 +80,20 @@ const GameData: React.FC<{}> = ({}) => {
 
     return (
         <>
-            <h1>Resumen del partido</h1>
+            <h1 className="text-5xl text-teamOrange bg-secondary w-full py-5">Resumen del partido</h1>
+            <article className="bg-secondary w-full py-5">
             <section className="match-info">
                 {!gameDataLoading && gameData && 
                 <>
-                <h3>
-                    {gameData[0].Jornada+' '+gameData[0].Competición}
-                </h3>
-                <h2>
-                    VS {getOpponentName()}
-                </h2>
+                    <h3>
+                        {gameData[0].Jornada+' '+gameData[0].Competición+' '+gameData[0].Temporada}
+                    </h3>
+                    <h2 className="flex items-center justify-center gap-5 flex-wrap">
+                        {gameData[0]["Goles Local"] + " - "+gameData[0]["Goles Visitante"]} VS <span className="text-teamOrange">{getOpponentName()} </span>
+                    </h2>
+                    <p className="text-teamOrange">
+                        {gameData[0].Fecha}
+                    </p>
                 </>
                 }
             </section>
@@ -105,6 +110,8 @@ const GameData: React.FC<{}> = ({}) => {
             }
             
             </section>
+            </article>
+            
         </>
     )
 }

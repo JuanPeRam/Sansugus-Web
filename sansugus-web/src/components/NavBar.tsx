@@ -12,7 +12,7 @@ function NavBar(){
       <ul className={
         isNavExpanded ? "options-list" : "options-list none"
       }>
-        <li><a href="/"><img src={sansuguslogo} alt="Sansugus Logo" /></a></li>
+        <li className='z-10'><a href="/"><img src={sansuguslogo} alt="Sansugus Logo" /></a></li>
         <li><a href='/Home' className={selectedWindow=='/Home' || selectedWindow=='/'?'selected':'text-muted-foreground'}>Inicio</a></li>
         <li><a href='/Players' className={selectedWindow=='/Players'?'selected':'text-muted-foreground'}>Jugadores</a></li>
         <li><a href='/Games' className={selectedWindow=='/Games'?'selected':'text-muted-foreground'}>Partidos</a></li>

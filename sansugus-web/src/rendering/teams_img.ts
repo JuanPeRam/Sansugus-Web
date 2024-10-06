@@ -52,3 +52,13 @@ for (const team in imagePaths) {
 export function getShieldImage(name:string){
     return teams_img[name]
 }
+
+export function getTeamShield(team: string): string {
+    const url = getShieldImage(team);
+
+    if (!url) {
+        return `<span>${team}</span>`;
+    } else {
+        return `<img src="${url}" alt="${team}" class="team"/>`;
+    }
+}

@@ -7,9 +7,9 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 import '../../styles/Players.css'
 import {link} from '../types'
 import { Card } from "../ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { useLocation, useNavigate } from "react-router-dom"
 import PlayerCard from "./PlayerCard"
+import { SeasonsSelect } from "../SeasonsSelect"
 
 const totalCell = 'Total'
 const sheetName = "Estadísticas"
@@ -23,7 +23,6 @@ const Players = ()=> {
     const [currentPlayer, setCurrentPlayer]:[playerData | undefined, Dispatch<SetStateAction<playerData | undefined>>] = useState()
     const [season, setSeason]:[string | undefined, Dispatch<SetStateAction<string | undefined>>] = useState()
     const [totalStats, setTotalStats]:[playerData|undefined, Dispatch<SetStateAction<playerData|undefined>>] = useState()
-    const [seasons, setSeasons]:any = useState()
     const [query, setQuery]: [string, Dispatch<SetStateAction<string>>] = useState('')
     const filteredPlayers:playerData[] = getFilteredPlayers()
 
@@ -42,24 +41,6 @@ const Players = ()=> {
     }
 
     useEffect(() => {
-        setIsLoading(true)
-        const seasonQuery = "SELECT H, MAX(H) GROUP BY H"
-        fetch(`${link}&tq=${seasonQuery}`)
-        .then(res => res.text())
-        .then(rep => {
-            const data = sheetResponseToObjects(rep)
-            setSeasons(data.map(obj => {
-                return {
-                Temporada: obj.Temporada
-                };
-            }))
-        })
-        .catch(err=>{
-            console.error(err)
-        })
-    }, [])
-
-    useEffect(() => {
         const params = new URLSearchParams(location.search);
         const playerIdFromUrl = params.get('player');
         const playerFromUrl = players?.find((player:playerData) => player.Jugador === playerIdFromUrl);
@@ -73,13 +54,6 @@ const Players = ()=> {
     useEffect(() => {
         handleScrollToTop()
     }, [currentPlayer])
-
-    useEffect(() => {
-        if(!seasons) return
-        if (seasons.length > 0) {
-          setSeason(seasons[seasons.length - 1].Temporada);
-        }
-      }, [seasons]);
     
 
     useEffect(() => {
@@ -117,7 +91,7 @@ const Players = ()=> {
     
     return (
     <>
-    { !currentPlayer && seasons &&
+    { !currentPlayer &&
     <> 
         <header>
             <h1>Jugadores</h1>
@@ -133,16 +107,7 @@ const Players = ()=> {
             
             <div className="flex-column">
                 <span>Temporada</span>
-                <Select onValueChange={(e:any)=> setSeason(e)} value={season  ?? seasons[seasons.length-1].Temporada}>
-                    <SelectTrigger>
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {seasons.map((seasonAux:any, index:number) => (
-                            <SelectItem key={`season-${index}`} value={seasonAux.Temporada}>{seasonAux.Temporada}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                <SeasonsSelect onSeasonChange={setSeason}/>
             </div>
         </Card>
         {

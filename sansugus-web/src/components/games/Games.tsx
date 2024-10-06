@@ -6,8 +6,8 @@ import { link } from '../types'
 import '../../styles/Games.css'
 import Game from './Game'
 import { Card } from '../ui/card'
-import { Select, SelectContent, SelectTrigger,SelectItem, SelectValue } from '../ui/select'
 import LoadingGame from './LoadingGame'
+import { SeasonsSelect } from '../SeasonsSelect'
 
 const sheetName = "Partidos"
 
@@ -20,38 +20,12 @@ function setDates(games:any){
 export default function Games(){
     const [isLoading, setIsLoading]: [boolean, Dispatch<SetStateAction<boolean>>]= useState(false)
     const [games, setGames]:[matchData |any, Dispatch<SetStateAction<matchData | any>>] = useState()
-    const [seasons, setSeasons]:any = useState();
     const [season, setSeason]:any = useState();
-
-
-    function setSeasonsData(data:any[]){
-        const uniqueSeasons = new Set(data.map(obj => obj.Temporada));
-        const uniqueSeasonsArray = Array.from(uniqueSeasons);
-        setSeasons(uniqueSeasonsArray.map(temporada => ({ Temporada: temporada })));
-    }
-
-    useEffect(() => {
-      setIsLoading(true)
-      const query = 'SELECT * ORDER BY D desc'
-      fetch(`${link}&sheet=${sheetName}&tq=${query}`)
-      .then(res => res.text())
-            .then(rep => {
-                const data = sheetResponseToObjects(rep)
-                setDates(data)
-                setGames(data)
-                setSeasonsData(data)
-            })
-        .catch((err)=>{
-            console.error(err)
-        })
-        .finally(()=>{
-            setIsLoading(false)
-        })
-    }, [])
 
     useEffect(() => {
         if(!season) return
         setIsLoading(true)
+        console.log(season)
         const query = `SELECT * WHERE H = '${season}' ORDER BY D desc`
         fetch(`${link}&sheet=${sheetName}&tq=${query}`)
         .then(res => res.text())
@@ -77,19 +51,7 @@ export default function Games(){
         </header>
         <Card className='filters-list w-full flex justify-center'>
             <Card className='p-5 flex justify-center border-none'>
-                <Select onValueChange={(e)=> setSeason(e)}>
-                    <SelectTrigger >
-                        <SelectValue placeholder='Temporada'/>
-                    </SelectTrigger>
-                    <SelectContent>
-                        { seasons &&
-                            seasons.map((season:any)=>(
-                                <SelectItem key={season.Temporada} value={season.Temporada}>{season.Temporada}</SelectItem>
-                            ))
-                        }
-                    </SelectContent>
-                </Select>
-
+                <SeasonsSelect onSeasonChange={setSeason}/>
             </Card>
         </Card>
         <section className='games-list'>
