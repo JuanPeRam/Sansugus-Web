@@ -1,4 +1,5 @@
 const Date: React.FC<{date:Date}> = ({date}) => {
+    if(!date) return
     const hour = date.getHours()
     let min:any = date.getMinutes()
 

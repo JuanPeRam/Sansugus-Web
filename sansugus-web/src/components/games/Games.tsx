@@ -64,10 +64,11 @@ export default function Games(){
                 </>
             }
             {!isLoading && games && 
-                <>
+                <section className='w-full flex flex-col gap-5'>
                 {games.map((game:matchData)=>(
                     <Game game={game} key={game.ID_Partido}/>
-                ))}</>
+                ))}
+                </section>
             }
         </section>
         </>

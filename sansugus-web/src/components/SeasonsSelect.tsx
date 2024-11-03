@@ -8,6 +8,7 @@ import {
 } from "./ui/select";
 import { link } from "./types";
 import { sheetResponseToObjects } from "@/functions/sheets";
+import { useSearchParams } from "react-router-dom";
 
 interface SeasonProps {
     onSeasonChange: (season: string) => void;
@@ -15,8 +16,9 @@ interface SeasonProps {
 export const SeasonsSelect : React.FC<SeasonProps> = ({onSeasonChange}) => {
 
     const [seasons, setSeasons]:any = useState()
-    const [season, setSeason] = useState();
+    const [season, setSeason] = useState<string | null>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         setIsLoading(true)
@@ -35,15 +37,26 @@ export const SeasonsSelect : React.FC<SeasonProps> = ({onSeasonChange}) => {
             console.error(err)
         })
         .finally(()=> setIsLoading(false))
+        setSeason(searchParams.get("season"));
     }, [])
 
     useEffect(() => {
       if(!seasons) return
-      if (seasons.length > 0) {
-        onSeasonChange(seasons[seasons.length-1].Temporada);
-        setSeason(seasons[seasons.length - 1].Temporada);
+      if (seasons.length > 0 && !season) {
+        handleSeasonChanged(seasons[seasons.length-1].Temporada);
       }
     }, [seasons]);
+
+    useEffect(()=>{
+      handleSeasonChanged(season);
+    },[season])
+
+    const handleSeasonChanged = (season?:any) =>{
+      if(season) {
+        onSeasonChange(season);
+        setSearchParams({ season: season });
+      }
+    }
 
 
   return (
@@ -53,10 +66,7 @@ export const SeasonsSelect : React.FC<SeasonProps> = ({onSeasonChange}) => {
     }
     {
       !isLoading && seasons && <Select
-      onValueChange={(e: any) => {
-        onSeasonChange(e);
-        setSeason(e);
-      }}
+      onValueChange={setSeason}
       value={season ?? seasons[seasons.length - 1].Temporada}
     >
       <SelectTrigger>
