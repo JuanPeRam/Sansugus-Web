@@ -1,6 +1,6 @@
 import { EndPointFunction } from "@/types"
 
-const api = 'http://localhost:3000'
+const api = 'http://localhost:3000/acl-api'
 const seasonsEndPoint = `${api}/seasons`
 
 const playersEndPoint:EndPointFunction = (season:string) =>{
@@ -10,7 +10,7 @@ const playersEndPoint:EndPointFunction = (season:string) =>{
 }
 
 const gamesEndPoint:EndPointFunction = (season:string) => {
-    const endPoint = 'games'
+    const endPoint = 'season/5'
     return getEndPointSeasonParam(season, endPoint)
 }
 

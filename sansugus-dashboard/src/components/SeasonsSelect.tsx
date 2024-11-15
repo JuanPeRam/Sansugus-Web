@@ -41,8 +41,8 @@ export const SeasonsSelect: React.FC<SeasonsSelectProps> = ({ onSeasonChange,api
                 <SelectContent>
                     <SelectGroup>
                         {seasons.map((season:any)=>(
-                            <SelectItem value={season.Season} key={season.Season}>
-                                {season.Season}
+                            <SelectItem value={season.id} key={season.id}>
+                                {season.name}
                             </SelectItem>
                         ))}
                     </SelectGroup>
