@@ -38,7 +38,8 @@ const imagePaths: { [key: string]: string } = {
     "Rayo de la Sierra FC":"RayoSierraFC.png",
     "Cervecería La Cala":"CerveceriaCala.png",
     "Bayern Meister":"BayernMeister.png",
-    "Deportivo Cinco Estrellas":"Deportivo5Estrellas.png"
+    "Dep. Cinco Estrellas":"Deportivo5Estrellas.png",
+    "Cervecería la Cala":"CerveceriaLaCala.png"
   };
   
   const teams_img: { [key: string]: string } = {};

@@ -30,7 +30,7 @@ const parseCompResponseToTeamData = (teamsData: Array<CompetitonResponse>)=>{
             const position = teamData.Equipos.split('\n')[0]
             const name = teamData.Equipos.split('\n')[1]
 
-            if(teamData.PTS)
+            if(teamData.DG != "")
             result.push({
                   position: Number(position),
                   teamName: name,
