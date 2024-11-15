@@ -66,7 +66,7 @@ const getTeamCompetition = (teamName:string, teamsData: Array<teamData>) => {
             do {
                   if(teamsData[j]) competition.push(teamsData[j]);
                   j++;
-            } while(teamsData[j].position>teamsData[j-1].position);
+            } while(teamsData[j].position>teamsData[j-1].position && j<teamsData.length);
 
             return competition;
       }
