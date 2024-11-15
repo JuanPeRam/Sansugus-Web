@@ -58,16 +58,15 @@ const getTeamCompetition = (teamName:string, teamsData: Array<teamData>) => {
       }
       if(!found) return
       else{
-            const teamsPerLeague = teamsData.reduce((maxPosition, currentTeam) => {
-                  return Math.max(maxPosition, currentTeam.position);
-              }, 0);
-            
-            const leagueIndex = Math.floor(i/teamsPerLeague)
-            const  firstIndex = leagueIndex * teamsPerLeague;
-            const lastIndex = (leagueIndex+1) *teamsPerLeague
-            for(let j=firstIndex ; j<lastIndex;j++){
-                  if(teamsData[j]) competition.push(teamsData[j])
+            while(teamsData[i].position>1){
+                  i--;
             }
+            const  firstIndex = i;
+            let j = firstIndex;
+            do {
+                  if(teamsData[j]) competition.push(teamsData[j]);
+                  j++;
+            } while(teamsData[j].position>teamsData[j-1].position);
 
             return competition;
       }
