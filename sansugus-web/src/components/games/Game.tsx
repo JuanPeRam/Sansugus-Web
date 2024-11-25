@@ -13,7 +13,7 @@ const classGame = {
 const Game:React.FC<{game:matchData}> = ({game}) => {
 
     function checkWon(homeGoals:string,awayGoals:string):boolean{
-        return homeGoals>awayGoals
+        return Number(homeGoals)>Number(awayGoals);
     }
 
     function isViewable() : boolean{
