@@ -1,6 +1,6 @@
 import { emojis, matchPlayerInfo } from "../../types"
 import StatsList from "./StatsList"
-import '../../../styles/game_stats/Bench.css'
+import '@/styles/game_stats/Bench.css'
 
 
 const BenchPlayers: React.FC<{playersInfo:Array<any> | null, isLoading:any}> = ({playersInfo,isLoading}) => {
