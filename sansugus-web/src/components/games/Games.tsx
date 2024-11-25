@@ -25,7 +25,6 @@ export default function Games(){
     useEffect(() => {
         if(!season) return
         setIsLoading(true)
-        console.log(season)
         const query = `SELECT * WHERE H = '${season}' ORDER BY D desc`
         fetch(`${link}&sheet=${sheetName}&tq=${query}`)
         .then(res => res.text())
