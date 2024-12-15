@@ -20,6 +20,10 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const setSeasonAsQueryParam = () => {
+    setSeason(searchParams.get("season"));
+  }
+
   useEffect(() => {
     setIsLoading(true)
     const seasonQuery = "SELECT H, MAX(H) GROUP BY H"
@@ -37,7 +41,7 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
         console.error(err)
       })
       .finally(() => setIsLoading(false))
-    setSeason(searchParams.get("season"));
+    setSeasonAsQueryParam()
   }, [])
 
   useEffect(() => {
@@ -50,6 +54,12 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
   useEffect(() => {
     handleSeasonChanged(season);
   }, [season])
+
+  useEffect(() => {
+    if (searchParams.get("season") !== season) {
+      setSeasonAsQueryParam();
+    }
+  }, [searchParams])
 
   const handleSeasonChanged = (season?: any) => {
     if (season) {
