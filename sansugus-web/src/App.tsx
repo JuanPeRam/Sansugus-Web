@@ -16,7 +16,8 @@ function App() {
 
       <Router>
         <NavBar />
-        <main className='main-content'>
+        <main className='main-content w-full bg-black  bg-dot-white/[0.1] relative flex items-center justify-center'>
+          <div className="z-[-2] absolute pointer-events-none inset-0 flex items-center justify-center  bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
           <Routes>
             <Route path='/Players' Component={Players} />
             <Route path={'/'} Component={Home} />
