@@ -15,7 +15,7 @@ export const Honors = () => {
                     <CardBody className="relative group/card  hover:shadow-teamOrange hover:shadow-xl bg-black w-auto sm:w-[30rem] h-auto rounded-xl p-10 border flex flex-col justify-center items-center gap-2">
                         <h1 className="text-2xl font-bold">{honor.name}</h1>
                         <p>{honor.year}</p>
-                        <img src={'src/assets/photo/victoria.jpg'} alt="Foto del equipo" className="object-contain h-72  text-white" />
+                        <img src={'src/assets/photo/victoria.jpg'} alt="Foto del equipo" className="object-contain h-72 aspect-square text-white" />
                     </CardBody>
                 </CardContainer>
             ))}
