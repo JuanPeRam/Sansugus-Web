@@ -2,11 +2,12 @@ import './App.css'
 import NavBar from './components/NavBar'
 import Players from './components/players/Players'
 import Home from './components/home/Home'
-import NotFound from './components/NotFound'
-import Footer from './components/Footer'
-import Games from './components/games/Games'
-import GameData from './components/games/game_stats/GameData'
+import NotFound from '@/components/NotFound'
+import Footer from '@/components/Footer'
+import Games from '@/components/games/Games'
+import GameData from '@/components/games/game_stats/GameData'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Honors } from '@/components/honors/Honors'
 
 
 
@@ -24,6 +25,7 @@ function App() {
             <Route path={'/Home'} Component={Home} />
             <Route path='/Games' Component={Games} />
             <Route path='/Game' Component={GameData} />
+            <Route path='/Honors' Component={Honors} />
             <Route path="*" Component={NotFound} />
           </Routes>
         </main>

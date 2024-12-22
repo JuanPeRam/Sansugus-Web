@@ -14,15 +14,24 @@ function NavBar() {
     setIsNavExpanded(false);
   }
 
+  const pages = [
+    { name: 'Inicio', path: '/Home' },
+    { name: 'Jugadores', path: '/Players' },
+    { name: 'Partidos', path: '/Games' },
+    { name: 'Palmarés', path: '/Honors' },
+  ]
+
   return (
     <nav className='navbar'>
       <ul className={
         isNavExpanded ? "options-list" : "options-list none"
       }>
         <li className='z-10'><a href="/"><img src={sansuguslogo} alt="Sansugus Logo" /></a></li>
-        <li><a onClick={() => handleNavigation('/Home')} className={selectedWindow == '/Home' || selectedWindow == '/' ? 'selected' : 'text-muted-foreground'}>Inicio</a></li>
-        <li><a onClick={() => handleNavigation('/Players')} className={selectedWindow == '/Players' ? 'selected' : 'text-muted-foreground'}>Jugadores</a></li>
-        <li><a onClick={() => handleNavigation('/Games')} className={selectedWindow == '/Games' ? 'selected' : 'text-muted-foreground'}>Partidos</a></li>
+        {
+          pages.map((page, index) => (
+            <li key={index}><a onClick={() => handleNavigation(page.path)} className={selectedWindow == page.path ? 'selected' : 'text-muted-foreground'}>{page.name}</a></li>
+          ))
+        }
       </ul>
       {!isNavExpanded ?
         <FontAwesomeIcon icon={faBars} size='xl' color='#aaaaaa' className='hamburguer' onClick={() => { setIsNavExpanded(true) }} /> :
