@@ -1,6 +1,6 @@
 import React from "react"
 import { matchPlayerInfo } from "../../types"
-import '../../../styles/game_stats/Field.css'
+import '@/styles/game_stats/Field.css'
 import NullField from "./NullField"
 import PlayerInfo from "./PlayerInfo"
 

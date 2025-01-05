@@ -10,6 +10,8 @@ const classGame = {
     "DRAW":"game-drawn"
 }
 
+const nonViewableSeasons = ['22/23','21/22']
+
 const Game:React.FC<{game:matchData}> = ({game}) => {
 
     function checkWon(homeGoals:string,awayGoals:string):boolean{
@@ -18,7 +20,7 @@ const Game:React.FC<{game:matchData}> = ({game}) => {
 
     function isViewable() : boolean{
         let season = game['Temporada']
-        return (season!='22/23'&&season!='21/22')
+        return !nonViewableSeasons.includes(season);
     }
 
     function getClassGame(won:boolean,lost:boolean){

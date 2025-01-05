@@ -3,6 +3,7 @@
   height: 550px;
   background-image: url('../../img/field.jpg');
   background-size: contain;
+  background-repeat: no-repeat;
   border: var(--border-gray);
   display: grid;
   grid-template-rows: 4;
