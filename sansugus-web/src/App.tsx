@@ -9,8 +9,6 @@ import GameData from '@/components/games/game_stats/GameData'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Honors } from '@/components/honors/Honors'
 
-
-
 function App() {
   return (
     <>
