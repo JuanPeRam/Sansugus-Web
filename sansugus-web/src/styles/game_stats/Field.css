@@ -2,7 +2,8 @@
   width: 360px;
   height: 550px;
   background-image: url('../../img/field.jpg');
-  background-size: contain;
+  background-size: cover;
+  background-position: center ;
   background-repeat: no-repeat;
   border: var(--border-gray);
   display: grid;
