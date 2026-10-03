@@ -3,9 +3,7 @@ import { matchData } from '../types'
 import { sheetResponseToObjects } from '../../functions/sheets'
 import {setNewDate} from '../../functions/dates'
 import { link } from '../types'
-import '../../styles/Games.css'
 import Game from './Game'
-import { Card } from '../ui/card'
 import LoadingGame from './LoadingGame'
 import { SeasonsSelect } from '../SeasonsSelect'
 
@@ -45,30 +43,28 @@ export default function Games(){
 
     return(
         <>
-        <header>
-            <h1>Partidos</h1>
+        <header className="page-hero">
+            <div className="page-hero-inner">
+                <span className="eyebrow">Calendario y resultados</span>
+                <h1 className="page-title">Par<em>tidos</em></h1>
+            </div>
         </header>
-        <Card className='filters-list w-full flex justify-center'>
-            <Card className='p-5 flex justify-center border-none'>
-                <SeasonsSelect onSeasonChange={setSeason}/>
-            </Card>
-        </Card>
-        <section className='games-list'>
-            {
-                isLoading && <>
-                <LoadingGame></LoadingGame>
-                <LoadingGame></LoadingGame>
-                <LoadingGame></LoadingGame>
-                <LoadingGame></LoadingGame>
-                </>
-            }
-            {!isLoading && games && 
-                <>
-                {games.map((game:matchData)=>(
-                    <Game game={game} key={game.ID_Partido}/>
-                ))}</>
-            }
-        </section>
+        <div className="page-container">
+            <div className='panel mb-8 flex flex-wrap items-center justify-between gap-4 p-4'>
+                <span className='font-display text-xl text-white'>Temporada</span>
+                <div className='w-40'><SeasonsSelect onSeasonChange={setSeason}/></div>
+            </div>
+            <section className='flex flex-col gap-4'>
+                {isLoading && <>
+                    <LoadingGame /><LoadingGame /><LoadingGame /><LoadingGame />
+                </>}
+                {!isLoading && games &&
+                    games.map((game:matchData)=>(
+                        <Game game={game} key={game.ID_Partido}/>
+                    ))
+                }
+            </section>
+        </div>
         </>
     )
 }

@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 export const LastMatchSkeleton = () => {
   return (
-    <article className="flex flex-col justify-center items-center min-h-[45vh] p-6">
+    <article className="flex flex-col justify-center items-center min-h-[20rem] p-6">
           <section className="flex gap-4 items-center flex-wrap justify-center">
             <div className="flex justify-center items-center gap-2">
                 <Skeleton className='w-[80px] h-[80px] m-auto rounded-full'></Skeleton>

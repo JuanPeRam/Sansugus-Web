@@ -1,5 +1,4 @@
 import {playerData} from '../types'
-import '../../styles/PlayerStats.css'
 import ProgressCircle from '../stats-components/ProgressCircle';
 import StatComponent from '../stats-components/StatComponent';
 
@@ -27,14 +26,15 @@ const PlayerStats: React.FC<{ stats: playerData, totalStats: playerData }> = ({ 
 
     return (
       <>
-        <div className='progress-list'>
+        <div className='panel flex flex-col gap-5 p-6' style={{ animation: 'fadeleft var(--fade-entry-time)' }}>
+            <h2 className='section-title'>Estadísticas</h2>
             <StatComponent params={{stat: 'Goles',variable:stats.Goles,totalVariable:totalGoals,percent:totalGoalsPercent}}></StatComponent>
             {totalAssists>0 && matchPlayed &&<StatComponent params={{stat: 'Asistencias',variable:stats.Asistencias,totalVariable:totalAssists,percent:totalAssistsPercent}}></StatComponent>}
             {totalYellow > 0 && matchPlayed && <StatComponent params={{stat: 'Amarillas',variable:stats.Amarillas,totalVariable:totalYellow,percent:totalYellowsPercent}}></StatComponent>}
             {totalReds>0 && matchPlayed && <StatComponent params={{stat: 'Rojas',variable:stats.Rojas,totalVariable:totalReds,percent:totalRedsPercent}}></StatComponent>}
             {totalMvps>0 && matchPlayed && <StatComponent params={{stat: 'MVPs',variable:stats.MVP,totalVariable:totalMvps,percent:totalMVPPercent}}></StatComponent>}
             {totalGames>0 && matchPlayed && <StatComponent params={{stat: 'Partidos',variable:stats.Partidos,totalVariable:totalGames,percent:totalGamesPercent}}></StatComponent>}
-            <div className='average-stats'>
+            <div className='mt-4 flex flex-wrap items-center justify-evenly gap-6'>
                 <ProgressCircle stats={{goals: stats.Goles, games: stats.Partidos}}></ProgressCircle>
                 <ProgressCircle stats={{goals: stats.Goles, assists: stats.Asistencias, games: stats.Partidos}}></ProgressCircle>
             </div>

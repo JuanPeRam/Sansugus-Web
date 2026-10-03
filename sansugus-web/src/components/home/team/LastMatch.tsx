@@ -1,64 +1,45 @@
 import { TeamProps } from "@/interfaces/teamInterface"
 import { LastMatchSkeleton } from "./LastMatchSkeleton"
-import { getShieldImage } from "@/rendering/teams_img"
 import { dateToString } from "@/functions/dates"
 import { gameStatus } from "@/components/types"
 import { getGameStatus } from "@/functions/games"
-import {ConfettiButton} from "@/components/ui/ConfettiButton"
+import { ConfettiButton } from "@/components/ui/ConfettiButton"
+import { TeamBadge } from "./MatchBoard"
 
-
-export const LastMatch: React.FC<TeamProps> = ({loading, error, result}) => {
-  let game_status:gameStatus = "Drawn"
-  if(result) game_status = getGameStatus(result);
+export const LastMatch: React.FC<TeamProps> = ({ loading, error, result }) => {
+  let game_status: gameStatus = "Drawn"
+  if (result) game_status = getGameStatus(result);
 
   return (
     <>
-      {loading && <LastMatchSkeleton/>}
-      {!loading && error && <div>Ha ocurrido un error</div>}
+      {loading && <LastMatchSkeleton />}
+      {!loading && error && <div className="p-8 text-center text-muted-foreground">Ha ocurrido un error</div>}
       {
-        !loading && result && 
-        <article className="flex flex-col justify-center items-center h-full p-6">
-          <section className="flex-1 flex items-center justify-center flex-col">
-            <section className="grid sm:grid-cols-5 gap-2 w-full text-sm grid-cols-2 justify-center place-content-center">
-              <div className="flex justify-center items-center gap-2 col-span-2">
-                <img src={getShieldImage(result.home_team)} className="h-20 min-w-fit"/>
-                <div>{result.home_team}</div>
-              </div>
-              <div className="border bg-[#2c2c2c] flex gap-2 col-span-2 sm:col-span-1 items-center justify-center rounded-xl m-auto p-5 border-white/20">
-                <div>{result.goals_home}</div>
-                <div>-</div>
-                <div>{result.goals_away}</div>
-              </div>
-              <div className="flex justify-center items-center gap-2 col-span-2">
-                <div>{result.away_team}</div>
-                <img src={getShieldImage(result.away_team)} className="h-20"/>
-              </div>
-            </section>
-            <section className="text-gray-300 text-sm h-fit">
-              <div>{result.stadium}</div>
-              <div>{result.competition +" - "+result.field}</div>
-              <div>{dateToString(result.date)}</div>
-            </section>
+        !loading && result &&
+        <article className="flex flex-1 flex-col items-center justify-center gap-6 p-6">
+          <section className="flex w-full items-center justify-between gap-2">
+            <TeamBadge name={result.home_team} />
+            <div className="flex items-center gap-2 bg-black px-4 py-3 font-display text-5xl text-white md:text-6xl border border-border">
+              <span>{result.goals_home}</span>
+              <span className="text-teamOrange">-</span>
+              <span>{result.goals_away}</span>
+            </div>
+            <TeamBadge name={result.away_team} />
           </section>
-          
-          <section className="h-fit items-center flex justify-center">
-            {
-              game_status == 'Won' && 
-              <>
-                <ConfettiButton text={"Victoria !!!! 🎉🎉🎉"}></ConfettiButton>
-              </>
-            }
-            {
-              game_status == "Lost" && <h3 className="text-xl hover:cursor-pointer" onClick={()=>undefined}>Derrota 😢😢😢</h3>
-            }
-            {
-              game_status == "Drawn" && <h3 className="text-xl hover:cursor-pointer" onClick={()=>undefined}>Empate 😶😶😶</h3>
-            }
+          <section className="text-center text-sm text-muted-foreground">
+            <div className="font-bold uppercase tracking-widest text-teamOrange">{result.competition + " · " + result.field}</div>
+            <div>{result.stadium}</div>
+            <div className="capitalize">{dateToString(result.date)}</div>
+          </section>
+          <section className="flex items-center justify-center">
+            {game_status == 'Won' && <ConfettiButton text={"¡Victoria! 🎉"} />}
+            {game_status == "Lost" && <h3 className="text-2xl text-red-500">Derrota</h3>}
+            {game_status == "Drawn" && <h3 className="text-2xl text-white/70">Empate</h3>}
           </section>
         </article>
       }
       {
-        !loading && !error && !result && <div className="min-h-[45vh] flex justify-center items-center">Por determinar...</div>
+        !loading && !error && !result && <div className="flex min-h-[20rem] items-center justify-center text-muted-foreground">Por determinar...</div>
       }
     </>
   )

@@ -2,11 +2,8 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react"
 import { sheetResponseToObjects } from "../../functions/sheets"
 import { playerData } from "../types"
 import Player from "./Player"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons"
-import '../../styles/Players.css'
+import { ArrowLeft } from "lucide-react"
 import {link} from '../types'
-import { Card } from "../ui/card"
 import { useLocation, useNavigate } from "react-router-dom"
 import PlayerCard from "./PlayerCard"
 import { SeasonsSelect } from "../SeasonsSelect"
@@ -92,50 +89,47 @@ const Players = ()=> {
     return (
     <>
     { !currentPlayer &&
-    <> 
-        <header>
-            <h1>Jugadores</h1>
+    <>
+        <header className="page-hero">
+            <div className="page-hero-inner">
+                <span className="eyebrow">Primer equipo</span>
+                <h1 className="page-title">La <em>plantilla</em></h1>
+            </div>
         </header>
-        <Card className="players-controls">
-            <div className="flex-column">
-                <span>Buscar por nombre</span>
-                <div className="search-bar">
-                    <input type="text" placeholder="Nombre..." className="input-text" onChange={(e)=>setQuery(e.target.value)}/>
-                    <div className="form-line"/>
+        <div className="page-container">
+            <div className="panel mb-8 flex flex-wrap items-end justify-between gap-6 p-5">
+                <label className="flex min-w-[14rem] flex-1 flex-col gap-2">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Buscar jugador</span>
+                    <input
+                        type="text"
+                        placeholder="Nombre..."
+                        className="h-10 border border-input bg-black px-3 text-white outline-none transition placeholder:text-muted-foreground focus:border-teamOrange"
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
+                </label>
+                <div className="flex w-40 flex-col gap-2">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Temporada</span>
+                    <SeasonsSelect onSeasonChange={setSeason}/>
                 </div>
             </div>
-            
-            <div className="flex-column">
-                <span>Temporada</span>
-                <SeasonsSelect onSeasonChange={setSeason}/>
-            </div>
-        </Card>
-        {
-        <Card className="players-list">
-            { isLoading && <p>Cargando datos...</p> || filteredPlayers.length===0 && <p>No se ha encontrado al jugador</p>}
-            {!isLoading && players && 
-                filteredPlayers.map((player:playerData, index:number) => (
-                    <PlayerCard player={player} key={index} onclick={()=>handleSetCurrentPlayer(player)} />
-                    /*<Card key={index} onClick={()=>handleSetCurrentPlayer(player)} className="player-item rounded-lg">
-                        <div className="player-description">
-                            <div>{player.Jugador}</div>
-                            
-                        </div>
-                        <img src={getPlayerImage(player.Jugador)} className={empty?'empty-photo':''}></img>
-                    </Card>*/
-                ))
-            }
-        </Card>
-        }
+            <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {isLoading && <p className="col-span-full py-10 text-center text-muted-foreground">Cargando datos...</p>}
+                {!isLoading && filteredPlayers.length === 0 && <p className="col-span-full py-10 text-center text-muted-foreground">No se ha encontrado al jugador</p>}
+                {!isLoading && players &&
+                    filteredPlayers.map((player:playerData, index:number) => (
+                        <PlayerCard player={player} key={index} onclick={()=>handleSetCurrentPlayer(player)} />
+                    ))
+                }
+            </section>
+        </div>
     </>
     }
     { currentPlayer && totalStats &&
-        <>
-            
-            <Player stats={currentPlayer} totalStats={totalStats} >
-                <FontAwesomeIcon icon={faAngleLeft} size="xl" onClick={()=>goBack()} id="back-icon"></FontAwesomeIcon>
-            </Player>
-        </>
+        <Player stats={currentPlayer} totalStats={totalStats} >
+            <button onClick={()=>goBack()} className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/70 hover:text-teamOrange">
+                <ArrowLeft size={18} /> Plantilla
+            </button>
+        </Player>
     }
     </>)
 }

@@ -1,32 +1,13 @@
-import '../../styles/ProgressBar.css'
-import {useState} from 'react'
-
-const ProgressBar:React.FC<{ percent: string }> = ({ percent }) => {
-    const emptyElement = <></>
-
-    const [PercentElement, setPercentElement] = useState(emptyElement)
-
-    function showPercent(event:React.MouseEvent<HTMLDivElement, MouseEvent>){
-        let x = event.pageX-25
-        let y = event.pageY-40
-        const newPercentElement = <div style={{
-            display: "block", top: y+"px", left: x+"px", position: "absolute"
-        }} className='percent-element'>{percent}%</div>
-        setPercentElement(newPercentElement)
-    }
-
-    function setPercentNull(){
-        setPercentElement(emptyElement)
-    }
+const ProgressBar: React.FC<{ percent: string }> = ({ percent }) => {
+    const value = Number(percent)
+    const width = isFinite(value) ? Math.min(100, value) : 0
     return (
-        <>
-            <div className='progress-bar'>
-                    <div style={{width: `${percent}%`}}
-                    className='filler' onMouseMove={(event) => showPercent(event)} onMouseLeave={()=>setPercentNull()}>
-                    </div>
-            </div>
-            {PercentElement}
-        </>
+        <div className='relative h-3 w-full overflow-hidden bg-secondary' title={`${percent}%`}>
+            <div
+                className='h-full bg-gradient-to-r from-teamOrange to-teamOrange-light'
+                style={{ width: `${width}%`, transformOrigin: 'left', animation: 'fillAnimation 1s ease' }}
+            />
+        </div>
     )
 }
 

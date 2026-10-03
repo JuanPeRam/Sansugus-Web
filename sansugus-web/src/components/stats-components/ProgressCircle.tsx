@@ -1,30 +1,17 @@
 import { circleStats } from "../types"
-import '../../styles/ProgressCircle.css'
-
 
 const ProgressCircle: React.FC<{stats:circleStats}> = ({stats}) => {
 
     const avg = (stats.assists?(stats.goals+stats.assists)/stats.games:stats.goals/stats.games)
-    const infinite = (avg!==Infinity)
+    const valid = isFinite(avg)
     return (
         <>
-        {infinite && <div className="circle">
-            {stats.assists?
-            <>
-                <div>G+A/P</div>
-                <span>{avg.toFixed(2)}</span>
-            </>
-            :
-            <>
-                <div>G/P</div>
-                <span>{avg.toFixed(2)}</span>
-            </>}
-        </div>
-        }
+        {valid && <div className="flex h-28 w-28 flex-col items-center justify-center rounded-full border-4 border-teamOrange bg-black">
+            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{stats.assists ? 'G+A/P' : 'G/P'}</div>
+            <span className="font-display text-4xl text-white">{avg.toFixed(2)}</span>
+        </div>}
         </>
     )
 }
 
 export default ProgressCircle
-
-    

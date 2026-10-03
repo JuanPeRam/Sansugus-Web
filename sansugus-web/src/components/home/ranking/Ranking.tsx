@@ -31,8 +31,8 @@ export const Ranking = () => {
   }, [])
 
   return (
-    <table className="text-m w-full border-collapse ranking-table max-[1250px]:text-xs">
-      <thead>
+    <table className="w-full border-collapse text-sm md:text-base">
+      <thead className="bg-black font-display text-sm uppercase tracking-widest text-muted-foreground [&_th]:px-2 [&_th]:py-3">
         <tr>
           <th>Pos</th>
           <th>Equipo</th>
@@ -46,27 +46,27 @@ export const Ranking = () => {
           <th>Puntos</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="[&_td]:px-2 [&_td]:py-2 [&_td]:text-center [&_tr]:border-t [&_tr]:border-border">
         {
           loading && <RankingSkeleton></RankingSkeleton>
 
         }
         {
-          !loading && error && <td>Ha ocurrido un error</td>
+          !loading && error && <tr><td colSpan={10}>Ha ocurrido un error</td></tr>
         }
         {
           !loading && data.length > 0 && data.map((team: teamData) => (
-            <tr key={team.teamName} className={`${team.teamName === 'Sansugus FC' ? 'text-teamOrange bg-white/10' : ''}`}>
-              <td>{team.position}</td>
-              <td className="flex gap-x-1 mr-2 w-full items-center"><img src={getShieldImage(team.teamName)} className='h-7 w-7'></img> <p className="text-left text-ellipsis whitespace-nowrap flex-1 overflow-hidden">{team.teamName}</p></td>
+            <tr key={team.teamName} className={`${team.teamName === 'Sansugus FC' ? 'bg-teamOrange/10 font-bold text-teamOrange' : 'hover:bg-white/5'}`}>
+              <td className="font-display text-lg">{team.position}</td>
+              <td className="flex w-full min-w-[9rem] items-center gap-2"><img src={getShieldImage(team.teamName)} className='h-7 w-7 object-contain'></img> <p className="text-left text-ellipsis whitespace-nowrap flex-1 overflow-hidden">{team.teamName}</p></td>
               <td className="">{team.played}</td>
               <td className="max-[1250px]:hidden">{team.won}</td>
               <td className="max-[1250px]:hidden">{team.drawn}</td>
               <td className="max-[1250px]:hidden">{team.lost}</td>
               <td className="max-[1250px]:hidden">{team.goals}</td>
               <td className="max-[1250px]:hidden">{team.goalsAgainst}</td>
-              <td className="max-[1250px]:table-cell hidden goals-difference">{team.goals + ':' + team.goalsAgainst}</td>
-              <td className={`${team.teamName === 'Sansugus FC' ? 'text-teamOrange bg-white/20' : 'bg-[#c9c9c9] text-black'}`}>{team.points}</td>
+              <td className="hidden max-[1250px]:table-cell">{team.goals + ':' + team.goalsAgainst}</td>
+              <td className={`${team.teamName === 'Sansugus FC' ? 'bg-teamOrange text-black font-extrabold' : 'font-bold text-white'}`}>{team.points}</td>
             </tr>
           ))
         }

@@ -1,104 +1,75 @@
 import { matchData } from "../types"
 import sansugusLogo from '../../img/sansugus-logo.svg'
 import Date from './Date'
-import { getTeamShield } from "../../rendering/teams_img"
+import { getShieldImage } from "../../rendering/teams_img"
+import { useNavigate } from "react-router-dom"
 
 const sansugusName = "Sansugus FC"
-const classGame = {
-    "WON":"game-won",
-    "LOST":"game-lost",
-    "DRAW":"game-drawn"
+const nonViewableSeasons = ['22/23', '21/22']
+
+const result = {
+    won: { label: 'Victoria', bar: 'bg-emerald-500', text: 'text-emerald-400' },
+    lost: { label: 'Derrota', bar: 'bg-red-600', text: 'text-red-500' },
+    draw: { label: 'Empate', bar: 'bg-zinc-500', text: 'text-zinc-400' },
 }
 
-const nonViewableSeasons = ['22/23','21/22']
-
-const Game:React.FC<{game:matchData}> = ({game}) => {
-
-    function checkWon(homeGoals:string,awayGoals:string):boolean{
-        return Number(homeGoals)>Number(awayGoals);
-    }
-
-    function isViewable() : boolean{
-        let season = game['Temporada']
-        return !nonViewableSeasons.includes(season);
-    }
-
-    function getClassGame(won:boolean,lost:boolean){
-        let gameClass:string = ''
-        if(won) gameClass+=classGame["WON"]
-        else if(lost) gameClass+=classGame["LOST"]
-        else gameClass+=classGame["DRAW"]
-        if(isViewable()) gameClass+=' viewable'
-        return gameClass
-    }
-
-    let won = false
-    let lost = false
-    let local:string
-    let away:string
-    let gameClass:string
-    
-    if(game.Local===sansugusName){
-        local = game["Goles Local"]
-        away = game["Goles Visitante"]
-    }
-    else{
-        away = game["Goles Local"]
-        local = game["Goles Visitante"]
-    }
-
-    won = checkWon(local,away)
-
-
-    if(!won) lost=local!==away
-
-    gameClass = getClassGame(won,lost)
-
-    function openGame(){
-            const match_id = game.ID_Partido;
-            const url = 'Game?game=' + match_id;
-            window.location.href = url;
-    }
-
-    
+const Team: React.FC<{ name: string }> = ({ name }) => {
+    const src = name === sansugusName ? sansugusLogo : getShieldImage(name)
     return (
-        <section key={game.ID_Partido} className={'game-data '+gameClass}>
-                        <div className='game-name'>
-                            {game.Local==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:(
-                                <div
-                                    dangerouslySetInnerHTML={{ __html: getTeamShield(game.Local) }}
-                                />
-                            )}
-                        </div>
-                        <div className="match-info">
-                            <div className='game-result'>
-                                {game['Goles Local']} - {game['Goles Visitante']}
+        <div className="flex flex-1 flex-col items-center gap-2 text-center">
+            <div className="flex h-14 w-14 items-center justify-center md:h-16 md:w-16">
+                {src ? <img src={src} alt={name} className="max-h-full max-w-full object-contain" />
+                    : <span className="font-display text-3xl text-muted-foreground">{name?.[0]}</span>}
+            </div>
+            <span className="font-display text-sm leading-tight text-white md:text-lg">{name}</span>
+        </div>
+    )
+}
+
+const Game: React.FC<{ game: matchData }> = ({ game }) => {
+    const navigate = useNavigate()
+    const sansugusHome = game.Local === sansugusName
+    const own = Number(sansugusHome ? game["Goles Local"] : game["Goles Visitante"])
+    const rival = Number(sansugusHome ? game["Goles Visitante"] : game["Goles Local"])
+    const status = own > rival ? result.won : own < rival ? result.lost : result.draw
+    const viewable = !nonViewableSeasons.includes(game['Temporada']) && game.Jugado
+
+    return (
+        <article
+            className={`panel group relative flex flex-col overflow-hidden transition hover:border-teamOrange/60 ${viewable ? 'cursor-pointer' : ''}`}
+            onClick={() => viewable && navigate('/Game?game=' + game.ID_Partido)}
+        >
+            <span className={`absolute inset-y-0 left-0 w-1.5 ${game.Jugado ? status.bar : 'bg-zinc-700'}`} />
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-6 py-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                <span className="text-teamOrange">{game.Competición} {game.Jornada}</span>
+                <span>{game.Fecha && <Date date={game.Fecha} />}</span>
+                <span className="hidden sm:inline">{game.Campo ? `Campo ${game.Campo}` : ''} · {game.Temporada}</span>
+            </div>
+            <div className="flex items-center justify-between gap-2 px-6 py-5">
+                <Team name={game.Local} />
+                <div className="flex flex-col items-center gap-1">
+                    {game.Jugado ? (
+                        <>
+                            <div className="font-display text-4xl text-white md:text-6xl">
+                                {game['Goles Local']}<span className="mx-2 text-teamOrange">-</span>{game['Goles Visitante']}
                             </div>
-                            <div className='game-date'>
-                                {game.Fecha && <Date date={game.Fecha}></Date>}
-                            </div>
-                            <div className='game-props'>
-                                <div className='game-comp'>
-                                    {game.Competición} {game.Jornada}
-                                </div>
-                                {game.Campo && 
-                                <div className='game-field'>
-                                    Campo {game.Campo}
-                                </div>}
-                                <div>{game.Temporada}</div>
-                                {!game.Jugado && <div className="game-played">No Jugado</div>}
-                                
-                            </div>
-                            {isViewable() && game.Jugado && <div className="more-info" onClick={()=>openGame()}>Ver acta {'>'}</div>}
-                        </div>
-                        <div className='game-name'>
-                            {game.Visitante==='Sansugus FC'?<img src={sansugusLogo} alt='Logo Sansugus'/>:(
-                                <div
-                                dangerouslySetInnerHTML={{ __html: getTeamShield(game.Visitante) }}
-                                />
-                            )}
-                        </div>
-        </section>
+                            <span className={`text-xs font-extrabold uppercase tracking-widest ${status.text}`}>{status.label}</span>
+                        </>
+                    ) : (
+                        <>
+                            <div className="font-display text-4xl text-white/40 md:text-5xl">VS</div>
+                            <span className="chip">No jugado</span>
+                        </>
+                    )}
+                </div>
+                <Team name={game.Visitante} />
+            </div>
+            {viewable && (
+                <div className="border-t border-border px-6 py-2 text-right text-xs font-extrabold uppercase tracking-widest text-teamOrange transition group-hover:bg-teamOrange group-hover:text-black">
+                    Ver acta →
+                </div>
+            )}
+        </article>
     )
 }
 

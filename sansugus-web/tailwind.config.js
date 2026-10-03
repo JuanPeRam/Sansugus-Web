@@ -34,7 +34,8 @@ module.exports = {
           foreground: "hsl(var(--primary-foreground))",
         },
         teamOrange: {
-          DEFAULT: 'var(--orange-main)'
+          DEFAULT: 'var(--orange-main)',
+          light: 'var(--orange-light)'
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
