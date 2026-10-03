@@ -37,12 +37,8 @@ function Home() {
         <>
             {/* HERO */}
             <section className='relative isolate w-full overflow-hidden border-b border-border'>
-                <img
-                    src='/resources/img/blog/Sansugus-VS-Texas.jpeg'
-                    alt=''
-                    className='absolute inset-0 -z-20 h-full w-full object-cover opacity-40'
-                />
-                <div className='absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/85 to-black/30' />
+                <div className='absolute inset-0 -z-10 bg-gradient-to-br from-black via-[#111] to-[#2a1604]' />
+                <div className='absolute -right-24 top-1/2 -z-10 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-teamOrange/20 blur-3xl' />
                 <div className='absolute inset-y-0 right-0 -z-10 hidden w-1/3 md:block'
                     style={{ background: 'repeating-linear-gradient(115deg, rgba(227,127,12,.22) 0 16px, transparent 16px 48px)' }} />
                 <div className='mx-auto flex max-w-7xl flex-col-reverse items-center gap-10 px-5 py-16 md:flex-row md:py-28'>
@@ -87,16 +83,15 @@ function Home() {
                 {/* ACCESOS */}
                 <section className='grid gap-6 md:grid-cols-3'>
                     {[
-                        { to: '/Players', title: 'Plantilla', text: 'Estadísticas de cada jugador', img: '/resources/img/blog/players.jpeg' },
-                        { to: '/Games', title: 'Partidos', text: 'Resultados y actas', img: '/resources/img/blog/games.jpeg' },
-                        { to: '/Honors', title: 'Palmarés', text: 'Títulos y trofeos del club', img: '/resources/img/blog/Sansugus-VS-Texas.jpeg' },
+                        { to: '/Players', title: 'Plantilla', text: 'Estadísticas de cada jugador', n: '01' },
+                        { to: '/Games', title: 'Partidos', text: 'Resultados y actas', n: '02' },
+                        { to: '/Honors', title: 'Palmarés', text: 'Títulos y trofeos del club', n: '03' },
                     ].map((item) => (
-                        <Link key={item.to} to={item.to} className='group relative isolate flex h-56 flex-col justify-end overflow-hidden rounded-sm border border-border p-6'>
-                            <img src={item.img} alt='' className='absolute inset-0 -z-20 h-full w-full object-cover transition duration-500 group-hover:scale-110' />
-                            <div className='absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/60 to-transparent' />
+                        <Link key={item.to} to={item.to} className='group relative isolate flex h-48 flex-col justify-end overflow-hidden rounded-sm border border-border bg-card p-6 transition hover:border-teamOrange'>
+                            <span className='absolute right-4 top-0 -z-10 select-none font-display text-[8rem] leading-none text-white/[0.05] transition group-hover:text-teamOrange/20'>{item.n}</span>
                             <span className='absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-teamOrange transition duration-300 group-hover:scale-x-100' />
                             <h3 className='text-4xl text-white'>{item.title}</h3>
-                            <p className='text-sm text-white/70'>{item.text}</p>
+                            <p className='text-sm text-white/60'>{item.text}</p>
                         </Link>
                     ))}
                 </section>
