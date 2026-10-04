@@ -29,9 +29,15 @@ const Team: React.FC<{ name: string }> = ({ name }) => {
 const Game: React.FC<{ game: matchData }> = ({ game }) => {
     const navigate = useNavigate()
     const sansugusHome = game.Local === sansugusName
-    const own = Number(sansugusHome ? game["Goles Local"] : game["Goles Visitante"])
-    const rival = Number(sansugusHome ? game["Goles Visitante"] : game["Goles Local"])
+    const num = (v: unknown) => Number(v) || 0
+    let own = num(sansugusHome ? game["Goles Local"] : game["Goles Visitante"])
+    let rival = num(sansugusHome ? game["Goles Visitante"] : game["Goles Local"])
+    if (own === rival) {  // desempate por penaltis
+        own = num(sansugusHome ? game["Penaltis Local"] : game["Penaltis Visitante"])
+        rival = num(sansugusHome ? game["Penaltis Visitante"] : game["Penaltis Local"])
+    }
     const status = own > rival ? result.won : own < rival ? result.lost : result.draw
+    const withPens = (goals: string, pens?: number | null) => pens ? `${goals} (${pens})` : goals
     const viewable = !nonViewableSeasons.includes(game['Temporada']) && game.Jugado
 
     return (
@@ -51,7 +57,7 @@ const Game: React.FC<{ game: matchData }> = ({ game }) => {
                     {game.Jugado ? (
                         <>
                             <div className="font-display text-4xl text-white md:text-6xl">
-                                {game['Goles Local']}<span className="mx-2 text-teamOrange">-</span>{game['Goles Visitante']}
+                                {withPens(game['Goles Local'], game['Penaltis Local'])}<span className="mx-2 text-teamOrange">-</span>{withPens(game['Goles Visitante'], game['Penaltis Visitante'])}
                             </div>
                             <span className={`text-xs font-extrabold uppercase tracking-widest ${status.text}`}>{status.label}</span>
                         </>

@@ -1,19 +1,9 @@
 import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 import { matchData } from '../types'
-import { sheetResponseToObjects } from '../../functions/sheets'
-import {setNewDate} from '../../functions/dates'
-import { link } from '../types'
+import { fetchMatches } from '@/data/api'
 import Game from './Game'
 import LoadingGame from './LoadingGame'
 import { SeasonsSelect } from '../SeasonsSelect'
-
-const sheetName = "Partidos"
-
-function setDates(games:any){
-    games.map((game:matchData) => {
-        game.Fecha = setNewDate(game.Fecha)
-    })
-}
 
 export default function Games(){
     const [isLoading, setIsLoading]: [boolean, Dispatch<SetStateAction<boolean>>]= useState(false)
@@ -23,23 +13,15 @@ export default function Games(){
     useEffect(() => {
         if(!season) return
         setIsLoading(true)
-        const query = `SELECT * WHERE H = '${season}' ORDER BY D desc`
-        fetch(`${link}&sheet=${sheetName}&tq=${query}`)
-        .then(res => res.text())
-            .then(rep => {
-                const data = sheetResponseToObjects(rep)
-                setDates(data)
-                setGames(data)
+        fetchMatches(season)
+            .then(setGames)
+            .catch((err)=>{
+                console.error(err)
             })
-        .catch((err)=>{
-            console.error(err)
-        })
-        .finally(()=>{
-            setIsLoading(false)
-        })
+            .finally(()=>{
+                setIsLoading(false)
+            })
     }, [season])
-
-    
 
     return(
         <>

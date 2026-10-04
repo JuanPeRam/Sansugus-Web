@@ -1,10 +1,8 @@
 import RankingSkeleton from "./RankingSkeleton"
 import { teamData } from "@/types/competitionTypes"
 import { getShieldImage } from "@/rendering/teams_img"
-import { competitionsLink } from "@/constants/data/sheetsData/competitions"
+import { fetchStandings } from "@/data/api"
 import { useEffect, useState } from "react"
-import { sheetResponseToObjects } from "@/functions/sheets"
-import { CompetitonResponse, getTeamCompetition, parseCompResponseToTeamData } from "@/constants/data/sheetsData/types"
 
 export const Ranking = () => {
 
@@ -14,14 +12,8 @@ export const Ranking = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    fetch(competitionsLink)
-      .then(res => res.text())
-      .then(rep => {
-        const data: Array<CompetitonResponse> = sheetResponseToObjects(rep)
-        const result = parseCompResponseToTeamData(data)
-        const sansugusCompetition = getTeamCompetition('Sansugus FC', result)
-        if (sansugusCompetition) setData(sansugusCompetition)
-      })
+    fetchStandings()
+      .then(setData)
       .catch((err) => {
         setError(err)
       })
@@ -53,6 +45,9 @@ export const Ranking = () => {
         }
         {
           !loading && error && <tr><td colSpan={10}>Ha ocurrido un error</td></tr>
+        }
+        {
+          !loading && !error && data.length === 0 && <tr><td colSpan={10} className="py-8 text-muted-foreground">Clasificación no disponible todavía</td></tr>
         }
         {
           !loading && data.length > 0 && data.map((team: teamData) => (

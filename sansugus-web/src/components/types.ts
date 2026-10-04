@@ -36,7 +36,9 @@ type matchData = {
     Temporada:string,
     Competición:string,
     Jornada:string,
-    Jugado:boolean
+    Jugado:boolean,
+    'Penaltis Local'?: number | null,
+    'Penaltis Visitante'?: number | null
 }
 
 type matchPlayerInfo = {
@@ -54,8 +56,6 @@ type matchPlayerInfo = {
 }
 
 export type {circleStats,progressBarParams,playerData,matchData,matchPlayerInfo,gameStatus}
-
-export const link = 'https://docs.google.com/spreadsheets/d/1oC9Iaba_OL_2BWSR0d-IZtrY0MSAynJRAW8jXixc70M/gviz/tq?'
 
 export const emojis = {
     "Goals":"⚽",

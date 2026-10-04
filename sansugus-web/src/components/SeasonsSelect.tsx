@@ -6,13 +6,16 @@ import {
   SelectValue,
   SelectItem,
 } from "./ui/select";
-import { link } from "./types";
-import { sheetResponseToObjects } from "@/functions/sheets";
+import { fetchSeasons } from "@/data/api";
 import { useSearchParams } from "react-router-dom";
 
 interface SeasonProps {
   onSeasonChange: (season: string) => void;
 }
+/** Temporada activa o, si ninguna está marcada, la más reciente */
+const currentSeason = (seasons: any[]): string =>
+  (seasons.find(s => s.activa) ?? seasons[seasons.length - 1]).Temporada
+
 export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
 
   const [seasons, setSeasons]: any = useState()
@@ -26,16 +29,9 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
 
   useEffect(() => {
     setIsLoading(true)
-    const seasonQuery = "SELECT H, MAX(H) GROUP BY H"
-    fetch(`${link}&tq=${seasonQuery}`)
-      .then(res => res.text())
-      .then(rep => {
-        const data = sheetResponseToObjects(rep)
-        setSeasons(data.map(obj => {
-          return {
-            Temporada: obj.Temporada
-          };
-        }))
+    fetchSeasons()
+      .then(data => {
+        setSeasons(data.map(obj => ({ Temporada: obj.name, activa: obj.active })))
       })
       .catch(err => {
         console.error(err)
@@ -47,7 +43,7 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
   useEffect(() => {
     if (!seasons) return
     if (seasons.length > 0 && !season) {
-      handleSeasonChanged(seasons[seasons.length - 1].Temporada);
+      handleSeasonChanged(currentSeason(seasons));
     }
   }, [seasons]);
 
@@ -77,7 +73,7 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
       {
         !isLoading && seasons && <Select
           onValueChange={setSeason}
-          value={season ?? seasons[seasons.length - 1].Temporada}
+          value={season ?? currentSeason(seasons)}
         >
           <SelectTrigger>
             <SelectValue />

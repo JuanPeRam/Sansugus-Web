@@ -27,9 +27,9 @@ export const LastMatch: React.FC<TeamProps> = ({ loading, error, result }) => {
             <TeamBadge name={result.away_team} />
           </section>
           <section className="text-center text-sm text-muted-foreground">
-            <div className="font-bold uppercase tracking-widest text-teamOrange">{result.competition + " · " + result.field}</div>
-            <div>{result.stadium}</div>
-            <div className="capitalize">{dateToString(result.date)}</div>
+            <div className="font-bold uppercase tracking-widest text-teamOrange">{[result.competition, result.field].filter(Boolean).join(" · ")}</div>
+            {result.stadium && <div>{result.stadium}</div>}
+            <div className="first-letter:uppercase">{dateToString(result.date)}</div>
           </section>
           <section className="flex items-center justify-center">
             {game_status == 'Won' && <ConfettiButton text={"¡Victoria! 🎉"} />}

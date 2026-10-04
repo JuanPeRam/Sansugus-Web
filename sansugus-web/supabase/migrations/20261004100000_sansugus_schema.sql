@@ -116,7 +116,8 @@ select jt.jugador_id, j.nombre as jugador, j.alias, jt.temporada_id, t.nombre as
        coalesce(h.partidos,    g.partidos,    0) as partidos,
        coalesce(h.amarillas,   g.amarillas,   0) as amarillas,
        coalesce(h.rojas,       g.rojas,       0) as rojas,
-       coalesce(h.mvp,         g.mvp,         0) as mvp
+       coalesce(h.mvp,         g.mvp,         0) as mvp,
+       j.propia_puerta
 from sansugus.jugador_temporada jt
 join sansugus.jugadores  j on j.id = jt.jugador_id
 join sansugus.temporadas t on t.id = jt.temporada_id

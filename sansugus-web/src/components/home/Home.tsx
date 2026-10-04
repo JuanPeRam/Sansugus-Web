@@ -3,7 +3,7 @@ import { LastMatch } from './team/LastMatch'
 import { NextMatch } from './team/NextMatch'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { fetchGames, getLastMatch, getNextMatch } from '@/constants/data/sheetsData/webmatches'
+import { fetchHomeMatches } from '@/data/api'
 import { Game } from '@/types/games'
 import sansuguslogo from '@/img/sansugus-logo.svg'
 
@@ -18,9 +18,9 @@ function Home() {
         const fetchData = async () => {
             try {
                 setIsLoading(true)
-                const res = await fetchGames()
-                setLastMatch(getLastMatch(res))
-                setNextMatch(getNextMatch(res))
+                const { last, next } = await fetchHomeMatches()
+                setLastMatch(last)
+                setNextMatch(next)
             }
             catch (error) {
                 setError(error)

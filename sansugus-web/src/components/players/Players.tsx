@@ -1,15 +1,11 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react"
-import { sheetResponseToObjects } from "../../functions/sheets"
+import { fetchPlayerStats } from "@/data/api"
 import { playerData } from "../types"
 import Player from "./Player"
 import { ArrowLeft } from "lucide-react"
-import {link} from '../types'
 import { useLocation, useNavigate } from "react-router-dom"
 import PlayerCard from "./PlayerCard"
 import { SeasonsSelect } from "../SeasonsSelect"
-
-const totalCell = 'Total'
-const sheetName = "Estadísticas"
 
 
 const Players = ()=> {
@@ -56,14 +52,10 @@ const Players = ()=> {
     useEffect(() => {
         if(!season) return
         setIsLoading(true)
-        const query = `SELECT * WHERE H = '${season}' ORDER BY C DESC,D DESC,E DESC`
-        fetch(`${link}&sheet=${sheetName}&tq=${query}`)
-        .then(res => res.text())
-            .then(rep => {
-                const data = sheetResponseToObjects(rep)
-                let totalValues = data.splice(data.findIndex(player=>player.Jugador===totalCell),1)[0]
-                setTotalStats(totalValues)
-                setPlayers(data)
+        fetchPlayerStats(season)
+            .then(({players, total}) => {
+                setTotalStats(total)
+                setPlayers(players)
             })
         .catch((err)=>{
             console.error(err)
