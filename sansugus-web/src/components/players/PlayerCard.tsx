@@ -3,8 +3,8 @@ import { playerData } from '../types'
 import { getImage } from '@/rendering/players_img'
 import nullPlayer from '../../img/player.png'
 
-const Stat: React.FC<{ label: string, value: any }> = ({ label, value }) => (
-  <div className='flex flex-col items-center bg-black/40 px-2 py-2'>
+const Stat: React.FC<{ label: string, value: number | string }> = ({ label, value }) => (
+  <div className='flex flex-col items-center border border-white/10 bg-black/40 px-1 py-2'>
     <span className='font-display text-2xl leading-none text-white'>{value}</span>
     <span className='mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground'>{label}</span>
   </div>
@@ -14,39 +14,48 @@ const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: numbe
 
   const playerImage = getImage(player.Jugador) ?? nullPlayer
   const isNull = playerImage === nullPlayer
+  const number = player.Dorsal != '' ? player.Dorsal : '?'
+
   return (
     <article
-      className='group relative flex cursor-pointer flex-col overflow-hidden rounded-sm border border-border bg-card transition hover:-translate-y-1 hover:border-teamOrange'
+      className='player-card group'
+      role='button'
+      tabIndex={0}
+      aria-label={`Ver ficha de ${player.Jugador}`}
       onClick={onclick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onclick() } }}
     >
-      <div className='relative h-64 overflow-hidden bg-gradient-to-b from-secondary to-card'>
-        <span className='absolute -right-2 -top-4 select-none font-display text-[9rem] leading-none text-white/[0.06]'>
-          {player.Dorsal != '' ? player.Dorsal : '?'}
-        </span>
-        <img
-          src={playerImage}
-          alt={player.Jugador + " Image"}
-          loading='lazy'
-          className={`relative mx-auto h-full object-contain object-bottom transition duration-500 group-hover:scale-105 ${isNull ? 'empty-photo opacity-40 invert' : ''}`}
-          style={{ maskImage: 'linear-gradient(black 80%, transparent)' }}
-        />
-        {player.MVP > 0 &&
-          <div className='absolute left-3 top-3 bg-teamOrange px-2 py-1 font-display text-sm text-black'>
-            ★ MVP {player.MVP}
-          </div>}
-      </div>
-      <div className='border-t-2 border-teamOrange px-4 pb-4 pt-3'>
-        <div className='mb-3 flex items-baseline justify-between gap-2'>
-          <h3 className='text-2xl text-white'>{player.Jugador}</h3>
-          <span className='font-display text-xl text-teamOrange'>#{player.Dorsal != '' ? player.Dorsal : '?'}</span>
+      <span className='player-card-frame' aria-hidden />
+      <div className='player-card-face'>
+        <div className='relative h-64 overflow-hidden'>
+          <span className='absolute -right-1 -top-3 select-none font-display text-[9.5rem] leading-none text-teamOrange/[0.13]'>{number}</span>
+          <div className='absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0c0c0c] to-transparent' aria-hidden />
+          <img
+            src={playerImage}
+            alt={player.Jugador + ' Image'}
+            loading='lazy'
+            className={`relative mx-auto h-full object-contain object-bottom transition duration-500 group-hover:scale-105 ${isNull ? 'opacity-40 invert' : ''}`}
+            style={{ maskImage: 'linear-gradient(black 78%, transparent)' }}
+          />
+          {player.MVP > 0 &&
+            <div className='absolute left-5 top-5 z-[2] bg-teamOrange px-2 py-1 font-display text-sm text-black'>
+              ★ MVP {player.MVP}
+            </div>}
         </div>
-        <section className='grid grid-cols-5 gap-1'>
-          <Stat label='PJ' value={player.Partidos} />
-          <Stat label='Gol' value={player.Goles} />
-          <Stat label='Asi' value={player.Asistencias} />
-          <Stat label='Am' value={player.Amarillas} />
-          <Stat label='Roj' value={player.Rojas} />
-        </section>
+        <div className='relative flex flex-1 flex-col px-5 pb-6 pt-1'>
+          <div className='mb-3 flex min-h-[3.9rem] flex-1 items-start justify-between gap-2'>
+            <h3 className='text-2xl leading-tight text-white'>{player.Jugador}</h3>
+            <span className='mt-0.5 shrink-0 font-display text-xl text-teamOrange'>#{number}</span>
+          </div>
+          <span aria-hidden className='mb-3 block h-px w-full bg-gradient-to-r from-teamOrange/70 via-teamOrange/20 to-transparent' />
+          <section className='grid grid-cols-5 gap-1.5'>
+            <Stat label='PJ' value={player.Partidos} />
+            <Stat label='Gol' value={player.Goles} />
+            <Stat label='Asi' value={player.Asistencias} />
+            <Stat label='Am' value={player.Amarillas} />
+            <Stat label='Roj' value={player.Rojas} />
+          </section>
+        </div>
       </div>
     </article>
   )

@@ -1,6 +1,8 @@
 :root {
   --orange-main: rgb(227, 127, 12);
   --orange-light: rgb(247, 160, 50);
+  --orange-rgb: 227 127 12;
+  --orange-light-rgb: 247 160 50;
   --background-color: #0a0a0a;
   --fade-entry-time: .8s;
   --text-primary-color: #f5f5f5;
