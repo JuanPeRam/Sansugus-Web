@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import sansuguslogo from '../img/sansugus-logo.svg'
-import elephant from'../img/elephant.svg'
+import dospuntos from '../img/dospuntos.png'
 import insanz from '../img/insanz.svg'
 
 function Footer(){
@@ -42,9 +42,15 @@ function Footer(){
                 </div>
                 <div className='flex flex-col items-center gap-4 md:items-start'>
                     <h4 className='mb-2 text-lg text-teamOrange'>Patrocinadores</h4>
-                    <div className='flex items-center gap-6'>
-                        <a href="https://www.elephantspain.com/"><img src={elephant} alt='Elephant Logo' className='h-14 w-auto opacity-80 transition hover:opacity-100'/></a>
-                        <a href='https://ascensoresinsanz.wordpress.com/'><img src={insanz} alt="Insanz Logo" className='h-14 w-auto opacity-80 transition hover:opacity-100'/></a>
+                    <div className='flex flex-wrap items-center justify-center gap-4 md:justify-start'>
+                        <a href="https://www.2puntos.es" target="_blank" rel="noopener noreferrer" aria-label="Dos Puntos Real Estate"
+                            className='flex h-24 w-40 items-center justify-center rounded-sm bg-white p-4 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-teamOrange/30'>
+                            <img src={dospuntos} alt='Dos Puntos Real Estate' className='max-h-full max-w-full object-contain'/>
+                        </a>
+                        <a href='https://ascensoresinsanz.wordpress.com/' target="_blank" rel="noopener noreferrer" aria-label="Ascensores Insanz"
+                            className='flex h-24 w-40 items-center justify-center rounded-sm bg-white p-4 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-teamOrange/30'>
+                            <img src={insanz} alt="Ascensores Insanz" className='max-h-full max-w-full object-contain'/>
+                        </a>
                     </div>
                 </div>
             </div>
