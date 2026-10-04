@@ -1,0 +1,476 @@
+ID_Partido,Jugador,Titular,Posición,Goles,Asistencias,Amarillas,Rojas,MVP,Alias,Dorsal,Temporada
+M.52,Marcos Herrero,TRUE,Delantero,2,1,1,0,TRUE,Mark,7,23/24
+M.52,Miguel Ángel Rodríguez,TRUE,Medio,1,0,1,0,FALSE,Migue,10,23/24
+M.52,Jorge Muñoz,TRUE,Medio,0,0,0,0,FALSE,Drako,4,23/24
+M.52,Sergio Hernández 'Checho',TRUE,Defensa,0,0,1,0,FALSE,Checho,14,23/24
+M.52,Javier Delgado,TRUE,Defensa,1,0,0,0,FALSE,Portu,5,23/24
+M.52,Roberto Lage,FALSE,Defensa,0,1,0,0,FALSE,Robert,24,23/24
+M.52,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,Vico,1,23/24
+M.52,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.52,Félix Barragán,FALSE,Defensa,1,0,1,0,FALSE,Félix,3,23/24
+M.52,Daniel Sanz,FALSE,Medio,0,0,1,0,FALSE,Dani,8,23/24
+M.52,Juan Pereira,FALSE,Delantero,0,2,0,0,FALSE,Pere,9,23/24
+M.53,Juan Pereira,TRUE,Delantero,0,1,0,0,FALSE,,,23/24
+M.53,Daniel Sanz,TRUE,Medio,0,0,0,0,FALSE,,,23/24
+M.53,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,,,23/24
+M.53,Carlos Pérez,TRUE,Medio,1,1,0,0,FALSE,,,23/24
+M.53,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,,,23/24
+M.53,Félix Barragán,TRUE,Defensa,0,0,0,0,FALSE,,,23/24
+M.53,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,,,23/24
+M.53,José Delgado,FALSE,Defensa,0,2,0,0,FALSE,Joselu,2,23/24
+M.53,Javier Delgado,FALSE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.53,Marcos Herrero,FALSE,Delantero,4,0,0,0,TRUE,Markher,7,23/24
+M.53,Sergio Hernández 'Checho',FALSE,Medio,0,0,0,0,FALSE,Checho,14,23/24
+M.53,Iñigo Saenz Mesas,FALSE,Medio,1,1,0,0,FALSE,Inigol,22,23/24
+M.54,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.54,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,,,23/24
+M.54,Roberto Lage,TRUE,Portero,0,0,0,0,FALSE,,,23/24
+M.54,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,,,23/24
+M.54,Félix Barragán,FALSE,Defensa,0,0,0,0,FALSE,Félix,3,23/24
+M.54,José Delgado,TRUE,Defensa,1,0,0,0,FALSE,,,23/24
+M.54,Javier Delgado,FALSE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.54,Marcos Herrero,TRUE,Delantero,0,1,0,0,FALSE,,,23/24
+M.54,Sergio Hernández 'Checho',FALSE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.54,Iñigo Saenz Mesas,TRUE,Medio,1,0,0,0,FALSE,,,23/24
+M.54,Miguel Ángel Rodríguez,TRUE,Medio,2,2,0,0,TRUE,,,23/24
+M.55,Juan Pereira,TRUE,Delantero,1,0,0,0,FALSE,,,23/24
+M.55,Carlos Pérez,TRUE,Medio,1,1,0,0,FALSE,,,23/24
+M.55,Iñigo Saenz Mesas,TRUE,Medio,0,0,0,0,FALSE,,,23/24
+M.55,Roberto Lage,TRUE,Defensa,0,0,0,0,FALSE,,,23/24
+M.55,Javier Delgado,TRUE,Defensa,1,0,0,0,FALSE,,,23/24
+M.55,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,,,23/24
+M.55,Luis Vico GK,TRUE,Portero,0,2,0,0,TRUE,,,23/24
+M.55,Félix Barragán,FALSE,Defensa,0,0,0,0,FALSE,Félix,3,23/24
+M.55,Marcos Herrero,FALSE,Delantero,2,0,0,0,FALSE,Mark,7,23/24
+M.55,Jorge Muñoz,FALSE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.55,Daniel Sanz,FALSE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.55,Sergio Hernández 'Checho',FALSE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.55,P.P,FALSE,,1,0,0,0,FALSE,P.P,,23/24
+M.56,Juan Pereira,FALSE,Delantero,1,0,0,0,FALSE,Pere,9,23/24
+M.56,Iñigo Saenz Mesas,FALSE,Medio,1,1,0,0,TRUE,Iñi,22,23/24
+M.56,Roberto Lage,FALSE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.56,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.56,José Delgado,FALSE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.56,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,Vico,1,23/24
+M.56,Félix Barragán,TRUE,Medio,0,0,1,0,FALSE,Félix,3,23/24
+M.56,Marcos Herrero,TRUE,Delantero,0,0,1,0,FALSE,Mark,7,23/24
+M.56,Jorge Muñoz,TRUE,Defensa,0,1,0,0,FALSE,Drako,4,23/24
+M.56,Daniel Sanz,FALSE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.56,Miguel Ángel Rodríguez,TRUE,Medio,0,0,0,0,FALSE,Migue,10,23/24
+M.56,Sergio Hernández 'Checho',TRUE,Medio,0,0,1,0,FALSE,Checho,14,23/24
+M.57,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.57,Miguel Ángel Rodríguez,TRUE,Medio,0,0,0,0,FALSE,Migue,10,23/24
+M.57,Iñigo Saenz Mesas,TRUE,Medio,0,1,0,0,FALSE,Iñi,22,23/24
+M.57,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.57,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.57,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.57,Roberto Lage,TRUE,Portero,0,0,0,0,FALSE,Robert,24,23/24
+M.57,Marcos Herrero,FALSE,Delantero,0,0,0,0,FALSE,Mark,7,23/24
+M.57,Carlos Pérez,FALSE,Medio,1,0,0,0,TRUE,Charly,69,23/24
+M.58,Marcos Herrero,TRUE,Delantero,0,0,0,0,FALSE,Mark,7,23/24
+M.58,Miguel Ángel Rodríguez,TRUE,Medio,0,0,0,0,FALSE,Migue,10,23/24
+M.58,Roberto Lage,TRUE,Medio,1,0,0,0,TRUE,Robert,24,23/24
+M.58,José Delgado,TRUE,Defensa,0,0,1,0,FALSE,Joselu,2,23/24
+M.58,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.58,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.58,David Berdiales,TRUE,Portero,0,0,0,0,FALSE,Berdi,28,23/24
+M.58,Juan Pereira,FALSE,Delantero,0,0,1,0,FALSE,Pere,9,23/24
+M.58,Félix Barragán,FALSE,Medio,0,0,0,0,FALSE,Félix,3,23/24
+M.58,Sergio Hernández 'Checho',FALSE,Medio,0,0,0,0,FALSE,Checho,14,23/24
+M.58,Daniel Sanz,FALSE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.59,Marcos Herrero,TRUE,Delantero,1,2,0,0,TRUE,Mark,7,23/24
+M.59,Miguel Ángel Rodríguez,TRUE,Medio,1,1,0,0,FALSE,Migue,10,23/24
+M.59,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.59,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.59,José Delgado,FALSE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.59,Javier Delgado,FALSE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.59,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.59,David Berdiales,TRUE,Portero,0,0,0,0,FALSE,Berdi,28,23/24
+M.59,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.59,Félix Barragán,FALSE,Medio,0,0,0,0,FALSE,Félix,3,23/24
+M.59,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.59,Iñigo Saenz Mesas,FALSE,Medio,2,0,0,0,FALSE,Iñi,22,23/24
+M.60,Marcos Herrero,TRUE,Delantero,1,1,0,0,FALSE,Mark,7,23/24
+M.60,Miguel Ángel Rodríguez,TRUE,Delantero,0,1,0,0,FALSE,Migue,10,23/24
+M.60,Roberto Lage,TRUE,Medio,0,0,0,0,TRUE,Robert,24,23/24
+M.60,Daniel Sanz,FALSE,Defensa,0,2,0,0,FALSE,Dani,8,23/24
+M.60,José Delgado,TRUE,Defensa,1,0,1,0,FALSE,Joselu,2,23/24
+M.60,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.60,Jorge Heras,TRUE,Portero,0,0,0,0,FALSE,Jorge,25,23/24
+M.60,Juan Pereira,FALSE,Delantero,1,0,0,0,FALSE,Pere,9,23/24
+M.60,Sergio Hernández 'Checho',TRUE,Defensa,1,0,0,0,FALSE,Checho,14,23/24
+M.61,Juan Pereira,TRUE,Delantero,1,1,0,0,FALSE,Pere,9,23/24
+M.61,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.61,Iñigo Saenz Mesas,TRUE,Medio,1,0,0,0,FALSE,Iñi,22,23/24
+M.61,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.61,José Delgado,TRUE,Defensa,1,0,0,0,TRUE,Joselu,2,23/24
+M.61,Sergio Hernández 'Checho',TRUE,Defensa,0,1,0,0,FALSE,Checho,14,23/24
+M.61,Javier Delgado,TRUE,Portero,0,1,0,0,FALSE,Portu,5,23/24
+M.61,Marcos Herrero,FALSE,Delantero,1,0,0,0,FALSE,Mark,7,23/24
+M.61,Miguel Ángel Rodríguez,FALSE,Medio,0,0,0,0,FALSE,Migue,10,23/24
+M.62,Marcos Herrero,TRUE,Delantero,1,0,0,0,FALSE,Mark,7,23/24
+M.62,Miguel Ángel Rodríguez,TRUE,Medio,2,1,0,0,TRUE,Migue,10,23/24
+M.62,Carlos Pérez,TRUE,Medio,0,0,0,0,FALSE,Charly,69,23/24
+M.62,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.62,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.62,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.62,David Berdiales,TRUE,Portero,0,0,0,0,FALSE,Berdi,28,23/24
+M.62,Roberto Lage,FALSE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.62,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.62,Sergio Hernández 'Checho',FALSE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.62,Iñigo Saenz Mesas,FALSE,Medio,0,0,0,0,FALSE,Iñi,22,23/24
+M.62,Jorge Muñoz,FALSE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.63,Marcos Herrero,TRUE,Portero,0,1,0,0,FALSE,Mark,7,23/24
+M.63,Miguel Ángel Rodríguez,TRUE,Medio,1,1,0,0,FALSE,Migue,10,23/24
+M.63,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.63,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.63,José Delgado,FALSE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.63,Roberto Lage,TRUE,Defensa,0,1,0,0,FALSE,Robert,24,23/24
+M.63,Juan Pereira,TRUE,Delantero,1,0,0,0,FALSE,Pere,9,23/24
+M.63,Sergio Hernández 'Checho',FALSE,Defensa,1,0,0,0,TRUE,Checho,14,23/24
+M.63,Fernando Oteo,TRUE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.64,Marcos Herrero,TRUE,Delantero,1,0,0,0,FALSE,Mark,7,23/24
+M.64,Miguel Ángel Rodríguez,TRUE,Medio,2,0,0,0,TRUE,Migue,10,23/24
+M.64,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.64,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.64,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.64,José Delgado,TRUE,Defensa,0,0,1,0,FALSE,Joselu,2,23/24
+M.64,Jorge Heras,TRUE,Portero,0,0,0,0,FALSE,Jorge,25,23/24
+M.64,Fernando Oteo,FALSE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.64,Daniel Sanz,FALSE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.64,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.64,Javier Delgado,FALSE,Defensa,1,0,0,0,FALSE,Portu,5,23/24
+M.65,Marcos Herrero,FALSE,Delantero,0,0,0,0,FALSE,Mark,7,23/24
+M.65,Miguel Ángel Rodríguez,FALSE,Medio,0,0,0,0,FALSE,Migue,10,23/24
+M.65,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.65,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.65,Jorge Muñoz,FALSE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.65,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.65,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.65,Fernando Oteo,TRUE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.65,Daniel Sanz,TRUE,Portero,0,0,0,0,FALSE,Dani,8,23/24
+M.65,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.66,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,23/24
+M.66,Iñigo Saenz Mesas,TRUE,Medio,0,0,0,0,FALSE,Iñi,22,23/24
+M.66,Roberto Lage,FALSE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.66,Sergio Hernández 'Checho',FALSE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.66,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.66,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.66,Javier Delgado,FALSE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.66,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.66,Fernando Oteo,TRUE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.66,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.67,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,23/24
+M.67,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.67,Jorge Muñoz,TRUE,Medio,0,0,0,0,FALSE,Drako,4,23/24
+M.67,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.67,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.67,Fernando Oteo,FALSE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.67,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.67,Miguel Ángel Rodríguez,TRUE,Medio,0,0,0,0,FALSE,Migue,10,23/24
+M.69,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,Vico,1,23/24
+M.69,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.69,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.69,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.69,José Delgado,TRUE,Defensa,0,1,0,0,FALSE,Joselu,2,23/24
+M.69,Jorge Muñoz,FALSE,Medio,0,1,0,0,FALSE,Drako,4,23/24
+M.69,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.69,Miguel Ángel Rodríguez,TRUE,Medio,1,1,0,0,FALSE,Migue,10,23/24
+M.69,Carlos Pérez,FALSE,Medio,2,1,0,0,TRUE,Charly,69,23/24
+M.69,Iñigo Saenz Mesas,FALSE,Medio,2,1,0,0,FALSE,Iñi,22,23/24
+M.68,David Berdiales,TRUE,Portero,0,0,0,0,FALSE,Berdi,28,23/24
+M.68,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.68,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.68,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.68,Jorge Muñoz,TRUE,Medio,0,0,0,0,FALSE,Drako,4,23/24
+M.68,Miguel Ángel Rodríguez,TRUE,Medio,2,1,1,0,TRUE,Migue,10,23/24
+M.68,Marcos Herrero,TRUE,Delantero,2,1,0,0,FALSE,Mark,7,23/24
+M.68,Fernando Oteo,FALSE,Medio,0,1,0,0,FALSE,Fer,99,23/24
+M.68,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.68,Daniel Sanz,FALSE,Medio,0,1,0,0,FALSE,Dani,8,23/24
+M.70,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,Vico,1,23/24
+M.70,Sergio Hernández 'Checho',TRUE,Defensa,2,0,0,0,TRUE,Checho,14,23/24
+M.70,Javier Delgado,TRUE,Defensa,0,0,1,0,FALSE,Portu,5,23/24
+M.70,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.70,Miguel Ángel Rodríguez,TRUE,Medio,0,3,0,0,FALSE,Migue,10,23/24
+M.70,Fernando Oteo,TRUE,Medio,1,0,0,0,FALSE,Fer,99,23/24
+M.70,Marcos Herrero,TRUE,Delantero,1,0,0,0,FALSE,Mark,7,23/24
+M.70,Juan Pereira,FALSE,Delantero,0,2,0,0,FALSE,Pere,9,23/24
+M.70,José Delgado,FALSE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.70,Jorge Muñoz,FALSE,Defensa,1,0,0,0,FALSE,Drako,4,23/24
+M.71,Jorge Heras,TRUE,Portero,0,0,0,0,FALSE,Jorge,25,23/24
+M.71,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.71,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.71,José Delgado,TRUE,Defensa,0,1,0,0,FALSE,Joselu,2,23/24
+M.71,Miguel Ángel Rodríguez,TRUE,Medio,3,0,0,0,TRUE,Migue,10,23/24
+M.71,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.71,Marcos Herrero,TRUE,Delantero,0,1,0,0,FALSE,Mark,7,23/24
+M.71,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.71,Jorge Muñoz,FALSE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.71,Sergio Hernández 'Checho',FALSE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.71,Fernando Oteo,FALSE,Medio,1,0,0,0,FALSE,Fer,99,23/24
+M.72,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,Vico,1,23/24
+M.72,Sergio Hernández 'Checho',TRUE,Defensa,0,0,1,0,FALSE,Checho,14,23/24
+M.72,Jorge Muñoz,TRUE,Defensa,0,0,1,0,FALSE,Drako,4,23/24
+M.72,José Delgado,TRUE,Defensa,0,0,1,0,FALSE,Joselu,2,23/24
+M.72,Fernando Oteo,TRUE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.72,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.72,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.72,Miguel Ángel Rodríguez,FALSE,Medio,2,0,0,0,TRUE,Migue,10,23/24
+M.72,Marcos Herrero,FALSE,Delantero,0,0,0,0,FALSE,Mark,7,23/24
+M.72,Javier Delgado,FALSE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.73,Samuel Ortega,TRUE,Portero,0,0,0,0,FALSE,Samu,55,23/24
+M.73,Sergio Hernández 'Checho',TRUE,Defensa,0,0,1,0,FALSE,Checho,14,23/24
+M.73,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.73,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.73,Fernando Oteo,TRUE,Medio,1,0,0,0,FALSE,Fer,99,23/24
+M.73,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.73,Juan Pereira,TRUE,Delantero,1,0,0,0,FALSE,Pere,9,23/24
+M.73,Iñigo Saenz Mesas,FALSE,Medio,1,1,0,0,TRUE,Iñi,22,23/24
+M.73,Marcos Herrero,FALSE,Delantero,0,0,0,0,FALSE,Mark,7,23/24
+M.73,Javier Delgado,FALSE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.73,Luis Vico,FALSE,Defensa,0,0,0,0,FALSE,Vico,19,23/24
+M.73,José Delgado,FALSE,Defensa,1,0,0,0,FALSE,Joselu,2,23/24
+M.73,Pepe Mesas,FALSE,Defensa,0,0,0,0,FALSE,Pepe,23,23/24
+M.74,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,Vico,1,23/24
+M.74,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,23/24
+M.74,Jorge Muñoz,TRUE,Defensa,0,1,0,0,FALSE,Drako,4,23/24
+M.74,Daniel Sanz,TRUE,Defensa,1,0,0,0,FALSE,Dani,8,23/24
+M.74,Miguel Ángel Rodríguez,TRUE,Medio,3,1,0,0,TRUE,Migue,10,23/24
+M.74,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.74,Marcos Herrero,TRUE,Delantero,2,0,0,0,FALSE,Mark,7,23/24
+M.74,Fernando Oteo,FALSE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.74,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.74,Javier Delgado,FALSE,Defensa,0,2,0,0,FALSE,Portu,5,23/24
+M.74,José Delgado,FALSE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.74,Pepe Mesas,FALSE,Defensa,0,0,0,0,FALSE,Pepe,23,23/24
+M.75,Samuel Ortega,TRUE,Portero,0,0,0,0,FALSE,Samu,55,23/24
+M.75,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,23/24
+M.75,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,23/24
+M.75,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,23/24
+M.75,Miguel Ángel Rodríguez,TRUE,Medio,0,0,0,0,FALSE,Migue,10,23/24
+M.75,Iñigo Saenz Mesas,TRUE,Medio,2,0,0,0,TRUE,Iñi,22,23/24
+M.75,Marcos Herrero,TRUE,Delantero,1,0,0,0,FALSE,Mark,7,23/24
+M.75,Roberto Lage,FALSE,Medio,0,0,0,0,FALSE,Robert,24,23/24
+M.75,Fernando Oteo,FALSE,Medio,0,0,0,0,FALSE,Fer,99,23/24
+M.75,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,23/24
+M.75,Daniel Sanz,FALSE,Defensa,0,0,0,0,FALSE,Dani,8,23/24
+M.75,Pepe Mesas,FALSE,Defensa,0,1,0,0,FALSE,Pepe,23,23/24
+M.76,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.76,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,24/25
+M.76,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.76,Daniel Sanz,TRUE,Defensa,0,1,0,0,FALSE,Dani,8,24/25
+M.76,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,24/25
+M.76,Fernando Oteo,TRUE,Medio,0,1,0,0,FALSE,Fer,99,24/25
+M.76,Juan Pereira,TRUE,Delantero,1,0,0,0,FALSE,Pere,9,24/25
+M.76,Miguel Ángel Rodríguez,FALSE,Delantero,3,1,0,0,TRUE,Migue,10,24/25
+M.76,José Delgado,FALSE,Defensa,0,0,1,0,FALSE,Joselu,2,24/25
+M.76,Víctor Méndez,FALSE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.77,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.77,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.77,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.77,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,24/25
+M.77,Fernando Oteo,FALSE,Medio,0,1,0,0,FALSE,Fer,99,24/25
+M.77,Juan Pereira,FALSE,Delantero,0,1,0,0,FALSE,Pere,9,24/25
+M.77,Miguel Ángel Rodríguez,TRUE,Delantero,2,1,1,0,FALSE,Migue,10,24/25
+M.77,José Delgado,FALSE,Defensa,0,0,0,0,FALSE,Joselu,2,24/25
+M.77,Pepe Mesas,FALSE,Medio,0,0,0,0,FALSE,Pepe,23,24/25
+M.77,Iñigo Saenz Mesas,TRUE,Medio,2,0,0,0,TRUE,Iñi,22,24/25
+M.77,Jorge Muñoz,TRUE,Defensa,0,1,0,0,FALSE,Drako,4,24/25
+M.78,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.78,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,24/25
+M.78,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,24/25
+M.78,Daniel Sanz,TRUE,Defensa,1,1,0,0,FALSE,Dani,8,24/25
+M.78,Fernando Oteo,TRUE,Medio,1,2,0,0,FALSE,Fer,99,24/25
+M.78,Roberto Lage,TRUE,Medio,1,0,0,0,TRUE,Robert,24,24/25
+M.78,Miguel Ángel Rodríguez,TRUE,Delantero,2,1,0,0,FALSE,Migue,10,24/25
+M.78,Juan Pereira,FALSE,Delantero,0,1,0,0,FALSE,Pere,9,24/25
+M.78,Javier Delgado,FALSE,Defensa,1,0,0,0,FALSE,Portu,5,24/25
+M.78,Víctor Méndez,FALSE,Medio,1,1,0,0,FALSE,Vicmen,98,24/25
+M.78,Gonzalo Manzano,FALSE,Medio,0,0,0,0,FALSE,Gonman,69,24/25
+M.79,Marcos Herrero,TRUE,Portero,0,1,0,0,FALSE,Mark,7,24/25
+M.79,Jorge Muñoz,TRUE,Defensa,0,1,1,0,FALSE,Drako,4,24/25
+M.79,Javier Delgado,TRUE,Defensa,1,0,0,0,FALSE,Portu,5,24/25
+M.79,Daniel Sanz,TRUE,Defensa,1,0,0,0,TRUE,Dani,8,24/25
+M.79,Fernando Oteo,FALSE,Medio,0,0,0,0,FALSE,Fer,99,24/25
+M.79,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,24/25
+M.79,Miguel Ángel Rodríguez,FALSE,Delantero,1,0,0,0,FALSE,Migue,10,24/25
+M.79,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,24/25
+M.79,Víctor Méndez,TRUE,Medio,0,1,0,0,FALSE,Vicmen,98,24/25
+M.80,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.80,Jorge Muñoz,TRUE,Defensa,1,0,0,0,FALSE,Drako,4,24/25
+M.80,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.80,Daniel Sanz,TRUE,Defensa,2,0,0,0,FALSE,Dani,8,24/25
+M.80,Gonzalo Manzano,FALSE,Medio,0,1,0,0,FALSE,Gonman,69,24/25
+M.80,Roberto Lage,FALSE,Medio,1,0,0,0,FALSE,Robert,24,24/25
+M.80,Miguel Ángel Rodríguez,TRUE,Medio,4,1,1,0,TRUE,Migue,10,24/25
+M.80,Juan Pereira,TRUE,Delantero,1,2,0,0,FALSE,Pere,9,24/25
+M.80,Víctor Méndez,TRUE,Medio,1,1,0,0,FALSE,Vicmen,98,24/25
+M.81,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.81,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.81,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.81,Gonzalo Manzano,TRUE,Defensa,0,0,0,0,FALSE,Gonman,69,24/25
+M.81,Fernando Oteo,TRUE,Medio,1,0,0,0,FALSE,Fer,99,24/25
+M.81,Iñigo Saenz Mesas,TRUE,Medio,1,4,0,0,FALSE,Iñi,22,24/25
+M.81,Miguel Ángel Rodríguez,TRUE,Delantero,6,3,0,0,TRUE,Migue,10,24/25
+M.81,Juan Pereira,FALSE,Delantero,1,0,0,0,FALSE,Pere,9,24/25
+M.81,Víctor Méndez,FALSE,Medio,1,2,0,0,FALSE,Vicmen,98,24/25
+M.82,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.82,Juan Pereira,TRUE,Defensa,0,0,0,0,FALSE,Pere,9,24/25
+M.82,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.82,Daniel Sanz,TRUE,Defensa,0,0,1,0,FALSE,Dani,8,24/25
+M.82,Víctor Méndez,TRUE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.82,Roberto Lage,TRUE,Medio,1,0,0,0,FALSE,Robert,24,24/25
+M.82,Miguel Ángel Rodríguez,TRUE,Delantero,2,1,1,0,TRUE,Migue,10,24/25
+M.82,Gonzalo Manzano,FALSE,Defensa,0,0,0,0,FALSE,Gonman,69,24/25
+M.82,Fernando Oteo,FALSE,Medio,0,0,0,0,FALSE,Fer,99,24/25
+M.82,Pepe Mesas,FALSE,Medio,0,0,0,1,FALSE,Pepe,23,24/25
+M.83,Marcos Herrero,TRUE,Portero,2,0,0,0,FALSE,Mark,7,24/25
+M.83,Jorge Muñoz,TRUE,Defensa,2,2,1,0,TRUE,Drako,4,24/25
+M.83,Javier Delgado,TRUE,Defensa,0,1,0,0,FALSE,Portu,5,24/25
+M.83,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.83,Fernando Oteo,TRUE,Medio,2,0,0,0,FALSE,Fer,99,24/25
+M.83,Víctor Méndez,TRUE,Medio,2,2,0,0,FALSE,Vicmen,98,24/25
+M.83,Juan Pereira,TRUE,Delantero,2,2,0,0,FALSE,Pere,9,24/25
+M.83,Roberto Lage,FALSE,Medio,0,2,0,0,FALSE,Robert,24,24/25
+M.83,Sergio Hernández 'Checho',FALSE,Medio,0,1,0,0,FALSE,Checho,14,24/25
+M.84,Marcos Herrero,TRUE,Portero,0,1,0,0,FALSE,Mark,7,24/25
+M.84,Juan Pereira,TRUE,Defensa,1,0,0,0,FALSE,Pere,9,24/25
+M.84,Sergio Hernández 'Checho',TRUE,Defensa,1,1,0,0,FALSE,Checho,14,24/25
+M.84,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.84,Miguel Ángel Rodríguez,TRUE,Medio,3,1,0,0,TRUE,Migue,10,24/25
+M.84,Víctor Méndez,TRUE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.85,Daniel Sanz,TRUE,Portero,0,0,0,0,FALSE,Dani,8,24/25
+M.85,Sergio Hernández 'Checho',TRUE,Defensa,0,0,1,0,FALSE,Checho,14,24/25
+M.85,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.85,Jorge Muñoz,TRUE,Defensa,0,0,0,0,FALSE,Drako,4,24/25
+M.85,Fernando Oteo,TRUE,Medio,0,0,0,0,FALSE,Fer,99,24/25
+M.85,Roberto Lage,TRUE,Medio,0,1,0,0,FALSE,Robert,24,24/25
+M.85,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,24/25
+M.85,Gonzalo Manzano,FALSE,Defensa,0,0,0,0,FALSE,Gonman,69,24/25
+M.85,Pepe Mesas,FALSE,Medio,1,0,0,0,FALSE,Pepe,23,24/25
+M.85,Marcos Herrero,FALSE,Delantero,1,0,0,0,FALSE,Mark,7,24/25
+M.86,Marcos Herrero,TRUE,Portero,0,0,0,0,TRUE,Mark,7,24/25
+M.86,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.86,Roberto Lage,TRUE,Defensa,0,0,0,0,FALSE,Robert,24,24/25
+M.86,Sergio Hernández 'Checho',TRUE,Defensa,0,0,1,0,FALSE,Checho,14,24/25
+M.86,Miguel Ángel Rodríguez,TRUE,Medio,0,0,0,0,FALSE,Migue,10,24/25
+M.86,Víctor Méndez,TRUE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.86,Juan Pereira,TRUE,Delantero,1,0,0,0,FALSE,Pere,9,24/25
+M.86,Fernando Oteo,FALSE,Delantero,0,0,0,0,FALSE,Fer,99,24/25
+M.86,Pepe Mesas,FALSE,Delantero,0,0,0,0,FALSE,Pepe,23,24/25
+M.87,Marcos Herrero,TRUE,Portero,0,0,0,0,TRUE,Mark,7,24/25
+M.87,Daniel Sanz,TRUE,Defensa,1,0,0,0,FALSE,Dani,8,24/25
+M.87,Roberto Lage,TRUE,Defensa,0,1,0,0,FALSE,Robert,24,24/25
+M.87,Sergio Hernández 'Checho',TRUE,Defensa,1,0,0,0,FALSE,Checho,14,24/25
+M.87,Miguel Ángel Rodríguez,TRUE,Medio,1,1,0,0,FALSE,Migue,10,24/25
+M.87,Fernando Oteo,TRUE,Medio,0,1,0,0,FALSE,Fer,99,24/25
+M.87,Juan Pereira,TRUE,Delantero,0,0,0,0,FALSE,Pere,9,24/25
+M.87,Pepe Mesas,FALSE,Delantero,0,0,0,0,FALSE,Pepe,23,24/25
+M.88,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.88,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.88,Jorge Muñoz,TRUE,Defensa,0,1,0,0,FALSE,Drako,4,24/25
+M.88,Sergio Hernández 'Checho',TRUE,Defensa,1,0,0,0,FALSE,Checho,14,24/25
+M.88,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,24/25
+M.88,Víctor Méndez,TRUE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.88,Juan Pereira,TRUE,Delantero,1,0,0,0,FALSE,Pere,9,24/25
+M.88,Javier Delgado,FALSE,Delantero,0,1,0,0,FALSE,Portu,5,24/25
+M.89,Marcos Herrero,TRUE,Portero,0,0,0,0,FALSE,Mark,7,24/25
+M.89,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.89,Javier Delgado,TRUE,Defensa,0,1,0,0,FALSE,Portu,5,24/25
+M.89,Sergio Hernández 'Checho',TRUE,Defensa,0,0,1,0,FALSE,Checho,14,24/25
+M.89,Fernando Oteo,TRUE,Medio,0,2,0,0,FALSE,Fer,99,24/25
+M.89,Víctor Méndez,TRUE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.89,Miguel Ángel Rodríguez,TRUE,Delantero,3,0,0,0,TRUE,Migue,10,24/25
+M.89,Juan Pereira,FALSE,Delantero,0,0,0,0,FALSE,Pere,9,24/25
+M.89,"Diego López  ""Goyón""",FALSE,Delantero,0,0,0,0,FALSE,Goyón,97,24/25
+M.90,Marcos Herrero,TRUE,Portero,0,1,0,0,TRUE,Mark,7,24/25
+M.90,Sergio Hernández 'Checho',TRUE,Defensa,1,1,0,0,FALSE,Checho,14,24/25
+M.90,Javier Delgado,TRUE,Defensa,1,0,0,0,FALSE,Portu,5,24/25
+M.90,Juan Pereira,TRUE,Defensa,0,0,1,0,FALSE,Pere,9,24/25
+M.90,Javier Riesgo Jimeno,TRUE,Medio,0,1,1,1,FALSE,Javi,41,24/25
+M.90,Jorge Alonso Rodríguez,TRUE,Medio,0,0,0,0,FALSE,Jorge Alonso,12,24/25
+M.90,Miguel Ángel Rodríguez,TRUE,Delantero,2,2,0,0,FALSE,Migue,10,24/25
+M.90,Daniel Sanz,FALSE,Defensa,1,0,0,0,FALSE,Dani,8,24/25
+M.90,Fernando Oteo,FALSE,Medio,0,0,0,0,FALSE,Fer,99,24/25
+M.91,Luis Vico GK,TRUE,Portero,0,0,0,0,FALSE,Vico,1,24/25
+M.91,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.91,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.91,Juan Pereira,TRUE,Defensa,0,0,0,0,FALSE,Pere,9,24/25
+M.91,Miguel Ángel Rodríguez,TRUE,Medio,2,0,0,0,TRUE,Migue,10,24/25
+M.91,Víctor Méndez,TRUE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.91,Marcos Herrero,TRUE,Delantero,0,2,0,0,FALSE,Mark,7,24/25
+M.91,Sergio Hernández 'Checho',FALSE,Defensa,0,0,0,0,FALSE,Checho,14,24/25
+M.91,Roberto Lage,FALSE,Medio,0,0,0,0,FALSE,Robert,24,24/25
+M.91,Pepe Mesas,FALSE,Defensa,0,0,1,0,FALSE,Pepe,23,24/25
+M.92,Marcos Herrero,TRUE,Portero,0,0,0,0,TRUE,Mark,7,24/25
+M.92,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,24/25
+M.92,Javier Delgado,TRUE,Defensa,0,0,1,0,FALSE,Portu,5,24/25
+M.92,Juan Pereira,TRUE,Defensa,0,0,0,0,FALSE,Pere,9,24/25
+M.92,Víctor Méndez,TRUE,Medio,1,0,0,0,FALSE,Vicmen,98,24/25
+M.92,Javier Riesgo Jimeno,TRUE,Medio,0,0,1,0,FALSE,Javi,41,24/25
+M.92,Miguel Ángel Rodríguez,TRUE,Delantero,0,1,1,0,FALSE,Migue,10,24/25
+M.92,Pepe Mesas,FALSE,Defensa,0,0,0,0,FALSE,Pepe,23,24/25
+M.93,Marcos Herrero,TRUE,Portero,1,1,0,0,FALSE,Mark,7,24/25
+M.93,Daniel Sanz,TRUE,Defensa,0,1,0,0,FALSE,Dani,8,24/25
+M.93,Sergio Hernández 'Checho',TRUE,Defensa,0,2,1,0,FALSE,Checho,14,24/25
+M.93,Juan Pereira,TRUE,Defensa,0,0,0,0,FALSE,Pere,9,24/25
+M.93,Víctor Méndez,TRUE,Medio,2,0,1,0,FALSE,Vicmen,98,24/25
+M.93,Félix Barragán,TRUE,Medio,0,0,0,0,FALSE,Félix,3,24/25
+M.93,Miguel Ángel Rodríguez,TRUE,Delantero,3,0,0,0,TRUE,Migue,10,24/25
+M.93,Luis Vico GK,FALSE,Portero,0,0,0,0,FALSE,Vico,1,24/25
+M.94,David Berdiales,TRUE,Portero,0,0,1,0,FALSE,Berdi,28,24/25
+M.94,Roberto Lage,TRUE,Defensa,0,0,0,0,FALSE,Robert,24,24/25
+M.94,Javier Delgado,TRUE,Defensa,0,1,0,0,FALSE,Portu,5,24/25
+M.94,Juan Pereira,TRUE,Defensa,2,0,1,0,FALSE,Pere,9,24/25
+M.94,Miguel Ángel Rodríguez,TRUE,Medio,1,3,0,0,FALSE,Migue,10,24/25
+M.94,Fernando Oteo,TRUE,Medio,0,0,0,0,FALSE,Fer,99,24/25
+M.94,Marcos Herrero,TRUE,Delantero,3,0,0,0,TRUE,Mark,7,24/25
+M.94,Sergio Hernández 'Checho',FALSE,Defensa,0,0,0,0,FALSE,Checho,14,24/25
+M.94,Víctor Méndez,FALSE,Medio,0,1,0,0,FALSE,Vicmen,98,24/25
+M.94,Félix Barragán,FALSE,Medio,0,0,0,0,FALSE,Félix,3,24/25
+M.95,Juan Pereira,TRUE,Portero,0,1,0,0,FALSE,Pere,9,24/25
+M.95,Sergio Hernández 'Checho',TRUE,Defensa,1,0,0,0,FALSE,Checho,14,24/25
+M.95,Javier Delgado,TRUE,Defensa,0,1,0,0,FALSE,Portu,5,24/25
+M.95,Daniel Sanz,TRUE,Defensa,0,1,0,0,FALSE,Dani,8,24/25
+M.95,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,24/25
+M.95,Víctor Méndez,TRUE,Medio,1,0,0,0,FALSE,Vicmen,98,24/25
+M.95,Marcos Herrero,TRUE,Delantero,2,1,0,0,TRUE,Mark,7,24/25
+M.96,Daniel Sanz,TRUE,Portero,1,0,0,0,FALSE,Dani,8,24/25
+M.96,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,24/25
+M.96,Javier Delgado,TRUE,Defensa,1,0,0,0,FALSE,Portu,5,24/25
+M.96,José Delgado,TRUE,Defensa,0,0,0,0,FALSE,Joselu,2,24/25
+M.96,Roberto Lage,TRUE,Medio,0,0,0,0,TRUE,Robert,24,24/25
+M.96,Fernando Oteo,TRUE,Medio,0,1,0,0,FALSE,Fer,99,24/25
+M.96,Miguel Ángel Rodríguez,TRUE,Delantero,1,1,0,0,FALSE,Migue,10,24/25
+M.96,Luis Vico GK,FALSE,Portero,0,0,1,0,FALSE,Vico,1,24/25
+M.96,Pepe Mesas,FALSE,Defensa,0,0,0,0,FALSE,Pepe,23,24/25
+M.96,Juan Pereira,FALSE,Defensa,0,0,0,0,FALSE,Pere,9,24/25
+M.96,Félix Barragán,FALSE,Defensa,0,0,0,0,FALSE,Félix,3,24/25
+M.96,Víctor Méndez,FALSE,Medio,0,0,0,0,FALSE,Vicmen,98,24/25
+M.97,David Berdiales,TRUE,Portero,0,0,0,0,TRUE,Berdi,28,24/25
+M.97,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,24/25
+M.97,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,24/25
+M.97,Daniel Sanz,TRUE,Defensa,1,0,0,0,FALSE,Dani,8,24/25
+M.97,Marcos Herrero,TRUE,Medio,0,0,0,0,FALSE,Mark,7,24/25
+M.97,Fernando Oteo,TRUE,Medio,1,0,0,0,FALSE,Fer,99,24/25
+M.97,Miguel Ángel Rodríguez,TRUE,Delantero,0,0,0,0,FALSE,Migue,10,24/25
+M.97,Juan Pereira,FALSE,Portero,0,0,0,0,FALSE,Pere,9,24/25
+M.97,Gonzalo Manzano,FALSE,Defensa,0,0,0,0,FALSE,Gonman,69,24/25
+M.97,Pepe Mesas,FALSE,Defensa,0,0,0,0,FALSE,Pepe,23,24/25
+M.100,Daniel Sanz,TRUE,Portero,0,0,0,1,FALSE,Dani,8,25/26
+M.100,Sergio Hernández 'Checho',TRUE,Defensa,0,0,1,0,FALSE,Checho,14,25/26
+M.100,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,25/26
+M.100,Félix Barragán,TRUE,Defensa,1,0,0,0,FALSE,Félix,3,25/26
+M.100,Marcos Herrero,TRUE,Delantero,1,2,0,0,FALSE,Mark,7,25/26
+M.100,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,25/26
+M.100,Miguel Ángel Rodríguez,TRUE,Medio,3,1,0,0,TRUE,Migue,10,25/26
+M.100,Juan Pereira,FALSE,Delantero,0,2,0,0,FALSE,Pere,9,25/26
+M.101,Daniel Sanz,TRUE,Defensa,0,0,0,0,FALSE,Dani,8,25/26
+M.101,Javier Delgado,TRUE,Defensa,0,0,0,0,FALSE,Portu,5,25/26
+M.101,Sergio Hernández 'Checho',TRUE,Defensa,0,0,0,0,FALSE,Checho,14,25/26
+M.101,Félix Barragán,TRUE,Portero,0,0,0,0,FALSE,Félix,3,25/26
+M.101,Marcos Herrero,TRUE,Delantero,1,0,0,0,TRUE,Mark,7,25/26
+M.101,Roberto Lage,TRUE,Medio,0,0,0,0,FALSE,Robert,24,25/26
+M.101,Fernando Oteo,TRUE,Medio,0,0,0,0,FALSE,Fer,99,25/26
+M.101,Juan Pereira,FALSE,Delantero,1,1,0,0,FALSE,Pere,9,25/26
