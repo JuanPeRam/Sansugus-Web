@@ -1,4 +1,5 @@
 import './App.css'
+import { lazy, Suspense } from 'react'
 import NavBar from './components/NavBar'
 import Players from './components/players/Players'
 import Home from './components/home/Home'
@@ -9,9 +10,12 @@ import GameData from '@/components/games/game_stats/GameData'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Honors } from '@/components/honors/Honors'
 
-function App() {
+// Área de administración: carga aparte (no pesa en la web pública)
+const AdminArea = lazy(() => import('@/pages/admin/AdminArea'))
+
+function PublicSite() {
   return (
-    <Router>
+    <>
       <NavBar />
       <main className='main-content'>
         <Routes>
@@ -25,6 +29,21 @@ function App() {
         </Routes>
       </main>
       <Footer />
+    </>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/admin/*' element={
+          <Suspense fallback={<div className='flex min-h-screen items-center justify-center text-teamOrange'>Cargando…</div>}>
+            <AdminArea />
+          </Suspense>
+        } />
+        <Route path='*' element={<PublicSite />} />
+      </Routes>
     </Router>
   )
 }
