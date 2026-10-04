@@ -1,7 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { matchData, matchPlayerInfo, playerData } from '@/components/types'
 import { Game } from '@/types/games'
-import { teamData } from '@/types/competitionTypes'
 
 /** Lanza un Error legible si la consulta de Supabase falla */
 function unwrap<T>(res: { data: unknown; error: { message: string } | null }): T {
@@ -175,40 +174,4 @@ export async function fetchPlayerStats(season: string): Promise<{ players: playe
         players: rows.map(mapPlayer),
         total: t ? mapPlayer({ ...t, jugador: 'Total', dorsal: null, propia_puerta: false }) : undefined,
     }
-}
-
-/* ─────────── Clasificación ─────────── */
-
-type FilaRow = {
-    posicion: number, equipo: string, jugados: number, ganados: number, empatados: number,
-    perdidos: number, goles_favor: number, goles_contra: number, puntos: number
-}
-
-/** Clasificación más reciente de la temporada activa (vacía si aún no se ha cargado) */
-export async function fetchStandings(): Promise<teamData[]> {
-    const seasons = unwrap<{ id: number }[]>(
-        await supabase.from('temporadas').select('id').eq('activa', true).limit(1)
-    )
-    if (seasons.length === 0) return []
-    const tables = unwrap<{ id: number }[]>(
-        await supabase.from('clasificaciones').select('id')
-            .eq('temporada_id', seasons[0].id).order('id', { ascending: false }).limit(1)
-    )
-    if (tables.length === 0) return []
-    const rows = unwrap<FilaRow[]>(
-        await supabase.from('clasificacion_filas').select('*')
-            .eq('clasificacion_id', tables[0].id).order('posicion', { ascending: true })
-    )
-    return rows.map(r => ({
-        position: r.posicion,
-        teamName: r.equipo,
-        points: r.puntos,
-        played: r.jugados,
-        won: r.ganados,
-        drawn: r.empatados,
-        lost: r.perdidos,
-        goals: r.goles_favor,
-        goalsAgainst: r.goles_contra,
-        gd: String(r.goles_favor - r.goles_contra),
-    }))
 }

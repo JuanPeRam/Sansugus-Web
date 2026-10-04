@@ -10,7 +10,6 @@ para que solo los administradores puedan escribir (la lectura es pública).
 | `partidos` | Partidos (id = número de `M.n` del Excel; penaltis en columnas aparte) |
 | `actas` | Ficha de cada jugador en cada partido |
 | `estadisticas_historicas` | Estadísticas de 21/22 y 22/23 (anteriores a las actas) |
-| `clasificaciones`, `clasificacion_filas` | Clasificación (pendiente de cargar) |
 | `estadisticas_jugador`, `estadisticas_equipo` | **Vistas**: se calculan desde las actas; no se editan |
 
 ## Carga inicial desde el Excel
