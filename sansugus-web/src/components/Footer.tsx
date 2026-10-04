@@ -16,7 +16,7 @@ function Footer(){
     return(
         <footer className='border-t border-border bg-black'>
             <div className='h-1 w-full bg-teamOrange' />
-            <div className='mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-3'>
+            <div className='mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1fr_.7fr_1.5fr]'>
                 <div className='flex flex-col items-center gap-4 text-center md:items-start md:text-left'>
                     <div className='flex items-center gap-3'>
                         <img src={sansuguslogo} alt='Sansugus FC' className='h-14 w-14' />
@@ -41,15 +41,16 @@ function Footer(){
                     <Link className='text-sm text-white/70 hover:text-white' to='/Honors'>Palmarés</Link>
                 </div>
                 <div className='flex flex-col items-center gap-4 md:items-start'>
-                    <h4 className='mb-2 text-lg text-teamOrange'>Patrocinadores</h4>
-                    <div className='flex flex-wrap items-center justify-center gap-4 md:justify-start'>
-                        <a href="https://www.2puntos.es" target="_blank" rel="noopener noreferrer" aria-label="Dos Puntos Real Estate"
-                            className='flex h-24 w-40 items-center justify-center rounded-sm bg-white p-4 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-teamOrange/30'>
-                            <img src={dospuntos} alt='Dos Puntos Real Estate' className='max-h-full max-w-full object-contain'/>
+                    <h4 className='text-lg text-teamOrange'>Patrocinadores</h4>
+                    <span aria-hidden className='-mt-2 h-px w-24 bg-gradient-to-r from-teamOrange to-transparent'/>
+                    <div className='mt-2 flex flex-wrap items-center justify-center gap-6 md:justify-start'>
+                        <a href="https://www.2puntos.es" target="_blank" rel="noopener noreferrer" aria-label="Dos Puntos Real Estate" className='sponsor'>
+                            <span className='sponsor-frame' aria-hidden/>
+                            <span className='sponsor-face'><img src={dospuntos} alt='Dos Puntos Real Estate'/></span>
                         </a>
-                        <a href='https://ascensoresinsanz.wordpress.com/' target="_blank" rel="noopener noreferrer" aria-label="Ascensores Insanz"
-                            className='flex h-24 w-40 items-center justify-center rounded-sm bg-white p-4 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-teamOrange/30'>
-                            <img src={insanz} alt="Ascensores Insanz" className='max-h-full max-w-full object-contain'/>
+                        <a href='https://ascensoresinsanz.wordpress.com/' target="_blank" rel="noopener noreferrer" aria-label="Ascensores Insanz" className='sponsor'>
+                            <span className='sponsor-frame' aria-hidden/>
+                            <span className='sponsor-face'><img src={insanz} alt="Ascensores Insanz"/></span>
                         </a>
                     </div>
                 </div>
