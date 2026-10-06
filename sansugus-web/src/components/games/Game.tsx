@@ -1,7 +1,6 @@
 import { matchData } from "../types"
-import sansugusLogo from '../../img/sansugus-logo.svg'
 import Date from './Date'
-import { getShieldImage } from "../../rendering/teams_img"
+import { TeamCrest } from "../TeamCrest"
 import { useNavigate } from "react-router-dom"
 
 const sansugusName = "Sansugus FC"
@@ -13,18 +12,12 @@ const result = {
     draw: { label: 'Empate', bar: 'bg-zinc-500', text: 'text-zinc-400' },
 }
 
-const Team: React.FC<{ name: string }> = ({ name }) => {
-    const src = name === sansugusName ? sansugusLogo : getShieldImage(name)
-    return (
-        <div className="flex flex-1 flex-col items-center gap-2 text-center">
-            <div className="flex h-14 w-14 items-center justify-center md:h-16 md:w-16">
-                {src ? <img src={src} alt={name} className="max-h-full max-w-full object-contain" />
-                    : <span className="font-display text-3xl text-muted-foreground">{name?.[0]}</span>}
-            </div>
-            <span className="font-display text-sm leading-tight text-white md:text-lg">{name}</span>
-        </div>
-    )
-}
+const Team: React.FC<{ name: string }> = ({ name }) => (
+    <div className="flex flex-1 flex-col items-center gap-2 text-center">
+        <TeamCrest name={name} className="h-14 w-14 md:h-16 md:w-16" />
+        <span className="font-display text-sm leading-tight text-white md:text-lg">{name}</span>
+    </div>
+)
 
 const Game: React.FC<{ game: matchData }> = ({ game }) => {
     const navigate = useNavigate()

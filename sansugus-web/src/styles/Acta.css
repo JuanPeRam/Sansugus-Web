@@ -1,0 +1,110 @@
+/* Campo de la alineación del acta */
+.pitch {
+  --circle: 8rem;
+  position: relative;
+  overflow: hidden;
+  padding: 2.4rem .4rem 1.2rem;
+  border: 3px solid var(--orange-main);
+  border-radius: 2px;
+  background: repeating-linear-gradient(180deg, #276f33 0 3.2rem, #226030 3.2rem 6.4rem);
+  box-shadow: 0 0 40px rgba(227, 127, 12, .16), inset 0 0 90px rgba(0, 0, 0, .55);
+}
+
+.pitch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 80% at 50% 40%, transparent 55%, rgba(0, 0, 0, .35));
+  pointer-events: none;
+}
+
+.pitch-line {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, .34);
+  pointer-events: none;
+}
+
+.pitch-halfway { top: 0; left: 0; right: 0; height: 0; border-width: 2px 0 0; }
+.pitch-circle {
+  top: calc(var(--circle) / -2);
+  left: 50%;
+  width: var(--circle);
+  height: var(--circle);
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+.pitch-box { bottom: -2px; left: 18%; right: 18%; height: 21%; border-bottom: 0; }
+.pitch-six { bottom: -2px; left: 34%; right: 34%; height: 9%; border-bottom: 0; }
+
+.pitch-formation {
+  position: absolute;
+  top: .55rem;
+  right: .7rem;
+  z-index: 3;
+  padding: 2px 10px;
+  font-family: 'Barlow Condensed', 'Archivo Bold', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  color: var(--orange-main);
+  background: rgba(0, 0, 0, .7);
+  border: 1px solid rgba(227, 127, 12, .45);
+}
+
+.pitch-rows {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pitch-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: .4rem .2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pitch-player {
+  display: flex;
+  width: min(21%, 6.6rem);
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+}
+
+.pitch-plate {
+  display: flex;
+  width: max-content;
+  max-width: 7.6rem;
+  align-items: center;
+  gap: .3rem;
+  padding: 1px 6px;
+  font-family: 'Barlow Condensed', 'Archivo Bold', sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, .74);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 2px;
+}
+
+.pitch-events {
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, .5);
+  border-radius: 999px;
+}
+
+@media (min-width: 640px) {
+  .pitch { --circle: 10rem; padding: 3rem 1rem 1.6rem; }
+  .pitch-rows { gap: 1.7rem; }
+  .pitch-plate { font-size: .92rem; padding: 2px 8px; }
+}
