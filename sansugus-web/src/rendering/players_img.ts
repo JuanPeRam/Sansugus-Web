@@ -1,26 +1,26 @@
+// Fotos de los jugadores (WebP con transparencia). Cada una tiene dos tamaños:
+//  - `<nombre>.webp`     → pequeña (560 px de alto), para las tarjetas de la plantilla
+//  - `<nombre>-lg.webp`  → grande (hasta 1100 px de alto), para la ficha del jugador
 const imagePaths: { [key: string]: string } = {
-    "Carlos Pérez": 'Charly.png',
-    "Daniel Sanz": 'Dani.png',
-    "Marcos Herrero":'Mark_Frente.png', 
-    "Félix Barragán":'Félix.png', 
-    "Iñigo Saenz Mesas": 'Inigol.png',
-    "Javier Delgado":'Portu.png',
-    "Miguel Ángel Rodríguez":"Migue.png",
-    "Roberto Lage":"Robert.png",
-    "Luis Vico GK":"Vico-GK.png",
-    "Juan Pereira":"Pere.png",
-    "José Delgado":"Jose.png",
-    "Sergio Hernández 'Checho'":"Checho.png"
-  };
+    "Carlos Pérez": 'Charly',
+    "Daniel Sanz": 'Dani',
+    "Marcos Herrero": 'Mark_Frente',
+    "Félix Barragán": 'Félix',
+    "Iñigo Saenz Mesas": 'Inigol',
+    "Javier Delgado": 'Portu',
+    "Miguel Ángel Rodríguez": "Migue",
+    "Roberto Lage": "Robert",
+    "Luis Vico GK": "Vico-GK",
+    "Juan Pereira": "Pere",
+    "José Delgado": "Jose",
+    "Sergio Hernández 'Checho'": "Checho"
+};
 
-const players_img: { [key: string]: string } = {
-}
 const dir = '/resources/img/players/'
 
-for (const player in imagePaths) {
-    players_img[player] = `${dir+imagePaths[player]}`;
-}
+export type PhotoSize = 'sm' | 'lg'
 
-export function getImage(name:string){
-    return players_img[name]
+export function getImage(name: string, size: PhotoSize = 'sm'): string | undefined {
+    const base = imagePaths[name]
+    return base ? `${dir}${base}${size === 'lg' ? '-lg' : ''}.webp` : undefined
 }

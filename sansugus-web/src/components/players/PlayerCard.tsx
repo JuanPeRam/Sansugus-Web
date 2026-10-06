@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { playerData } from '../types'
 import { getImage } from '@/rendering/players_img'
 import nullPlayer from '../../img/player.png'
@@ -12,7 +12,9 @@ const Stat: React.FC<{ label: string, value: any }> = ({ label, value }) => (
 
 const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: number }> = ({ player, onclick }) => {
 
-  const playerImage = getImage(player.Jugador) ?? nullPlayer
+  // Si la foto no existe o no carga, se muestra la silueta
+  const [failed, setFailed] = useState(false)
+  const playerImage = (!failed && getImage(player.Jugador)) || nullPlayer
   const isNull = playerImage === nullPlayer
   return (
     <article
@@ -27,6 +29,8 @@ const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: numbe
           src={playerImage}
           alt={player.Jugador + " Image"}
           loading='lazy'
+          decoding='async'
+          onError={() => setFailed(true)}
           className={`relative mx-auto h-full object-contain object-bottom transition duration-500 group-hover:scale-105 ${isNull ? 'empty-photo opacity-40 invert' : ''}`}
           style={{ maskImage: 'linear-gradient(black 80%, transparent)' }}
         />

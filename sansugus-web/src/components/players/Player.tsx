@@ -2,11 +2,13 @@ import PlayerStats from './PlayerStats'
 import { playerData } from '../types'
 import nullPlayer from '../../img/player.png'
 import { getImage } from '../../rendering/players_img';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 const Player: React.FC<{ stats: playerData, totalStats: playerData, children: ReactNode }> = ({ stats, totalStats, children }) => {
 
-    const playerImage = getImage(stats.Jugador) ?? nullPlayer
+    // Foto grande; si no existe o no carga, se muestra la silueta
+    const [failed, setFailed] = useState(false)
+    const playerImage = (!failed && getImage(stats.Jugador, 'lg')) || nullPlayer
     const isNull = playerImage === nullPlayer
 
     return (
@@ -27,6 +29,8 @@ const Player: React.FC<{ stats: playerData, totalStats: playerData, children: Re
                         <img
                             src={playerImage}
                             alt={stats.Jugador + " Image"}
+                            decoding='async'
+                            onError={() => setFailed(true)}
                             className={`relative max-h-[34rem] max-w-[80%] object-contain ${isNull ? 'opacity-40 invert' : ''}`}
                             style={{ maskImage: 'linear-gradient(black 85%, transparent)', animation: 'faderight var(--fade-entry-time)' }}
                         />
