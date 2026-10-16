@@ -221,3 +221,20 @@ export async function fetchStandings(): Promise<{ rows: Standing[], updatedAt?: 
     const last = rows.reduce<string | undefined>((max, r) => (!max || r.actualizada > max ? r.actualizada : max), undefined)
     return { rows: rows.map(mapStanding), updatedAt: last ? new Date(last) : undefined }
 }
+
+/* ─────────── Patrocinadores ─────────── */
+
+export type Sponsor = { id: number, name: string, logoUrl: string | null, webUrl: string | null, monochrome: boolean }
+
+type PatrocinadorRow = { id: number, nombre: string, logo_url: string | null, web_url: string | null, monocromo: boolean }
+
+/** Patrocinadores visibles, en el orden elegido en el panel */
+export async function fetchSponsors(): Promise<Sponsor[]> {
+    const rows = unwrap<PatrocinadorRow[]>(
+        await supabase.from('patrocinadores').select('id,nombre,logo_url,web_url,monocromo')
+            .eq('activo', true)
+            .order('orden', { ascending: true })
+            .order('id', { ascending: true })
+    )
+    return rows.map(r => ({ id: r.id, name: r.nombre, logoUrl: r.logo_url, webUrl: r.web_url, monochrome: r.monocromo }))
+}

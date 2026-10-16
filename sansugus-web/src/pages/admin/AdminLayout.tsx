@@ -1,5 +1,5 @@
 import { Link, NavLink, Navigate, Outlet, useLocation } from 'react-router-dom'
-import { CalendarDays, CalendarRange, ExternalLink, LayoutDashboard, ListOrdered, LogOut, Menu, User, Users, X } from 'lucide-react'
+import { Award, CalendarDays, CalendarRange, ExternalLink, LayoutDashboard, ListOrdered, LogOut, Menu, MoreHorizontal, User, Users, X } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { cn } from '@/lib/utils'
@@ -13,9 +13,13 @@ const ITEMS = [
   { to: '/admin/partidos', label: 'Partidos', short: 'Partidos', Icon: CalendarDays, end: false },
   { to: '/admin/clasificacion', label: 'Clasificación', short: 'Tabla', Icon: ListOrdered, end: false },
   { to: '/admin/plantilla', label: 'Plantilla', short: 'Plantilla', Icon: Users, end: false },
-  { to: '/admin/jugadores', label: 'Jugadores', short: 'Jugadores', Icon: User, end: false },
-  { to: '/admin/temporadas', label: 'Temporadas', short: 'Temporadas', Icon: CalendarRange, end: false },
+  // En móvil, las secundarias van en el menú «Más» (no caben todas en las pestañas)
+  { to: '/admin/jugadores', label: 'Jugadores', short: 'Jugadores', Icon: User, end: false, secondary: true },
+  { to: '/admin/temporadas', label: 'Temporadas', short: 'Temporadas', Icon: CalendarRange, end: false, secondary: true },
+  { to: '/admin/patrocinadores', label: 'Patrocinadores', short: 'Patrocin.', Icon: Award, end: false, secondary: true },
 ]
+const PRIMARY = ITEMS.filter((i) => !i.secondary)
+const SECONDARY = ITEMS.filter((i) => i.secondary)
 
 /** El área de administración no debe indexarse */
 function NoIndex() {
@@ -88,6 +92,25 @@ function AdminShell() {
     </Link>
   )
 
+  // Menú «Más» del móvil: secciones secundarias y, debajo, la cuenta
+  const moreLinks = (
+    <>
+      {SECONDARY.map(({ to, label, Icon }) => (
+        <NavLink
+          key={to}
+          to={to}
+          onClick={guard}
+          className={({ isActive }) =>
+            cn('flex min-h-12 items-center gap-3 rounded-sm px-3 py-2 font-display text-lg transition-colors', isActive ? 'bg-teamOrange text-black' : 'text-white hover:bg-white/10')
+          }
+        >
+          <Icon className="size-5" aria-hidden /> {label}
+        </NavLink>
+      ))}
+      <div className="my-2 h-px bg-border" />
+    </>
+  )
+
   const accountLinks = (
     <>
       <p className="truncate px-3 pb-1 text-xs text-white/50" title={session?.user.email}>{session?.user.email}</p>
@@ -141,23 +164,26 @@ function AdminShell() {
                 onClick={() => setMenuOpen((o) => !o)}
                 aria-expanded={menuOpen}
                 aria-controls="admin-account-menu"
-                aria-label={menuOpen ? 'Cerrar menú de cuenta' : 'Abrir menú de cuenta'}
+                aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
                 className="ml-1 flex size-11 items-center justify-center rounded-sm text-white hover:bg-white/10"
               >
                 {menuOpen ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
               </button>
             </div>
           </div>
-          {/* El header usa backdrop-blur (crea un bloque contenedor): el menú se posiciona en absoluto bajo él */}
-          {menuOpen && (
-            <div className="absolute inset-x-0 top-full">
-              <div id="admin-account-menu" className="relative z-10 flex flex-col gap-1 border-y border-border bg-black p-3 shadow-xl">
-                {accountLinks}
-              </div>
-              <button type="button" aria-label="Cerrar menú" tabIndex={-1} className="block h-[100dvh] w-full bg-black/60" onClick={() => setMenuOpen(false)} />
-            </div>
-          )}
         </header>
+
+        {/* Móvil: menú «Más» como hoja que sube desde las pestañas (fuera del header, que con
+            backdrop-blur haría de bloque contenedor de los elementos fijos) */}
+        {menuOpen && (
+          <div className="fixed inset-x-0 top-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-50 lg:hidden">
+            <button type="button" aria-label="Cerrar menú" tabIndex={-1} className="absolute inset-0 bg-black/70" onClick={() => setMenuOpen(false)} />
+            <div id="admin-account-menu" className="absolute inset-x-0 bottom-0 flex max-h-[75dvh] flex-col gap-1 overflow-y-auto border-t-2 border-teamOrange bg-black p-3 shadow-2xl">
+              {moreLinks}
+              {accountLinks}
+            </div>
+          </div>
+        )}
 
         <main className="min-w-0 flex-1 px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-5 md:px-8 md:pt-8 lg:pb-8">
           <ErrorBoundary resetKey={location.pathname}>
@@ -167,8 +193,8 @@ function AdminShell() {
 
         {/* Móvil: pestañas fijas abajo, al alcance del pulgar */}
         <nav aria-label="Administración" className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-black/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
-          <ul className="grid grid-cols-6">
-            {ITEMS.map(({ to, short, Icon, end }) => (
+          <ul className="grid grid-cols-5">
+            {PRIMARY.map(({ to, short, Icon, end }) => (
               <li key={to}>
                 <NavLink
                   to={to}
@@ -191,6 +217,22 @@ function AdminShell() {
                 </NavLink>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                onClick={() => setMenuOpen((o) => !o)}
+                aria-expanded={menuOpen}
+                aria-controls="admin-account-menu"
+                className={cn(
+                  'relative flex h-16 w-full flex-col items-center justify-center gap-1 text-[10px] font-bold uppercase tracking-normal transition-colors min-[400px]:tracking-wider',
+                  menuOpen || current.secondary ? 'text-teamOrange' : 'text-white/60 hover:text-white'
+                )}
+              >
+                {current.secondary && !menuOpen && <span className="absolute inset-x-3 top-0 h-0.5 bg-teamOrange" aria-hidden />}
+                {menuOpen ? <X className="size-5" aria-hidden /> : <MoreHorizontal className="size-5" aria-hidden />}
+                Más
+              </button>
+            </li>
           </ul>
         </nav>
       </div>
