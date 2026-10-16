@@ -39,7 +39,9 @@ const imagePaths: { [key: string]: string } = {
     "Cervecería La Cala":"CerveceriaCala.png",
     "Bayern Meister":"BayernMeister.png",
     "Dep. Cinco Estrellas":"Deportivo5Estrellas.png",
-    "Cervecería la Cala":"CerveceriaLaCala.png"
+    "Cervecería la Cala":"CerveceriaLaCala.png",
+    "La Charlatana":"LaCharlatana.svg",
+    "La Charlatana FC":"LaCharlatana.svg"
   };
   
   const teams_img: { [key: string]: string } = {};
