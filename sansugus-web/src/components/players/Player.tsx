@@ -22,9 +22,9 @@ const Player: React.FC<{ stats: playerData, totalStats: playerData, children: Re
                 </div>
             </header>
             <div className='page-container'>
-                <div className='grid gap-8 lg:grid-cols-2'>
-                    <div className='panel panel-accent relative flex min-h-[28rem] items-end justify-center overflow-hidden bg-gradient-to-b from-secondary to-card'>
-                        <span className='absolute right-4 top-0 select-none font-display text-[16rem] leading-none text-white/[0.05]'>
+                <div className='grid gap-4 md:gap-8 lg:grid-cols-2'>
+                    <div className='panel panel-accent relative flex min-h-[20rem] items-end justify-center overflow-hidden bg-gradient-to-b from-secondary to-card md:min-h-[28rem]'>
+                        <span className='absolute right-4 top-0 select-none font-display text-[11rem] leading-none text-white/[0.05] md:text-[16rem]'>
                             {stats.Dorsal != '' ? stats.Dorsal : '?'}
                         </span>
                         <img
@@ -32,7 +32,7 @@ const Player: React.FC<{ stats: playerData, totalStats: playerData, children: Re
                             alt={stats.Jugador + " Image"}
                             decoding='async'
                             onError={() => setAttempt((a) => a + 1)}
-                            className={`relative max-h-[34rem] max-w-[80%] object-contain ${isNull ? 'opacity-40 invert' : ''}`}
+                            className={`relative max-h-[22rem] max-w-[80%] object-contain md:max-h-[34rem] ${isNull ? 'opacity-40 invert' : ''}`}
                             style={{ maskImage: 'linear-gradient(black 85%, transparent)', animation: 'faderight var(--fade-entry-time)' }}
                         />
                     </div>

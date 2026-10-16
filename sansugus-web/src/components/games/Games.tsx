@@ -32,11 +32,11 @@ export default function Games(){
             </div>
         </header>
         <div className="page-container">
-            <div className='panel mb-8 flex flex-wrap items-center justify-between gap-4 p-4'>
-                <span className='font-display text-xl text-white'>Temporada</span>
+            <div className='panel mb-5 flex items-center justify-between gap-4 p-3 sm:mb-8 sm:p-4'>
+                <span className='font-display text-lg text-white sm:text-xl'>Temporada</span>
                 <div className='w-40'><SeasonsSelect onSeasonChange={setSeason}/></div>
             </div>
-            <section className='flex flex-col gap-4'>
+            <section className='flex flex-col gap-3 sm:gap-4'>
                 {isLoading && <>
                     <LoadingGame /><LoadingGame /><LoadingGame /><LoadingGame />
                 </>}

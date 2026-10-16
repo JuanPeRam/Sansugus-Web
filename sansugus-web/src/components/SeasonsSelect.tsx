@@ -60,7 +60,12 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
   const handleSeasonChanged = (season?: any) => {
     if (season) {
       onSeasonChange(season);
-      setSearchParams({ season: season });
+      // Se conservan los demás parámetros (p. ej. ?player= en la plantilla)
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev)
+        next.set('season', season)
+        return next
+      }, { replace: true });
     }
   }
 

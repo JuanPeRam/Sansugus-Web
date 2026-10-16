@@ -16,11 +16,11 @@ function Footer(){
     return(
         <footer className='border-t border-border bg-black'>
             <div className='h-1 w-full bg-teamOrange' />
-            <div className='mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1fr_.7fr_1.5fr]'>
+            <div className='mx-auto grid max-w-7xl gap-8 px-5 py-8 md:grid-cols-[1fr_.7fr_1.5fr] md:gap-10 md:py-12'>
                 <div className='flex flex-col items-center gap-4 text-center md:items-start md:text-left'>
                     <div className='flex items-center gap-3'>
-                        <img src={sansuguslogo} alt='Sansugus FC' className='h-14 w-14' />
-                        <span className='font-display text-3xl text-white'>Sansugus <span className='text-teamOrange'>FC</span></span>
+                        <img src={sansuguslogo} alt='Sansugus FC' className='h-12 w-12 md:h-14 md:w-14' />
+                        <span className='font-display text-2xl text-white md:text-3xl'>Sansugus <span className='text-teamOrange'>FC</span></span>
                     </div>
                     <p className='max-w-xs text-sm text-muted-foreground'>Club de fútbol 7. Pasión, equipo y compromiso en cada partido.</p>
                     <div className='flex gap-4'>
@@ -33,7 +33,8 @@ function Footer(){
             
                     </div>
                 </div>
-                <div className='flex flex-col items-center gap-2 md:items-start'>
+                {/* En móvil la navegación ya está en las pestañas de abajo */}
+                <div className='hidden flex-col items-center gap-2 md:flex md:items-start'>
                     <h4 className='mb-2 text-lg text-teamOrange'>Navegación</h4>
                     <Link className='text-sm text-white/70 hover:text-white' to='/Home'>Inicio</Link>
                     <Link className='text-sm text-white/70 hover:text-white' to='/Players'>Plantilla</Link>
@@ -43,7 +44,7 @@ function Footer(){
                 <div className='flex flex-col items-center gap-4 md:items-start'>
                     <h4 className='text-lg text-teamOrange'>Patrocinadores</h4>
                     <span aria-hidden className='-mt-2 h-px w-24 bg-gradient-to-r from-teamOrange to-transparent'/>
-                    <div className='mt-2 flex flex-wrap items-center justify-center gap-6 md:justify-start'>
+                    <div className='mt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-6 md:justify-start'>
                         <a href="https://www.2puntos.es" target="_blank" rel="noopener noreferrer" aria-label="Dos Puntos Real Estate" className='sponsor'>
                             <span className='sponsor-frame' aria-hidden/>
                             <span className='sponsor-face'><img src={dospuntos} alt='Dos Puntos Real Estate'/></span>

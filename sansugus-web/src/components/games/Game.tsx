@@ -14,7 +14,7 @@ const result = {
 
 const Team: React.FC<{ name: string }> = ({ name }) => (
     <div className="flex flex-1 flex-col items-center gap-2 text-center">
-        <TeamCrest name={name} className="h-14 w-14 md:h-16 md:w-16" />
+        <TeamCrest name={name} className="h-12 w-12 md:h-16 md:w-16" />
         <span className="font-display text-sm leading-tight text-white md:text-lg">{name}</span>
     </div>
 )
@@ -39,14 +39,14 @@ const Game: React.FC<{ game: matchData }> = ({ game }) => {
             onClick={() => viewable && navigate('/Game?game=' + game.ID_Partido)}
         >
             <span className={`absolute inset-y-0 left-0 w-1.5 ${game.Jugado ? status.bar : 'bg-zinc-700'}`} />
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-6 py-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 border-b border-border py-2 pl-5 pr-4 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:px-6 sm:text-xs sm:tracking-widest">
                 <span className="text-teamOrange">{game.Competición} {game.Jornada}</span>
                 <span>{game.Fecha && <Date date={game.Fecha} />}</span>
                 <span className="hidden sm:inline">{game.Campo ? `Campo ${game.Campo}` : ''} · {game.Temporada}</span>
             </div>
-            <div className="flex items-center justify-between gap-2 px-6 py-5">
+            <div className="flex items-center justify-between gap-2 py-4 pl-5 pr-4 sm:px-6 sm:py-5">
                 <Team name={game.Local} />
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex shrink-0 flex-col items-center gap-1">
                     {game.Jugado ? (
                         <>
                             <div className="font-display text-4xl text-white md:text-6xl">
@@ -64,7 +64,7 @@ const Game: React.FC<{ game: matchData }> = ({ game }) => {
                 <Team name={game.Visitante} />
             </div>
             {viewable && (
-                <div className="border-t border-border px-6 py-2 text-right text-xs font-extrabold uppercase tracking-widest text-teamOrange transition group-hover:bg-teamOrange group-hover:text-black">
+                <div className="border-t border-border px-4 py-2.5 text-right sm:px-6 sm:py-2 text-xs font-extrabold uppercase tracking-widest text-teamOrange transition group-hover:bg-teamOrange group-hover:text-black">
                     Ver acta →
                 </div>
             )}
