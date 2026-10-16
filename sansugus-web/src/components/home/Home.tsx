@@ -1,4 +1,5 @@
 import { Ranking } from './ranking/Ranking'
+import { BallIllustration, PodiumIllustration, ShirtIllustration } from './AccessIllustrations'
 import { SponsorsSection } from '@/components/sponsors/Sponsors'
 import { LastMatch } from './team/LastMatch'
 import { NextMatch } from './team/NextMatch'
@@ -82,12 +83,12 @@ function Home() {
                 {/* ACCESOS */}
                 <section className='grid gap-3 md:grid-cols-3 md:gap-6'>
                     {[
-                        { to: '/Players', title: 'Plantilla', text: 'Estadísticas de cada jugador', n: '01' },
-                        { to: '/Games', title: 'Partidos', text: 'Resultados y actas', n: '02' },
-                        { to: '/Honors', title: 'Palmarés', text: 'Títulos y trofeos del club', n: '03' },
+                        { to: '/Players', title: 'Plantilla', text: 'Estadísticas de cada jugador', Art: ShirtIllustration },
+                        { to: '/Games', title: 'Partidos', text: 'Resultados y actas', Art: BallIllustration },
+                        { to: '/Standings', title: 'Clasificación', text: 'La tabla de la liga, jornada a jornada', Art: PodiumIllustration },
                     ].map((item) => (
                         <Link key={item.to} to={item.to} className='group relative isolate flex h-24 flex-col justify-center overflow-hidden rounded-sm border border-border bg-card px-5 transition hover:border-teamOrange md:h-48 md:justify-end md:p-6'>
-                            <span className='absolute right-4 top-1/2 -z-10 -translate-y-1/2 select-none font-display text-[5rem] leading-none text-white/[0.05] transition group-hover:text-teamOrange/20 md:top-0 md:translate-y-0 md:text-[8rem]'>{item.n}</span>
+                            <item.Art className='absolute right-3 top-1/2 -z-10 h-20 w-20 -translate-y-1/2 text-white/[0.08] transition duration-300 group-hover:-rotate-6 group-hover:scale-105 group-hover:text-teamOrange/30 md:right-4 md:top-4 md:h-32 md:w-32 md:translate-y-0' />
                             <span className='absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-teamOrange transition duration-300 group-hover:scale-x-100' />
                             <h3 className='text-3xl text-white md:text-4xl'>{item.title}</h3>
                             <p className='text-sm text-white/60'>{item.text}</p>
