@@ -65,7 +65,7 @@ export function useAdminSeason() {
       aria-label="Temporada"
       value={current?.name ?? ''}
       onChange={(e) => confirmLeave() && setSeason(e.target.value)}
-      className="w-40"
+      className="w-full sm:w-40"
     >
       {seasons.map((s) => <option key={s.id} value={s.name}>{s.name}{s.active ? ' (activa)' : ''}</option>)}
     </NativeSelect>
@@ -110,3 +110,15 @@ const shortDate = new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-d
 const shortTime = new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: TZ })
 export const formatShortDate = (iso: string) => shortDate.format(new Date(iso))
 export const formatTime = (iso: string) => shortTime.format(new Date(iso))
+
+/* ─────────── Pantallas completas en móvil ─────────── */
+
+/** Mientras el componente está montado, impide desplazar la página en pantallas < lg */
+export function useLockBodyScroll() {
+  useEffect(() => {
+    if (!window.matchMedia('(max-width: 1023px)').matches) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [])
+}

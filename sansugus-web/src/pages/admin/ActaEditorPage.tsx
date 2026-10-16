@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, Plus, X } from 'lucide-react'
+import { ArrowLeft, Plus, Star, X } from 'lucide-react'
 import {
   fetchActaEntries, fetchAdminSeasons, fetchAllPlayers, fetchMatchById, fetchRoster, saveActa, setMatchScore,
   type ActaEntry, type MatchRecord,
@@ -8,12 +8,39 @@ import {
 import { useAsync } from '@/hooks/useAsync'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { ActionError, Badge, Checkbox, ErrorState, Field, NativeSelect, Notice, NumberInput, SaveBar, Skeletons } from '@/components/admin/ui'
+import { ActionError, Badge, ErrorState, Field, NativeSelect, Notice, NumberInput, SaveBar, Skeletons, Stepper } from '@/components/admin/ui'
 import { AdminPageHeader } from './AdminLayout'
 import { errorText, formatShortDate, POSITIONS, useUnsavedChanges } from './adminUtils'
 
 const TEAM = 'Sansugus FC'
 const STARTERS = 7
+
+const POSITION_SHORT: Record<string, string> = { Portero: 'POR', Defensa: 'DEF', Medio: 'MED', Delantero: 'DEL' }
+
+/** Grupo de botones excluyentes (rol, posición), cómodo con el dedo */
+function Segmented({ label, name, value, options, onChange, disabled, className }: {
+  label: string
+  name: string
+  value: string
+  options: (readonly [string, string])[]
+  onChange: (value: string) => void
+  disabled?: boolean
+  className?: string
+}) {
+  return (
+    <div className={cn('flex min-w-0 flex-col gap-1', className)}>
+      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{label}</span>
+      <div role="group" aria-label={`${label} de ${name}`} className="flex h-11 overflow-hidden rounded-md border border-input text-xs font-bold uppercase tracking-wider sm:h-10">
+        {options.map(([v, text]) => (
+          <button key={v} type="button" disabled={disabled} aria-pressed={value === v} title={v} onClick={() => onChange(v)}
+            className={cn('min-w-0 flex-1 border-l border-input px-1 transition first:border-l-0 disabled:opacity-50', value === v ? 'bg-white text-black' : 'text-muted-foreground hover:bg-white/5 hover:text-white')}>
+            {text}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const snapshot = (rows: ActaEntry[]) => JSON.stringify([...rows].sort((a, b) => a.playerId - b.playerId))
 
@@ -132,70 +159,87 @@ export default function ActaEditorPage() {
       {isHistoric && <div className="mb-6"><Notice tone="warn">Esta temporada usa estadísticas históricas y no admite actas. Sus estadísticas se editan en Plantilla.</Notice></div>}
       {!isHistoric && !match.played && <div className="mb-6"><Notice tone="warn">El partido no está marcado como jugado. Márcalo como jugado y guarda el resultado para rellenar el acta.</Notice></div>}
 
-      <section className="panel mb-6 flex flex-wrap items-end gap-3 p-5">
+      <section className="panel mb-5 flex flex-col gap-3 p-4 sm:flex-row sm:flex-wrap sm:items-end md:p-5">
         <Field label="Añadir jugador al acta" htmlFor="acta-pick">
-          <NativeSelect id="acta-pick" value={pick} disabled={locked} onChange={(e) => setPick(e.target.value)} className="w-72">
-            <option value="">—</option>
+          <NativeSelect id="acta-pick" value={pick} disabled={locked} onChange={(e) => setPick(e.target.value)} className="w-full sm:w-72">
+            <option value="">Elige un jugador…</option>
             {candidates.map((p) => <option key={p.id} value={p.id}>{p.name}{p.ownGoal ? ' (propia puerta)' : inRoster.has(p.id) ? '' : ' · fuera de la plantilla'}</option>)}
           </NativeSelect>
         </Field>
-        <Button type="button" variant="outline" disabled={!pick || locked} onClick={onAdd}><Plus className="mr-1 size-4" aria-hidden /> Añadir</Button>
-        <div className="ml-auto flex flex-wrap items-center gap-2 text-sm">
+        <Button type="button" variant="outline" disabled={!pick || locked} onClick={onAdd} className="h-11 sm:h-10"><Plus className="mr-1 size-4" aria-hidden /> Añadir</Button>
+        <div className="flex flex-wrap items-center gap-2 text-sm sm:ml-auto">
           <Badge tone={starters === STARTERS ? 'win' : 'soft'}>{starters} titulares</Badge>
           <Badge tone={clubGoals != null && clubGoals === actaGoals ? 'win' : 'soft'}>{actaGoals} goles en acta</Badge>
         </div>
       </section>
 
       {clubGoals != null && clubGoals !== actaGoals && rows.length > 0 && (
-        <div className="mb-6 flex flex-wrap items-center gap-3">
+        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <Notice tone="warn">Sansugus FC marcó {clubGoals} según el partido y el acta suma {actaGoals}.</Notice>
-          <Button type="button" size="sm" variant="outline" disabled={locked || dirty} title={dirty ? 'Guarda primero el acta' : undefined} onClick={() => void adjustScore()}>Ajustar marcador a {actaGoals}</Button>
+          <Button type="button" variant="outline" className="h-11 sm:h-9" disabled={locked || dirty} title={dirty ? 'Guarda primero el acta' : undefined} onClick={() => void adjustScore()}>Ajustar marcador a {actaGoals}</Button>
         </div>
       )}
-      {starters !== STARTERS && rows.length > 0 && <div className="mb-6"><Notice>En fútbol 7 salen {STARTERS} titulares; hay {starters} marcados.</Notice></div>}
+      {starters !== STARTERS && rows.length > 0 && <div className="mb-5"><Notice>En fútbol 7 salen {STARTERS} titulares; hay {starters} marcados.</Notice></div>}
 
-      <section className="panel">
-        {rows.length === 0 ? (
+      {rows.length === 0 ? (
+        <section className="panel">
           <p className="px-6 py-14 text-center text-muted-foreground">Aún no hay jugadores en el acta. Añade a los que jugaron.</p>
-        ) : (
-          <ul className="divide-y divide-border">
-            {rows.map((r) => (
-              <li key={r.playerId} className="flex flex-wrap items-center gap-x-3 gap-y-2 px-5 py-3">
-                <div className="w-52 shrink-0">
-                  <p className="font-display text-lg leading-tight text-white">{nameOf(r.playerId)}</p>
-                  {!inRoster.has(r.playerId) && <p className="text-xs text-teamOrange">Se añadirá a la plantilla al guardar</p>}
-                </div>
-                <label className="flex flex-col items-center text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                  Dorsal
-                  <NumberInput className="w-16" value={r.number} allowEmpty disabled={locked} onChange={(v) => update(r.playerId, { number: v })} aria-label={`Dorsal de ${nameOf(r.playerId)}`} />
-                </label>
-                <label className="flex flex-col text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                  Posición
-                  <NativeSelect value={r.position} disabled={locked} onChange={(e) => update(r.playerId, { position: e.target.value })} className="w-32 normal-case" aria-label={`Posición de ${nameOf(r.playerId)}`}>
-                    <option value="">—</option>
-                    {POSITIONS.map((p) => <option key={p}>{p}</option>)}
-                  </NativeSelect>
-                </label>
-                <Checkbox label="Titular" checked={r.starter} disabled={locked} onChange={(e) => update(r.playerId, { starter: e.target.checked })} />
-                {([['goals', 'Goles'], ['assists', 'Asist.'], ['yellows', 'Amar.'], ['reds', 'Rojas']] as const).map(([k, label]) => (
-                  <label key={k} className="flex flex-col items-center text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    {label}
-                    <NumberInput className="w-16" value={r[k]} disabled={locked} onChange={(v) => update(r.playerId, { [k]: v ?? 0 })} aria-label={`${label} de ${nameOf(r.playerId)}`} />
-                  </label>
-                ))}
-                <label className={cn('flex cursor-pointer flex-col items-center text-[10px] font-bold uppercase tracking-widest', r.mvp ? 'text-teamOrange' : 'text-muted-foreground')}>
-                  MVP
-                  <input type="radio" name="mvp" checked={r.mvp} disabled={locked} readOnly onClick={() => setMvp(r.playerId, !r.mvp)} className="mt-3 size-5 accent-[var(--orange-main)]" aria-label={`MVP: ${nameOf(r.playerId)}`} />
-                </label>
-                <Button type="button" variant="ghost" size="icon" disabled={locked} aria-label={`Quitar a ${nameOf(r.playerId)} del acta`} className="text-red-400 hover:bg-red-500/10 hover:text-red-300"
-                  onClick={() => { setSavedAt(undefined); setRows((list) => list.filter((x) => x.playerId !== r.playerId)) }}>
-                  <X className="size-4" />
-                </Button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+        </section>
+      ) : (
+        ([['Titulares', true], ['Suplentes', false]] as const).map(([title, isStarter]) => {
+          const group = rows.filter((r) => r.starter === isStarter)
+          if (group.length === 0) return null
+          return (
+            <section key={title} className="mb-6">
+              <h2 className="mb-3 flex items-center gap-2 font-display text-xl text-white">
+                {title} <span className="text-base text-muted-foreground">{group.length}</span>
+              </h2>
+              <ul className="grid gap-3 xl:grid-cols-2">
+                {group.map((r) => {
+                  const name = nameOf(r.playerId)
+                  return (
+                    <li key={r.playerId} className={cn('panel flex flex-col gap-4 p-4', r.mvp && 'border-teamOrange/70')}>
+                      <div className="flex items-start gap-3">
+                        <span className="flex size-11 shrink-0 items-center justify-center rounded-sm bg-teamOrange font-display text-xl text-black tabular-nums">{r.number ?? '–'}</span>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-display text-lg leading-tight text-white">{name}</p>
+                          {!inRoster.has(r.playerId) && <p className="text-xs text-teamOrange">Se añadirá a la plantilla al guardar</p>}
+                        </div>
+                        <button type="button" disabled={locked} onClick={() => setMvp(r.playerId, !r.mvp)} aria-pressed={r.mvp} aria-label={`MVP: ${name}`}
+                          className={cn('flex h-11 shrink-0 items-center gap-1 rounded-md border px-3 text-xs font-extrabold uppercase tracking-widest transition disabled:opacity-50',
+                            r.mvp ? 'border-teamOrange bg-teamOrange text-black' : 'border-border text-muted-foreground hover:text-white')}>
+                          <Star className={cn('size-4', r.mvp && 'fill-current')} aria-hidden /> MVP
+                        </button>
+                        <Button type="button" variant="ghost" size="icon" disabled={locked} aria-label={`Quitar a ${name} del acta`} className="size-11 shrink-0 text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                          onClick={() => { setSavedAt(undefined); setRows((list) => list.filter((x) => x.playerId !== r.playerId)) }}>
+                          <X className="size-5" />
+                        </Button>
+                      </div>
+
+                      <div className="grid grid-cols-[1fr_5rem] gap-3 sm:grid-cols-[9rem_1fr_5rem]">
+                        <Segmented label="Rol" name={name} disabled={locked} value={r.starter ? 'T' : 'S'}
+                          options={[['T', 'Titular'], ['S', 'Suplente']]} onChange={(v) => update(r.playerId, { starter: v === 'T' })} />
+                        <label className="flex flex-col gap-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground sm:order-last">
+                          Dorsal
+                          <NumberInput className="w-full" value={r.number} allowEmpty disabled={locked} onChange={(v) => update(r.playerId, { number: v })} aria-label={`Dorsal de ${name}`} />
+                        </label>
+                        <Segmented label="Posición" name={name} disabled={locked} value={r.position} className="col-span-2 sm:col-span-1"
+                          options={POSITIONS.map((p) => [p, POSITION_SHORT[p] ?? p])} onChange={(v) => update(r.playerId, { position: v })} />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                        {([['goals', 'Goles'], ['assists', 'Asist.'], ['yellows', 'Amarillas'], ['reds', 'Rojas']] as const).map(([k, label]) => (
+                          <Stepper key={k} label={label} ariaLabel={`${label.toLowerCase()} de ${name}`} value={r[k]} disabled={locked} highlight onChange={(v) => update(r.playerId, { [k]: v })} />
+                        ))}
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </section>
+          )
+        })
+      )}
       <p className="mt-4 text-sm text-muted-foreground">Al guardar, los goles, asistencias, tarjetas y el MVP se reflejan al instante en las estadísticas de cada jugador y de la temporada.</p>
 
       {!locked && <SaveBar changes={dirty ? 1 : 0} saving={saving} savedAt={savedAt} onSave={() => void onSave()}
