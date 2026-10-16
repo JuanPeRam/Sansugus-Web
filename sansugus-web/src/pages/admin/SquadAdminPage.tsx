@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { ActionError, Badge, EmptyState, ErrorState, Field, Input, NativeSelect, NumberInput, Notice, SaveBar, Skeletons } from '@/components/admin/ui'
 import { AdminPageHeader } from './AdminLayout'
+import { RosterImageSlot } from './RosterImageSlot'
 import { errorText, useAdminSeason, useUnsavedChanges } from './adminUtils'
 
 /** Fila editable: las existentes llevan playerId; las nuevas, playerId (jugador ya creado) o solo el nombre */
@@ -68,6 +69,15 @@ export default function SquadAdminPage() {
   const isHistoric = (roster.data ?? []).some((e) => e.historic)
   const reset = () => setRows((roster.data ?? []).map(toDraft))
   useEffect(reset, [roster.data])
+
+  // Foto y camiseta por jugador: se guardan al momento, fuera del borrador (descartar no las toca)
+  type Images = { photoUrl: string | null; shirtUrl: string | null }
+  const [images, setImages] = useState<Record<number, Images>>({})
+  useEffect(() => {
+    setImages(Object.fromEntries((roster.data ?? []).map((e) => [e.playerId, { photoUrl: e.photoUrl, shirtUrl: e.shirtUrl }])))
+  }, [roster.data])
+  const setImage = (playerId: number, patch: Partial<Images>) =>
+    setImages((all) => ({ ...all, [playerId]: { ...(all[playerId] ?? { photoUrl: null, shirtUrl: null }), ...patch } }))
 
   const changes = rows.filter((r) => rowState(r, original)).length
   useUnsavedChanges(changes > 0)
@@ -131,7 +141,7 @@ export default function SquadAdminPage() {
     <>
       <AdminPageHeader
         title="Plantilla"
-        description="Jugadores de cada temporada y su dorsal. Las estadísticas salen de las actas de los partidos."
+        description="Jugadores de cada temporada, su dorsal, su foto y la camiseta de las actas. Las estadísticas salen de las actas de los partidos."
         actions={picker}
       />
       <ActionError message={actionError} />
@@ -170,6 +180,7 @@ export default function SquadAdminPage() {
             {visible.map((r) => {
               const state = rowState(r, original)
               const stats = r.stats
+              const img = r.playerId != null ? images[r.playerId] : undefined
               return (
                 <li key={r.key} className={cn('flex flex-wrap items-center gap-4 px-5 py-3', state && 'bg-teamOrange/5', r.removed && 'opacity-60')}>
                   <div className="min-w-44 flex-1">
@@ -183,6 +194,20 @@ export default function SquadAdminPage() {
                       </p>
                     )}
                   </div>
+                  {r.isNew || seasonId == null ? (
+                    <p className="w-32 text-center text-[11px] text-muted-foreground">Guarda para poder subir su foto y su camiseta</p>
+                  ) : (
+                    <>
+                      <RosterImageSlot
+                        seasonId={seasonId} playerId={r.playerId!} playerName={r.name} kind="photo" url={img?.photoUrl ?? null} disabled={r.removed}
+                        onChange={(url) => setImage(r.playerId!, { photoUrl: url })} onError={setActionError}
+                      />
+                      <RosterImageSlot
+                        seasonId={seasonId} playerId={r.playerId!} playerName={r.name} kind="shirt" url={img?.shirtUrl ?? null} disabled={r.removed}
+                        onChange={(url) => setImage(r.playerId!, { shirtUrl: url })} onError={setActionError}
+                      />
+                    </>
+                  )}
                   <label className="flex flex-col items-center text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                     Dorsal
                     <NumberInput value={r.number} allowEmpty disabled={r.removed} onChange={(v) => update(r.key, { number: v })} aria-label={`Dorsal de ${r.name}`} />

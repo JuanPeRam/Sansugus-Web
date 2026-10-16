@@ -20,6 +20,11 @@ const dir = '/resources/img/players/'
 
 export type PhotoSize = 'sm' | 'lg'
 
+/** Fotos por orden de preferencia: la subida desde el panel (por temporada) y la que viene con la web */
+export function getPlayerPhotos(player: { Jugador: string, Foto?: string }, size: PhotoSize = 'sm'): string[] {
+    return [player.Foto, getImage(player.Jugador, size)].filter((src): src is string => !!src)
+}
+
 export function getImage(name: string, size: PhotoSize = 'sm'): string | undefined {
     const base = imagePaths[name]
     return base ? `${dir}${base}${size === 'lg' ? '-lg' : ''}.webp` : undefined

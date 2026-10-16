@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase'
+import { toWebp } from '@/lib/images'
 
 /** Lanza un Error legible si la consulta de Supabase falla */
 function unwrap<T>(res: { data: unknown; error: { message: string; code?: string } | null }): T {
@@ -88,6 +89,10 @@ export type HistoricStats = { goals: number, assists: number, played: number, ye
 export type RosterEntry = {
     playerId: number, name: string, alias: string, position: string, ownGoal: boolean,
     number: number | null,
+    /** Foto del jugador esa temporada (plantilla y ficha) */
+    photoUrl: string | null,
+    /** Camiseta con el dorsal esa temporada (actas) */
+    shirtUrl: string | null,
     /** Solo en temporadas anteriores a las actas (se editan a mano) */
     historic: HistoricStats | null,
     /** Estadísticas calculadas desde las actas */
@@ -95,7 +100,7 @@ export type RosterEntry = {
 }
 
 type RosterRow = {
-    jugador_id: number, dorsal: number | null,
+    jugador_id: number, dorsal: number | null, foto_url: string | null, dorsal_url: string | null,
     jugadores: { nombre: string, alias: string | null, posicion: string | null, propia_puerta: boolean } | null
 }
 type HistoricRow = { jugador_id: number, goles: number, asistencias: number, partidos: number, amarillas: number, rojas: number, mvp: number }
@@ -103,7 +108,7 @@ type StatRow = { jugador_id: number, goles: number, asistencias: number, partido
 
 export async function fetchRoster(seasonId: number): Promise<RosterEntry[]> {
     const [roster, historic, stats] = await Promise.all([
-        supabase.from('jugador_temporada').select('jugador_id,dorsal,jugadores!inner(nombre,alias,posicion,propia_puerta)').eq('temporada_id', seasonId),
+        supabase.from('jugador_temporada').select('jugador_id,dorsal,foto_url,dorsal_url,jugadores!inner(nombre,alias,posicion,propia_puerta)').eq('temporada_id', seasonId),
         supabase.from('estadisticas_historicas').select('jugador_id,goles,asistencias,partidos,amarillas,rojas,mvp').eq('temporada_id', seasonId),
         supabase.from('estadisticas_jugador').select('jugador_id,goles,asistencias,partidos,amarillas,rojas,mvp').eq('temporada_id', seasonId),
     ])
@@ -120,6 +125,8 @@ export async function fetchRoster(seasonId: number): Promise<RosterEntry[]> {
                 position: r.jugadores?.posicion ?? '',
                 ownGoal: !!r.jugadores?.propia_puerta,
                 number: r.dorsal,
+                photoUrl: r.foto_url,
+                shirtUrl: r.dorsal_url,
                 historic: h ? { goals: h.goles, assists: h.asistencias, played: h.partidos, yellows: h.amarillas, reds: h.rojas, mvps: h.mvp } : null,
                 stats: { goals: s?.goles ?? 0, assists: s?.asistencias ?? 0, played: s?.partidos ?? 0, yellows: s?.amarillas ?? 0, reds: s?.rojas ?? 0, mvps: s?.mvp ?? 0 },
             }
@@ -143,6 +150,57 @@ export async function removeFromRoster(seasonId: number, playerId: number, hadHi
     // El trigger de la base de datos impide quitar a quien tiene partidos esa temporada
     if (hadHistoric) check(await supabase.from('estadisticas_historicas').delete().eq('temporada_id', seasonId).eq('jugador_id', playerId))
     check(await supabase.from('jugador_temporada').delete().eq('temporada_id', seasonId).eq('jugador_id', playerId))
+}
+
+/* ─────────── Imágenes de la plantilla (por temporada) ─────────── */
+
+const BUCKET = 'sansugus'
+
+/** photo → foto del jugador; shirt → camiseta con el dorsal para las actas */
+export type RosterImageKind = 'photo' | 'shirt'
+
+const IMAGE_CONFIG: Record<RosterImageKind, { column: 'foto_url' | 'dorsal_url', folder: string, maxSide: number }> = {
+    photo: { column: 'foto_url', folder: 'jugadores', maxSide: 1100 },
+    shirt: { column: 'dorsal_url', folder: 'dorsales', maxSide: 600 },
+}
+
+/** Ruta dentro del bucket a partir de la URL pública (solo si es de nuestro bucket) */
+function storagePath(url: string | null): string | undefined {
+    const marker = `/storage/v1/object/public/${BUCKET}/`
+    const i = url?.indexOf(marker) ?? -1
+    return url && i >= 0 ? decodeURIComponent(url.slice(i + marker.length)) : undefined
+}
+
+async function removeStored(url: string | null) {
+    const path = storagePath(url)
+    // Si falla, solo queda un archivo huérfano: no se interrumpe la acción
+    if (path) await supabase.storage.from(BUCKET).remove([path])
+}
+
+/** Sube (reducida y en WebP) la foto o la camiseta de un jugador en una temporada y devuelve su URL */
+export async function uploadRosterImage(seasonId: number, playerId: number, kind: RosterImageKind, file: File, previousUrl: string | null): Promise<string> {
+    const { column, folder, maxSide } = IMAGE_CONFIG[kind]
+    const blob = await toWebp(file, maxSide)
+    const ext = blob.type === 'image/webp' ? 'webp' : 'png'
+    // Nombre único: evita que la CDN sirva la imagen anterior en caché
+    const path = `${folder}/${seasonId}/${playerId}-${Date.now()}.${ext}`
+    const up = await supabase.storage.from(BUCKET).upload(path, blob, { contentType: blob.type, cacheControl: '31536000', upsert: false })
+    if (up.error) throw new Error(up.error.message.includes('row-level security') ? 'No tienes permisos de administrador.' : up.error.message)
+    const url = supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl
+    const res = await supabase.from('jugador_temporada').update({ [column]: url }).eq('temporada_id', seasonId).eq('jugador_id', playerId)
+    if (res.error) {
+        await supabase.storage.from(BUCKET).remove([path])
+        throw new Error(friendly(res.error))
+    }
+    await removeStored(previousUrl)
+    return url
+}
+
+/** Quita la foto o la camiseta subida (la web vuelve a la imagen por defecto) */
+export async function removeRosterImage(seasonId: number, playerId: number, kind: RosterImageKind, currentUrl: string | null) {
+    const { column } = IMAGE_CONFIG[kind]
+    check(await supabase.from('jugador_temporada').update({ [column]: null }).eq('temporada_id', seasonId).eq('jugador_id', playerId))
+    await removeStored(currentUrl)
 }
 
 /* ─────────── Partidos ─────────── */

@@ -9,7 +9,7 @@ function PitchPlayer({ p }: { p: matchPlayerInfo }) {
   return (
     <li className="pitch-player">
       <div className="relative w-full">
-        <PlayerShirt player={p.Jugador} alias={shortName(p)} number={p.Dorsal} className="w-full drop-shadow-[0_8px_8px_rgba(0,0,0,.55)]" />
+        <PlayerShirt player={p.Jugador} alias={shortName(p)} number={p.Dorsal} uploaded={p.Camiseta} className="w-full drop-shadow-[0_8px_8px_rgba(0,0,0,.55)]" />
         {p.MVP && (
           <span className="absolute -right-1 -top-1 grid size-6 place-items-center rounded-full bg-teamOrange text-black shadow-lg ring-2 ring-black/60" title="MVP del partido">
             <Star className="size-3.5 fill-black" aria-hidden />

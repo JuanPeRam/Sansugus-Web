@@ -10,7 +10,7 @@ export function BenchList({ players }: { players: matchPlayerInfo[] }) {
     <ul className="grid gap-3 sm:grid-cols-2">
       {players.map((p) => (
         <li key={p.Jugador} className="panel flex items-center gap-3 p-3">
-          <PlayerShirt player={p.Jugador} alias={shortName(p)} number={p.Dorsal} className="w-12 shrink-0" />
+          <PlayerShirt player={p.Jugador} alias={shortName(p)} number={p.Dorsal} uploaded={p.Camiseta} className="w-12 shrink-0" />
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-1.5 truncate font-display text-xl leading-tight text-white">
               {p.Dorsal > 0 && <span className="text-teamOrange">{p.Dorsal}</span>}

@@ -23,6 +23,8 @@ type playerData = {
     Rojas:number,
     Temporada:string,
     MVP:number,
+    /** Foto subida desde el panel para esa temporada */
+    Foto?:string,
 }
 
 type matchData = {
@@ -52,7 +54,9 @@ type matchPlayerInfo = {
     Rojas:number,
     MVP:boolean,
     Alias:string,
-    Dorsal:number
+    Dorsal:number,
+    /** Camiseta con el dorsal subida desde el panel para la temporada del partido */
+    Camiseta?:string,
 }
 
 export type {circleStats,progressBarParams,playerData,matchData,matchPlayerInfo,gameStatus}

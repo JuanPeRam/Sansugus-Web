@@ -74,7 +74,7 @@ export async function fetchMatch(id: number): Promise<matchData | undefined> {
 }
 
 type ActaRow = {
-    titular: boolean, posicion: string | null, goles: number, asistencias: number,
+    jugador_id: number, titular: boolean, posicion: string | null, goles: number, asistencias: number,
     amarillas: number, rojas: number, mvp: boolean, dorsal: number | null,
     jugadores: { nombre: string, alias: string | null } | null
 }
@@ -82,9 +82,10 @@ type ActaRow = {
 export async function fetchActa(matchId: number): Promise<matchPlayerInfo[]> {
     const rows = unwrap<ActaRow[]>(
         await supabase.from('actas')
-            .select('titular,posicion,goles,asistencias,amarillas,rojas,mvp,dorsal,jugadores!inner(nombre,alias)')
+            .select('jugador_id,titular,posicion,goles,asistencias,amarillas,rojas,mvp,dorsal,jugadores!inner(nombre,alias)')
             .eq('partido_id', matchId)
     )
+    const shirts = await fetchActaShirts(matchId, rows.map(r => r.jugador_id))
     return rows.map(r => ({
         ID_Partido: String(matchId),
         Jugador: r.jugadores?.nombre ?? '',
@@ -97,7 +98,22 @@ export async function fetchActa(matchId: number): Promise<matchPlayerInfo[]> {
         MVP: r.mvp,
         Alias: r.jugadores?.alias ?? '',
         Dorsal: r.dorsal ?? 0,
+        Camiseta: shirts.get(r.jugador_id),
     }))
+}
+
+/** Camisetas subidas desde el panel para la temporada del partido (jugador → URL) */
+async function fetchActaShirts(matchId: number, playerIds: number[]): Promise<Map<number, string>> {
+    if (!playerIds.length) return new Map()
+    const match = unwrap<{ temporada_id: number }[]>(
+        await supabase.from('partidos').select('temporada_id').eq('id', matchId).limit(1)
+    )[0]
+    if (!match) return new Map()
+    const rows = unwrap<{ jugador_id: number, dorsal_url: string | null }[]>(
+        await supabase.from('jugador_temporada').select('jugador_id,dorsal_url')
+            .eq('temporada_id', match.temporada_id).in('jugador_id', playerIds).not('dorsal_url', 'is', null)
+    )
+    return new Map(rows.map(r => [r.jugador_id, r.dorsal_url as string]))
 }
 
 /* ─────────── Inicio: último y próximo partido ─────────── */
@@ -143,7 +159,7 @@ export async function fetchHomeMatches(): Promise<{ last?: Game, next?: Game }> 
 type EstadisticaRow = {
     jugador: string, dorsal: number | null, goles: number, asistencias: number,
     partidos: number, amarillas: number, rojas: number, mvp: number,
-    temporada: string, propia_puerta: boolean
+    temporada: string, propia_puerta: boolean, foto_url?: string | null
 }
 
 const mapPlayer = (r: EstadisticaRow): playerData => ({
@@ -156,6 +172,7 @@ const mapPlayer = (r: EstadisticaRow): playerData => ({
     Rojas: r.rojas,
     Temporada: r.temporada,
     MVP: r.mvp,
+    Foto: r.foto_url ?? undefined,
 })
 
 export async function fetchPlayerStats(season: string): Promise<{ players: playerData[], total: playerData | undefined }> {
