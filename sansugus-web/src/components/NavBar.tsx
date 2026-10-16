@@ -19,8 +19,11 @@ function isActive(path: string, pathname: string) {
 
 function NavBar() {
   const { pathname } = useLocation()
-  // Al cambiar de sección se vuelve arriba
-  useEffect(() => window.scrollTo({ top: 0 }), [pathname])
+  // Al cambiar de sección se vuelve arriba. Con llaves: en Chrome reciente scrollTo devuelve una
+  // Promise y React la tomaría como función de limpieza del efecto («n is not a function»)
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [pathname])
 
   return (
     <>
