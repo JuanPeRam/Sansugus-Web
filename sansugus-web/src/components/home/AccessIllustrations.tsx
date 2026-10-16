@@ -6,22 +6,27 @@ type Props = { className?: string }
 
 const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' } as const
 
-/** Plantilla: camiseta con volumen (espalda detrás, cuello por dentro, pliegues y sombra lateral) */
+/** Plantilla: camiseta con volumen por sombreado (un solo contorno, sin desplazamientos) */
 export function ShirtIllustration({ className }: Props) {
   const body = 'M44 18 L28 24 L8 44 L22 60 L32 52 V108 H88 V52 L98 60 L112 44 L92 24 L76 18 C74 26 68 31 60 31 C52 31 46 26 44 18 Z'
   return (
     <svg viewBox='0 0 120 120' className={className} aria-hidden>
-      {/* espalda, desplazada hacia atrás: la delantera la tapa y solo asoma su borde */}
-      <path {...stroke} strokeWidth={2.4} opacity={0.5} transform='translate(5 -4)' d={body} />
-      <path fill='hsl(var(--card))' d={body} />
-      {/* cuello: la parte interior de la espalda que asoma */}
-      <path fill='currentColor' opacity={0.35} d='M44 18 C46 26 52 31 60 31 C68 31 74 26 76 18 C72 14 66 12 60 12 C54 12 48 14 44 18 Z' />
-      {/* sombra del costado derecho */}
-      <path fill='currentColor' opacity={0.16} d='M76 18 L92 24 L112 44 L98 60 L88 52 V108 H74 C78 90 80 60 76 18 Z' />
+      <defs>
+        {/* luz desde la izquierda: el cuerpo se oscurece hacia el costado derecho */}
+        <linearGradient id='shirt-shade' x1='0' y1='0' x2='1' y2='0'>
+          <stop offset='0' stopColor='currentColor' stopOpacity='0.05' />
+          <stop offset='0.55' stopColor='currentColor' stopOpacity='0.12' />
+          <stop offset='1' stopColor='currentColor' stopOpacity='0.32' />
+        </linearGradient>
+      </defs>
+      <path fill='url(#shirt-shade)' d={body} />
+      {/* interior del cuello (la espalda vista por dentro) */}
+      <path fill='currentColor' opacity={0.4} d='M44 18 C46 26 52 31 60 31 C68 31 74 26 76 18 C72 15 66 14 60 14 C54 14 48 15 44 18 Z' />
+      {/* sombra bajo las mangas, donde se unen al cuerpo */}
+      <path fill='currentColor' opacity={0.22} d='M32 52 L22 60 L30 50 Z M32 52 V64 C34 60 34 56 32 52 Z M88 52 L98 60 L90 50 Z M88 52 V64 C86 60 86 56 88 52 Z' />
       <path {...stroke} d={body} />
-      {/* puños y pliegues */}
-      <path {...stroke} strokeWidth={2} opacity={0.7} d='M14 50 L26 37 M106 50 L94 37' />
-      <path {...stroke} strokeWidth={1.6} opacity={0.5} d='M33 66 C36 76 35 88 38 100 M86 70 C83 80 84 92 82 102 M32 52 C33 56 33 60 33 66 M88 52 C87 58 87 62 86 70' />
+      {/* costuras de las mangas y bajo */}
+      <path {...stroke} strokeWidth={2} opacity={0.6} d='M32 52 L44 18 M88 52 L76 18 M14 50 L26 37 M106 50 L94 37 M32 101 H88' />
       <text x='60' y='88' textAnchor='middle' fontSize='34' fontWeight='700' fill='currentColor' fontFamily='inherit'>7</text>
     </svg>
   )
