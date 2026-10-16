@@ -85,6 +85,10 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    // `size-*` (ancho y alto a la vez), como en Tailwind 3.4; esta versión (3.3) no la trae
+    function ({ matchUtilities, theme }) {
+      matchUtilities({ size: (value) => ({ width: value, height: value }) }, { values: theme("spacing") });
+    },
     function ({ matchUtilities, theme }) {
       matchUtilities(
         {

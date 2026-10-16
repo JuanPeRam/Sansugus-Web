@@ -146,91 +146,102 @@ export default function SquadAdminPage() {
       />
       <ActionError message={actionError} />
       {isHistoric && (
-        <div className="mb-6">
+        <div className="mb-5">
           <Notice>Temporada anterior a las actas: sus estadísticas se escriben aquí a mano.</Notice>
         </div>
       )}
 
-      <section className="panel mb-6 p-5">
-        <h2 className="mb-4 font-display text-2xl text-white">Añadir jugador a la temporada {season}</h2>
-        <form onSubmit={onAdd} className="flex flex-wrap items-end gap-3">
+      <section className="panel mb-5 p-4 md:p-5">
+        <h2 className="mb-3 font-display text-xl text-white md:text-2xl">Añadir a la temporada {season}</h2>
+        <form onSubmit={onAdd} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
           <Field label="Jugador existente" htmlFor="sq-pick">
-            <NativeSelect id="sq-pick" value={pick} onChange={(e) => { setPick(e.target.value); if (e.target.value) setNewName('') }} className="w-60">
-              <option value="">—</option>
+            <NativeSelect id="sq-pick" value={pick} onChange={(e) => { setPick(e.target.value); if (e.target.value) setNewName('') }} className="w-full sm:w-60">
+              <option value="">Elige un jugador…</option>
               {candidates.filter((p) => !p.ownGoal).map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
             </NativeSelect>
           </Field>
-          <span className="pb-3 text-sm text-muted-foreground">o</span>
+          <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-muted-foreground sm:pb-3 sm:text-sm sm:normal-case sm:tracking-normal">
+            <span className="h-px flex-1 bg-border sm:hidden" aria-hidden /> o <span className="h-px flex-1 bg-border sm:hidden" aria-hidden />
+          </span>
           <Field label="Jugador nuevo" htmlFor="sq-new">
-            <Input id="sq-new" value={newName} onChange={(e) => { setNewName(e.target.value); if (e.target.value) setPick('') }} placeholder="Nombre y apellidos" className="w-60" />
+            <Input id="sq-new" value={newName} onChange={(e) => { setNewName(e.target.value); if (e.target.value) setPick('') }} placeholder="Nombre y apellidos" className="w-full sm:w-60" />
           </Field>
-          <Button type="submit" variant="outline" disabled={!ready}><Plus className="mr-1 size-4" aria-hidden /> Añadir</Button>
+          <Button type="submit" variant="outline" disabled={!ready} className="h-11 sm:h-10"><Plus className="mr-1 size-4" aria-hidden /> Añadir</Button>
         </form>
       </section>
 
-      <section className="panel">
-        {seasonsLoading || roster.loading ? (
-          <Skeletons />
-        ) : error ? (
-          <ErrorState onRetry={roster.reload} description={error.message} />
-        ) : visible.length === 0 ? (
-          <EmptyState title="Plantilla vacía" description={`Añade los jugadores de la temporada ${season ?? ''}.`} />
-        ) : (
-          <ul className="divide-y divide-border">
+      {seasonsLoading || roster.loading ? (
+        <div className="panel"><Skeletons /></div>
+      ) : error ? (
+        <div className="panel"><ErrorState onRetry={roster.reload} description={error.message} /></div>
+      ) : visible.length === 0 ? (
+        <div className="panel"><EmptyState title="Plantilla vacía" description={`Añade los jugadores de la temporada ${season ?? ''}.`} /></div>
+      ) : (
+        <>
+          <p className="mb-3 text-sm text-muted-foreground">{visible.filter((r) => !r.removed).length} jugadores · toca la foto o la camiseta para subirla</p>
+          <ul className="grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
             {visible.map((r) => {
               const state = rowState(r, original)
               const stats = r.stats
               const img = r.playerId != null ? images[r.playerId] : undefined
               return (
-                <li key={r.key} className={cn('flex flex-wrap items-center gap-4 px-5 py-3', state && 'bg-teamOrange/5', r.removed && 'opacity-60')}>
-                  <div className="min-w-44 flex-1">
-                    <p className={cn('flex items-center gap-2 font-display text-xl text-white', r.removed && 'line-through')}>
-                      {r.name}
-                      {state && <Badge tone={STATE_BADGE[state].tone}>{STATE_BADGE[state].label}</Badge>}
-                    </p>
-                    {!r.historic && !r.isNew && (
-                      <p className="text-xs text-muted-foreground">
-                        {stats.played} PJ · {stats.goals} goles · {stats.assists} asist. · {stats.yellows} am. · {stats.reds} rojas · {stats.mvps} MVP
-                      </p>
+                <li key={r.key} className={cn('panel flex flex-col gap-4 p-4', state && 'border-teamOrange/50 bg-teamOrange/5', r.removed && 'opacity-60')}>
+                  <div className="flex items-start gap-3">
+                    <div className="min-w-0 flex-1">
+                      <p className={cn('font-display text-xl leading-tight text-white', r.removed && 'line-through')}>{r.name}</p>
+                      {state && <span className="mt-1 inline-block"><Badge tone={STATE_BADGE[state].tone}>{STATE_BADGE[state].label}</Badge></span>}
+                      {!r.historic && !r.isNew && (
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          {stats.played} PJ · {stats.goals} G · {stats.assists} A · {stats.yellows} TA · {stats.reds} TR · {stats.mvps} MVP
+                        </p>
+                      )}
+                    </div>
+                    {r.removed ? (
+                      <Button size="icon" variant="ghost" className="size-11 shrink-0 border border-border" aria-label={`Mantener a ${r.name}`} onClick={() => update(r.key, { removed: false })}><Undo2 className="size-4" /></Button>
+                    ) : (
+                      <Button size="icon" variant="ghost" aria-label={`Quitar a ${r.name} de la temporada`} title="No se puede quitar a quien ya tiene partidos esta temporada" className="size-11 shrink-0 border border-border text-red-400 hover:bg-red-500/10 hover:text-red-300" onClick={() => update(r.key, { removed: true })}>
+                        <UserMinus className="size-4" />
+                      </Button>
                     )}
                   </div>
-                  {r.isNew || seasonId == null ? (
-                    <p className="w-32 text-center text-[11px] text-muted-foreground">Guarda para poder subir su foto y su camiseta</p>
-                  ) : (
-                    <>
-                      <RosterImageSlot
-                        seasonId={seasonId} playerId={r.playerId!} playerName={r.name} kind="photo" url={img?.photoUrl ?? null} disabled={r.removed}
-                        onChange={(url) => setImage(r.playerId!, { photoUrl: url })} onError={setActionError}
-                      />
-                      <RosterImageSlot
-                        seasonId={seasonId} playerId={r.playerId!} playerName={r.name} kind="shirt" url={img?.shirtUrl ?? null} disabled={r.removed}
-                        onChange={(url) => setImage(r.playerId!, { shirtUrl: url })} onError={setActionError}
-                      />
-                    </>
-                  )}
-                  <label className="flex flex-col items-center text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    Dorsal
-                    <NumberInput value={r.number} allowEmpty disabled={r.removed} onChange={(v) => update(r.key, { number: v })} aria-label={`Dorsal de ${r.name}`} />
-                  </label>
-                  {r.historic && HISTORIC_FIELDS.map(({ key, label }) => (
-                    <label key={key} className="flex flex-col items-center text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                      {label}
-                      <NumberInput value={r.historic![key]} disabled={r.removed} onChange={(v) => update(r.key, { historic: { ...r.historic!, [key]: v ?? 0 } })} aria-label={`${label} de ${r.name}`} />
+
+                  <div className="flex items-end gap-4">
+                    {r.isNew || seasonId == null ? (
+                      <p className="flex-1 text-xs text-muted-foreground">Guarda la plantilla para poder subir su foto y su camiseta.</p>
+                    ) : (
+                      <>
+                        <RosterImageSlot
+                          seasonId={seasonId} playerId={r.playerId!} playerName={r.name} kind="photo" url={img?.photoUrl ?? null} disabled={r.removed}
+                          onChange={(url) => setImage(r.playerId!, { photoUrl: url })} onError={setActionError}
+                        />
+                        <RosterImageSlot
+                          seasonId={seasonId} playerId={r.playerId!} playerName={r.name} kind="shirt" url={img?.shirtUrl ?? null} disabled={r.removed}
+                          onChange={(url) => setImage(r.playerId!, { shirtUrl: url })} onError={setActionError}
+                        />
+                      </>
+                    )}
+                    <label className="ml-auto flex flex-col items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                      Dorsal
+                      <NumberInput value={r.number} allowEmpty disabled={r.removed} onChange={(v) => update(r.key, { number: v })} aria-label={`Dorsal de ${r.name}`} className="h-14 w-20 font-display text-2xl sm:h-14 sm:text-2xl" />
                     </label>
-                  ))}
-                  {r.removed ? (
-                    <Button size="icon" variant="ghost" aria-label={`Mantener a ${r.name}`} onClick={() => update(r.key, { removed: false })}><Undo2 className="size-4" /></Button>
-                  ) : (
-                    <Button size="icon" variant="ghost" aria-label={`Quitar a ${r.name} de la temporada`} title="No se puede quitar a quien ya tiene partidos esta temporada" className="text-red-400 hover:bg-red-500/10 hover:text-red-300" onClick={() => update(r.key, { removed: true })}>
-                      <UserMinus className="size-4" />
-                    </Button>
+                  </div>
+
+                  {r.historic && (
+                    <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+                      {HISTORIC_FIELDS.map(({ key, label }) => (
+                        <label key={key} className="flex flex-col items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                          {label}
+                          <NumberInput value={r.historic![key]} disabled={r.removed} onChange={(v) => update(r.key, { historic: { ...r.historic!, [key]: v ?? 0 } })} aria-label={`${label} de ${r.name}`} className="w-full" />
+                        </label>
+                      ))}
+                    </div>
                   )}
                 </li>
               )
             })}
           </ul>
-        )}
-      </section>
+        </>
+      )}
 
       <SaveBar changes={changes} saving={saving} savedAt={savedAt} onSave={() => void onSave()} onDiscard={reset} />
     </>
