@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import sansuguslogo from '../img/sansugus-logo.svg'
-import dospuntos from '../img/dospuntos.png'
-import insanz from '../img/insanz.svg'
+import { SponsorsStrip } from './sponsors/Sponsors'
 
 function Footer(){
 
@@ -44,16 +43,7 @@ function Footer(){
                 <div className='flex flex-col items-center gap-4 md:items-start'>
                     <h4 className='text-lg text-teamOrange'>Patrocinadores</h4>
                     <span aria-hidden className='-mt-2 h-px w-24 bg-gradient-to-r from-teamOrange to-transparent'/>
-                    <div className='mt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-6 md:justify-start'>
-                        <a href="https://www.2puntos.es" target="_blank" rel="noopener noreferrer" aria-label="Dos Puntos Real Estate" className='sponsor'>
-                            <span className='sponsor-frame' aria-hidden/>
-                            <span className='sponsor-face'><img src={dospuntos} alt='Dos Puntos Real Estate'/></span>
-                        </a>
-                        <a href='https://ascensoresinsanz.wordpress.com/' target="_blank" rel="noopener noreferrer" aria-label="Ascensores Insanz" className='sponsor'>
-                            <span className='sponsor-frame' aria-hidden/>
-                            <span className='sponsor-face'><img src={insanz} alt="Ascensores Insanz"/></span>
-                        </a>
-                    </div>
+                    <div className='mt-2'><SponsorsStrip /></div>
                 </div>
             </div>
             <div className='border-t border-border py-4 text-center text-xs uppercase tracking-widest text-muted-foreground'>

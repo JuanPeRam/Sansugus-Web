@@ -1,4 +1,5 @@
 import { Ranking } from './ranking/Ranking'
+import { SponsorsSection } from '@/components/sponsors/Sponsors'
 import { LastMatch } from './team/LastMatch'
 import { NextMatch } from './team/NextMatch'
 import { useEffect, useState } from 'react'
@@ -93,6 +94,9 @@ function Home() {
                         </Link>
                     ))}
                 </section>
+
+                {/* PATROCINADORES */}
+                <SponsorsSection />
             </div>
         </>
     )

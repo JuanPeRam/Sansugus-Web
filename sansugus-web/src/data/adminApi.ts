@@ -356,3 +356,81 @@ export async function saveStandings(seasonId: number, rows: StandingInput[], rem
     ))
     if (removed.length) check(await supabase.from('clasificacion').delete().eq('temporada_id', seasonId).in('equipo', removed))
 }
+
+/* ─────────── Patrocinadores ─────────── */
+
+export type SponsorRecord = {
+    id: number, name: string, logoUrl: string | null, webUrl: string,
+    order: number, active: boolean, monochrome: boolean,
+}
+
+type PatrocinadorRow = {
+    id: number, nombre: string, logo_url: string | null, web_url: string | null,
+    orden: number, activo: boolean, monocromo: boolean,
+}
+
+const mapSponsor = (r: PatrocinadorRow): SponsorRecord => ({
+    id: r.id, name: r.nombre, logoUrl: r.logo_url, webUrl: r.web_url ?? '',
+    order: r.orden, active: r.activo, monochrome: r.monocromo,
+})
+
+export async function fetchAdminSponsors(): Promise<SponsorRecord[]> {
+    const rows = unwrap<PatrocinadorRow[]>(
+        await supabase.from('patrocinadores').select('id,nombre,logo_url,web_url,orden,activo,monocromo')
+            .order('orden', { ascending: true }).order('id', { ascending: true })
+    )
+    return rows.map(mapSponsor)
+}
+
+/** Normaliza la web: vacía → null; sin protocolo → https:// */
+function normalizeUrl(url: string): string | null {
+    const u = url.trim()
+    if (!u) return null
+    return /^https?:\/\//i.test(u) ? u : `https://${u}`
+}
+
+/** Sube un logo: los SVG tal cual; el resto, reducido y en WebP (con transparencia) */
+async function uploadSponsorFile(file: File): Promise<string> {
+    const isSvg = file.type === 'image/svg+xml' || /\.svg$/i.test(file.name)
+    const blob: Blob = isSvg ? file : await toWebp(file, 800)
+    const type = isSvg ? 'image/svg+xml' : blob.type
+    const ext = isSvg ? 'svg' : blob.type === 'image/webp' ? 'webp' : 'png'
+    const path = `patrocinadores/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
+    const up = await supabase.storage.from(BUCKET).upload(path, blob, { contentType: type, cacheControl: '31536000', upsert: false })
+    if (up.error) throw new Error(up.error.message.includes('row-level security') ? 'No tienes permisos de administrador.' : up.error.message)
+    return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl
+}
+
+export async function createSponsor(input: { name: string, webUrl: string, file?: File }, order: number): Promise<void> {
+    const logoUrl = input.file ? await uploadSponsorFile(input.file) : null
+    const res = await supabase.from('patrocinadores').insert({
+        nombre: input.name.trim(), web_url: normalizeUrl(input.webUrl), logo_url: logoUrl, orden: order,
+    })
+    if (res.error) {
+        await removeStored(logoUrl)
+        throw new Error(friendly(res.error))
+    }
+}
+
+export async function updateSponsor(id: number, s: Pick<SponsorRecord, 'name' | 'webUrl' | 'order' | 'active' | 'monochrome'>) {
+    check(await supabase.from('patrocinadores').update({
+        nombre: s.name.trim(), web_url: normalizeUrl(s.webUrl), orden: s.order, activo: s.active, monocromo: s.monochrome,
+    }).eq('id', id))
+}
+
+/** Cambia el logo de un patrocinador (se guarda al momento) y devuelve la nueva URL */
+export async function changeSponsorLogo(id: number, file: File, previousUrl: string | null): Promise<string> {
+    const url = await uploadSponsorFile(file)
+    const res = await supabase.from('patrocinadores').update({ logo_url: url }).eq('id', id)
+    if (res.error) {
+        await removeStored(url)
+        throw new Error(friendly(res.error))
+    }
+    await removeStored(previousUrl)
+    return url
+}
+
+export async function deleteSponsor(id: number, logoUrl: string | null) {
+    check(await supabase.from('patrocinadores').delete().eq('id', id))
+    await removeStored(logoUrl)
+}
