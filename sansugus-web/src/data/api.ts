@@ -212,14 +212,14 @@ export const mapStanding = (r: ClasificacionRow): Standing => ({
 })
 
 /** Clasificación de la temporada activa (vacía si aún no se ha cargado) */
-export async function fetchStandings(): Promise<{ rows: Standing[], updatedAt?: Date }> {
-    const rows = unwrap<ClasificacionRow[]>(
-        await supabase.from('clasificacion').select('*,temporadas!inner(activa)')
+export async function fetchStandings(): Promise<{ rows: Standing[], updatedAt?: Date, season?: string }> {
+    const rows = unwrap<(ClasificacionRow & { temporadas: { nombre: string } | null })[]>(
+        await supabase.from('clasificacion').select('*,temporadas!inner(activa,nombre)')
             .eq('temporadas.activa', true)
             .order('posicion', { ascending: true })
     )
     const last = rows.reduce<string | undefined>((max, r) => (!max || r.actualizada > max ? r.actualizada : max), undefined)
-    return { rows: rows.map(mapStanding), updatedAt: last ? new Date(last) : undefined }
+    return { rows: rows.map(mapStanding), updatedAt: last ? new Date(last) : undefined, season: rows[0]?.temporadas?.nombre }
 }
 
 /* ─────────── Patrocinadores ─────────── */

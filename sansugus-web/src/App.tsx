@@ -10,6 +10,7 @@ import GameData from '@/components/games/game_stats/GameData'
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Honors } from '@/components/honors/Honors'
+import Standings from '@/components/standings/Standings'
 
 // Área de administración: carga aparte (no pesa en la web pública)
 const AdminArea = lazy(() => import('@/pages/admin/AdminArea'))
@@ -29,6 +30,7 @@ function PublicSite() {
             <Route path='/Games' Component={Games} />
             <Route path='/Game' Component={GameData} />
             <Route path='/Honors' Component={Honors} />
+            <Route path='/Standings' Component={Standings} />
             <Route path="*" Component={NotFound} />
           </Routes>
         </ErrorBoundary>
