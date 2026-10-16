@@ -75,7 +75,9 @@ const Players = ()=> {
 
     function goBack(){
         setCurrentPlayer(undefined)
-        navigate(``);
+        const params = new URLSearchParams(location.search);
+        params.delete('player');
+        navigate(params.toString() ? `?${params.toString()}` : ``);
     }
     
     return (
@@ -89,22 +91,22 @@ const Players = ()=> {
             </div>
         </header>
         <div className="page-container">
-            <div className="panel mb-8 flex flex-wrap items-end justify-between gap-6 p-5">
-                <label className="flex min-w-[14rem] flex-1 flex-col gap-2">
+            <div className="panel mb-5 flex items-end gap-3 p-3 sm:mb-8 sm:gap-6 sm:p-5">
+                <label className="flex min-w-0 flex-1 flex-col gap-2">
                     <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Buscar jugador</span>
                     <input
-                        type="text"
+                        type="search"
                         placeholder="Nombre..."
-                        className="h-10 border border-input bg-black px-3 text-white outline-none transition placeholder:text-muted-foreground focus:border-teamOrange"
+                        className="h-10 w-full min-w-0 border border-input bg-black px-3 text-base text-white outline-none transition placeholder:text-muted-foreground focus:border-teamOrange sm:text-sm"
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </label>
-                <div className="flex w-40 flex-col gap-2">
+                <div className="flex w-28 shrink-0 flex-col gap-2 sm:w-40">
                     <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Temporada</span>
                     <SeasonsSelect onSeasonChange={setSeason}/>
                 </div>
             </div>
-            <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <section className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
                 {isLoading && <p className="col-span-full py-10 text-center text-muted-foreground">Cargando datos...</p>}
                 {!isLoading && filteredPlayers.length === 0 && <p className="col-span-full py-10 text-center text-muted-foreground">No se ha encontrado al jugador</p>}
                 {!isLoading && players &&
