@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { cn } from '@/lib/utils'
 import { Spinner } from '@/components/admin/ui'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import sansuguslogo from '@/img/sansugus-logo.svg'
 import { unsavedContext, createUnsavedRegistry, useConfirmLeave } from './adminUtils'
 
@@ -159,7 +160,9 @@ function AdminShell() {
         </header>
 
         <main className="min-w-0 flex-1 px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-5 md:px-8 md:pt-8 lg:pb-8">
-          <Outlet />
+          <ErrorBoundary resetKey={location.pathname}>
+            <Outlet />
+          </ErrorBoundary>
         </main>
 
         {/* Móvil: pestañas fijas abajo, al alcance del pulgar */}
