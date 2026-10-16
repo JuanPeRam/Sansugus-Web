@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { playerData } from '../types'
-import { getImage } from '@/rendering/players_img'
+import { getPlayerPhotos } from '@/rendering/players_img'
 import nullPlayer from '../../img/player.png'
 
 const Stat: React.FC<{ label: string, value: any }> = ({ label, value }) => (
@@ -12,9 +12,9 @@ const Stat: React.FC<{ label: string, value: any }> = ({ label, value }) => (
 
 const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: number }> = ({ player, onclick }) => {
 
-  // Si la foto no existe o no carga, se muestra la silueta
-  const [failed, setFailed] = useState(false)
-  const playerImage = (!failed && getImage(player.Jugador)) || nullPlayer
+  // Si una foto no existe o no carga se prueba la siguiente; al final, la silueta
+  const [attempt, setAttempt] = useState(0)
+  const playerImage = getPlayerPhotos(player)[attempt] ?? nullPlayer
   const isNull = playerImage === nullPlayer
   return (
     <article
@@ -30,7 +30,7 @@ const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: numbe
           alt={player.Jugador + " Image"}
           loading='lazy'
           decoding='async'
-          onError={() => setFailed(true)}
+          onError={() => setAttempt((a) => a + 1)}
           className={`relative mx-auto h-full object-contain object-bottom transition duration-500 group-hover:scale-105 ${isNull ? 'empty-photo opacity-40 invert' : ''}`}
           style={{ maskImage: 'linear-gradient(black 80%, transparent)' }}
         />

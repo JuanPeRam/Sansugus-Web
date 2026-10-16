@@ -19,7 +19,7 @@ export function MvpCard({ player }: { player: matchPlayerInfo }) {
     <section aria-label="MVP del partido" className="panel panel-accent relative overflow-hidden">
       <div className="pointer-events-none absolute -right-6 -top-8 select-none font-display text-[11rem] leading-none text-teamOrange/10">★</div>
       <div className="relative flex items-center gap-4 p-4 sm:gap-6 sm:p-6">
-        <PlayerShirt player={player.Jugador} alias={shortName(player)} number={player.Dorsal} className="w-20 shrink-0 drop-shadow-[0_8px_14px_rgba(0,0,0,.6)] sm:w-28" />
+        <PlayerShirt player={player.Jugador} alias={shortName(player)} number={player.Dorsal} uploaded={player.Camiseta} className="w-20 shrink-0 drop-shadow-[0_8px_14px_rgba(0,0,0,.6)] sm:w-28" />
         <div className="min-w-0 flex-1">
           <p className="flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[0.3em] text-teamOrange"><Star className="size-4 fill-teamOrange" aria-hidden /> MVP del partido</p>
           <h3 className="mt-1 text-3xl leading-none text-white sm:text-5xl">{player.Jugador}</h3>

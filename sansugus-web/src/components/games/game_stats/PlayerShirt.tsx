@@ -49,19 +49,28 @@ const LOAD_TIMEOUT_MS = 7000
 
 /**
  * Camiseta de un jugador con tres estados: cargando (silueta animada), imagen real
- * y camiseta de repuesto. Si la imagen falla, no existe o tarda demasiado, se muestra
- * la de repuesto: nunca se queda cargando indefinidamente.
+ * y camiseta de repuesto. Primero se usa la subida desde el panel para la temporada
+ * (`uploaded`) y después la que viene con la web. Si la imagen falla, no existe o
+ * tarda demasiado, se prueba la siguiente y, al final, la de repuesto: nunca se
+ * queda cargando indefinidamente.
  */
-export function PlayerShirt({ player, alias, number, className }: { player: string; alias: string; number: number | null; className?: string }) {
-  const src = getShirtImage(player)
+export function PlayerShirt({ player, alias, number, uploaded, className }: { player: string; alias: string; number: number | null; uploaded?: string; className?: string }) {
+  const sources = [uploaded, getShirtImage(player)].filter((s): s is string => !!s)
+  const [attempt, setAttempt] = useState(0)
+  const src = sources[attempt]
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>(src ? 'loading' : 'error')
 
+  useEffect(() => setAttempt(0), [uploaded, player])
   useEffect(() => {
     setStatus(src ? 'loading' : 'error')
     if (!src) return
     const t = window.setTimeout(() => setStatus((s) => (s === 'loading' ? 'error' : s)), LOAD_TIMEOUT_MS)
     return () => window.clearTimeout(t)
   }, [src])
+  // Si una imagen falla, se pasa a la siguiente (la última da paso a la de repuesto)
+  useEffect(() => {
+    if (status === 'error' && attempt < sources.length - 1) setAttempt((a) => a + 1)
+  }, [status, attempt, sources.length])
 
   const label = alias || player.split(' ')[0]
   if (status === 'error') return <FallbackShirt name={label} number={number} className={className} />
