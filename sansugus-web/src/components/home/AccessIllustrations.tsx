@@ -6,13 +6,23 @@ type Props = { className?: string }
 
 const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' } as const
 
-/** Plantilla: camiseta con dorsal */
+/** Plantilla: camiseta con volumen (espalda detrás, cuello por dentro, pliegues y sombra lateral) */
 export function ShirtIllustration({ className }: Props) {
+  const body = 'M44 18 L28 24 L8 44 L22 60 L32 52 V108 H88 V52 L98 60 L112 44 L92 24 L76 18 C74 26 68 31 60 31 C52 31 46 26 44 18 Z'
   return (
     <svg viewBox='0 0 120 120' className={className} aria-hidden>
-      <path {...stroke} d='M44 14 L28 20 L8 40 L22 56 L32 48 V106 H88 V48 L98 56 L112 40 L92 20 L76 14 C74 22 68 27 60 27 C52 27 46 22 44 14 Z' />
-      <path {...stroke} strokeWidth={2} opacity={0.6} d='M44 14 C47 19 53 22 60 22 C67 22 73 19 76 14' />
-      <text x='60' y='86' textAnchor='middle' fontSize='34' fontWeight='700' fill='currentColor' fontFamily='inherit'>7</text>
+      {/* espalda, desplazada hacia atrás: la delantera la tapa y solo asoma su borde */}
+      <path {...stroke} strokeWidth={2.4} opacity={0.5} transform='translate(5 -4)' d={body} />
+      <path fill='hsl(var(--card))' d={body} />
+      {/* cuello: la parte interior de la espalda que asoma */}
+      <path fill='currentColor' opacity={0.35} d='M44 18 C46 26 52 31 60 31 C68 31 74 26 76 18 C72 14 66 12 60 12 C54 12 48 14 44 18 Z' />
+      {/* sombra del costado derecho */}
+      <path fill='currentColor' opacity={0.16} d='M76 18 L92 24 L112 44 L98 60 L88 52 V108 H74 C78 90 80 60 76 18 Z' />
+      <path {...stroke} d={body} />
+      {/* puños y pliegues */}
+      <path {...stroke} strokeWidth={2} opacity={0.7} d='M14 50 L26 37 M106 50 L94 37' />
+      <path {...stroke} strokeWidth={1.6} opacity={0.5} d='M33 66 C36 76 35 88 38 100 M86 70 C83 80 84 92 82 102 M32 52 C33 56 33 60 33 66 M88 52 C87 58 87 62 86 70' />
+      <text x='60' y='88' textAnchor='middle' fontSize='34' fontWeight='700' fill='currentColor' fontFamily='inherit'>7</text>
     </svg>
   )
 }
@@ -32,9 +42,7 @@ export function PenaltyAreaIllustration({ className }: Props) {
         <path d='M60.8 29.3 L69.3 28.8 L69.3 42.0 M87.9 44.9 L96.3 44.4 L96.3 57.6 M69.3 28.8 L96.3 44.4 M69.3 42.0 L96.3 57.6' strokeWidth={2.2} opacity={0.9} />
         <path d='M60.8 46.8 L60.8 29.3 L87.9 44.9 L87.9 62.4' strokeWidth={4} />
       </g>
-      <ellipse cx='55.8' cy='65.4' rx='5.6' ry='2.6' fill='currentColor' opacity={0.3} />
-      <circle cx='55.8' cy='59.6' r='5.6' fill='hsl(var(--card))' stroke='currentColor' strokeWidth={2.2} />
-      <path d='M53.6 58.1 l2.2 -1.6 l2.2 1.6 l-0.85 2.6 h-2.7 z' fill='currentColor' />
+      <circle cx='55.8' cy='65.4' r='1.8' fill='currentColor' />
     </svg>
   )
 }
