@@ -10,6 +10,7 @@ para que solo los administradores puedan escribir (la lectura es pública).
 | `partidos` | Partidos (id = número de `M.n` del Excel; penaltis en columnas aparte) |
 | `actas` | Ficha de cada jugador en cada partido |
 | `estadisticas_historicas` | Estadísticas de 21/22 y 22/23 (anteriores a las actas) |
+| `clasificacion` | Clasificación de la liga: una fila por equipo y temporada (PJ, PR, G, E, P, GF, GC, PTS) |
 | `estadisticas_jugador`, `estadisticas_equipo` | **Vistas**: se calculan desde las actas; no se editan |
 
 ## Imágenes por temporada
@@ -20,6 +21,16 @@ en el bucket público `sansugus` (`jugadores/<temporada>/…` y `dorsales/<tempo
 administradores pueden subir o borrar. Si un jugador no tiene imagen subida, la web usa las de
 `public/resources/img` y, en último caso, la silueta o la camiseta genérica.
 Migración: `sansugus-web/supabase/migrations/20261016100000_sansugus_imagenes.sql`.
+
+## Clasificación (cada semana)
+
+Tras cada jornada, en **Panel → Clasificación** (`/admin/clasificacion`) se cambian los números de cada
+equipo y se pulsa **Guardar clasificación**. Al tocar G/E/P se recalculan solos PJ, PR y los puntos
+(que se pueden ajustar a mano si hay sanciones); **Ordenar por puntos** ordena por puntos, diferencia
+y goles a favor, y las flechas deshacen empates como lo haga la liga. Inicio muestra la clasificación
+de la temporada activa con la fecha de la última actualización.
+Migración: `sansugus-web/supabase/migrations/20261016120000_sansugus_clasificacion.sql`;
+carga inicial de 26/27: `sansugus-web/supabase/data/sansugus_clasificacion_26_27.sql`.
 
 ## Carga inicial desde el Excel
 

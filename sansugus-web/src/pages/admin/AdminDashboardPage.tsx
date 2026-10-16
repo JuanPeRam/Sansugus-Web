@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CalendarDays, ChevronRight, ClipboardList, Users } from 'lucide-react'
+import { CalendarDays, ChevronRight, ClipboardList, ListOrdered, Users } from 'lucide-react'
 import { fetchDashboard } from '@/data/adminApi'
 import { useAsync } from '@/hooks/useAsync'
 import { Badge, ErrorState, Skeletons } from '@/components/admin/ui'
@@ -98,6 +98,7 @@ export default function AdminDashboardPage() {
 
           <div className="mt-8 hidden flex-wrap gap-3 md:flex">
             <Link to="/admin/partidos" className="btn-club">Gestionar partidos</Link>
+            <Link to="/admin/clasificacion" className="btn-ghost"><ListOrdered className="size-4" aria-hidden /> Actualizar clasificación</Link>
             <Link to="/admin/plantilla" className="btn-ghost"><Users className="size-4" aria-hidden /> Plantilla</Link>
           </div>
         </>

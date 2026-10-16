@@ -8,6 +8,7 @@ import MatchesAdminPage from './MatchesAdminPage'
 import ActaEditorPage from './ActaEditorPage'
 import SquadAdminPage from './SquadAdminPage'
 import PlayersAdminPage from './PlayersAdminPage'
+import StandingsAdminPage from './StandingsAdminPage'
 import NotFound from '@/components/NotFound'
 
 /** Rutas bajo /admin. No hay ningún enlace a ellas desde la web pública. */
@@ -21,6 +22,7 @@ export default function AdminArea() {
           <Route path="partidos" element={<MatchesAdminPage />} />
           <Route path="partidos/:id/acta" element={<ActaEditorPage />} />
           <Route path="plantilla" element={<SquadAdminPage />} />
+          <Route path="clasificacion" element={<StandingsAdminPage />} />
           <Route path="jugadores" element={<PlayersAdminPage />} />
           <Route path="temporadas" element={<SeasonsAdminPage />} />
           <Route path="*" element={<NotFound />} />

@@ -1,5 +1,5 @@
 import { Link, NavLink, Navigate, Outlet, useLocation } from 'react-router-dom'
-import { CalendarDays, CalendarRange, ExternalLink, LayoutDashboard, LogOut, Menu, User, Users, X } from 'lucide-react'
+import { CalendarDays, CalendarRange, ExternalLink, LayoutDashboard, ListOrdered, LogOut, Menu, User, Users, X } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { cn } from '@/lib/utils'
@@ -10,6 +10,7 @@ import { unsavedContext, createUnsavedRegistry, useConfirmLeave } from './adminU
 const ITEMS = [
   { to: '/admin', label: 'Resumen', short: 'Inicio', Icon: LayoutDashboard, end: true },
   { to: '/admin/partidos', label: 'Partidos', short: 'Partidos', Icon: CalendarDays, end: false },
+  { to: '/admin/clasificacion', label: 'Clasificación', short: 'Tabla', Icon: ListOrdered, end: false },
   { to: '/admin/plantilla', label: 'Plantilla', short: 'Plantilla', Icon: Users, end: false },
   { to: '/admin/jugadores', label: 'Jugadores', short: 'Jugadores', Icon: User, end: false },
   { to: '/admin/temporadas', label: 'Temporadas', short: 'Temporadas', Icon: CalendarRange, end: false },
@@ -163,7 +164,7 @@ function AdminShell() {
 
         {/* Móvil: pestañas fijas abajo, al alcance del pulgar */}
         <nav aria-label="Administración" className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-black/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
-          <ul className="grid grid-cols-5">
+          <ul className="grid grid-cols-6">
             {ITEMS.map(({ to, short, Icon, end }) => (
               <li key={to}>
                 <NavLink

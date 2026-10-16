@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { toWebp } from '@/lib/images'
+import { mapStanding, Standing } from '@/data/api'
 
 /** Lanza un Error legible si la consulta de Supabase falla */
 function unwrap<T>(res: { data: unknown; error: { message: string; code?: string } | null }): T {
@@ -325,4 +326,33 @@ export async function fetchDashboard(seasonId: number) {
         /** Las temporadas con estadísticas históricas no tienen actas */
         usesActas: (historic.count ?? 0) === 0,
     }
+}
+
+/* ─────────── Clasificación ─────────── */
+
+export type StandingInput = Omit<Standing, 'position'>
+
+export async function fetchSeasonStandings(seasonId: number): Promise<{ rows: Standing[], updatedAt: string | null }> {
+    const rows = unwrap<Parameters<typeof mapStanding>[0][]>(
+        await supabase.from('clasificacion').select('*').eq('temporada_id', seasonId).order('posicion', { ascending: true })
+    )
+    const updatedAt = rows.reduce<string | null>((max, r) => (!max || r.actualizada > max ? r.actualizada : max), null)
+    return { rows: rows.map(mapStanding), updatedAt }
+}
+
+/**
+ * Guarda la clasificación completa en el orden recibido (posición = índice + 1).
+ * `removed` son los equipos que estaban guardados y ya no figuran (o se han renombrado).
+ */
+export async function saveStandings(seasonId: number, rows: StandingInput[], removed: string[]) {
+    const now = new Date().toISOString()
+    check(await supabase.from('clasificacion').upsert(
+        rows.map((r, i) => ({
+            temporada_id: seasonId, posicion: i + 1, equipo: r.team.trim(),
+            jugados: r.played, por_jugar: r.remaining, ganados: r.won, empatados: r.drawn, perdidos: r.lost,
+            goles_favor: r.goalsFor, goles_contra: r.goalsAgainst, puntos: r.points, actualizada: now,
+        })),
+        { onConflict: 'temporada_id,equipo' }
+    ))
+    if (removed.length) check(await supabase.from('clasificacion').delete().eq('temporada_id', seasonId).in('equipo', removed))
 }
