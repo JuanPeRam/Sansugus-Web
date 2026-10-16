@@ -17,27 +17,45 @@ export function ShirtIllustration({ className }: Props) {
   )
 }
 
-/** Partidos: balón con su patrón de pentágonos */
-export function BallIllustration({ className }: Props) {
+/** Partidos: área de penalti en perspectiva isométrica, con la portería al fondo y el balón en el punto de penalti */
+export function PenaltyAreaIllustration({ className }: Props) {
   return (
     <svg viewBox='0 0 120 120' className={className} aria-hidden>
-      <circle {...stroke} cx='60' cy='60' r='48' />
-      <path fill='currentColor' opacity={0.85} d='M60 42 L75 53 L69 71 H51 L45 53 Z' />
-      <path {...stroke} strokeWidth={2.5} d='M60 42 V22 M75 53 L94 46 M69 71 L80 88 M51 71 L40 88 M45 53 L26 46' />
-      <path {...stroke} strokeWidth={2.5} d='M47 15 L60 22 L73 15 M100 37 L94 46 L101 62 M90 95 L80 88 L64 99 M30 95 L40 88 L56 99 M20 37 L26 46 L19 62' />
+      <g {...stroke} strokeWidth={3}>
+        <path d='M40.6 35.1 L11.9 51.7 L79.4 90.7 L108.1 74.1 Z' />
+        <path d='M54.1 42.9 L44.0 48.8 L84.5 72.2 L94.6 66.3' />
+        <path d='M52.8 76.3 L50.8 76.0 L48.9 75.7 L47.1 75.2 L45.4 74.6 L43.8 73.9 L42.3 73.2 L40.9 72.3 L39.8 71.4 L38.8 70.4 L37.9 69.3 L37.3 68.2 L36.9 67.1' />
+      </g>
+      <g {...stroke}>
+        <path d='M64.7 31.5 L73.1 31.0 L73.1 44.2 M68.6 33.7 L77.0 33.3 L77.0 46.4 M72.4 36.0 L80.9 35.5 L80.9 48.6 M76.3 38.2 L84.7 37.7 L84.7 50.9 M80.1 40.4 L88.6 39.9 L88.6 53.1 M84.0 42.7 L92.4 42.2 L92.4 55.3 M69.3 37.6 L96.3 53.2 M69.3 33.2 L96.3 48.8' strokeWidth={1.6} opacity={0.7} />
+        <path d='M60.8 46.8 L69.3 42.0 L96.3 57.6 L87.9 62.4' strokeWidth={1.2} opacity={0.6} />
+        <path d='M60.8 29.3 L69.3 28.8 L69.3 42.0 M87.9 44.9 L96.3 44.4 L96.3 57.6 M69.3 28.8 L96.3 44.4 M69.3 42.0 L96.3 57.6' strokeWidth={2.2} opacity={0.9} />
+        <path d='M60.8 46.8 L60.8 29.3 L87.9 44.9 L87.9 62.4' strokeWidth={4} />
+      </g>
+      <ellipse cx='55.8' cy='65.4' rx='5.6' ry='2.6' fill='currentColor' opacity={0.3} />
+      <circle cx='55.8' cy='59.6' r='5.6' fill='hsl(var(--card))' stroke='currentColor' strokeWidth={2.2} />
+      <path d='M53.6 58.1 l2.2 -1.6 l2.2 1.6 l-0.85 2.6 h-2.7 z' fill='currentColor' />
     </svg>
   )
 }
 
-/** Clasificación: podio con estrella en el primer puesto */
-export function PodiumIllustration({ className }: Props) {
+/** Clasificación: tabla de la liga con la cabecera y una fila destacada */
+export function TableIllustration({ className }: Props) {
+  const rows = [44, 58, 72, 86, 100]
   return (
     <svg viewBox='0 0 120 120' className={className} aria-hidden>
-      <path fill='currentColor' opacity={0.85} d='M60 10 L64.5 20 L75 21 L67 28 L69.5 38.5 L60 33 L50.5 38.5 L53 28 L45 21 L55.5 20 Z' />
-      <path {...stroke} d='M42 48 H78 V108 H42 Z M10 66 H42 V108 H10 Z M78 78 H110 V108 H78 Z' />
-      <text x='60' y='88' textAnchor='middle' fontSize='26' fontWeight='700' fill='currentColor' fontFamily='inherit'>1</text>
-      <text x='26' y='96' textAnchor='middle' fontSize='18' fontWeight='700' fill='currentColor' fontFamily='inherit' opacity={0.7}>2</text>
-      <text x='94' y='101' textAnchor='middle' fontSize='16' fontWeight='700' fill='currentColor' fontFamily='inherit' opacity={0.7}>3</text>
+      <rect {...stroke} x='10' y='16' width='100' height='94' rx='4' />
+      <path fill='currentColor' opacity={0.85} d='M10 20 a4 4 0 0 1 4 -4 h92 a4 4 0 0 1 4 4 v12 h-100 z' />
+      <rect x='12' y='51' width='96' height='14' fill='currentColor' opacity={0.28} />
+      <path {...stroke} strokeWidth={2} d={rows.slice(0, -1).map((y) => `M10 ${y + 7} H110`).join(' ')} />
+      <path {...stroke} strokeWidth={2} d='M30 32 V110 M86 32 V110' />
+      {rows.map((y, i) => (
+        <g key={y}>
+          <text x='20' y={y + 4} textAnchor='middle' fontSize='11' fontWeight='700' fill='currentColor' fontFamily='inherit'>{i + 1}</text>
+          <rect x='36' y={y - 2} width={[40, 32, 44, 28, 36][i]} height='4' rx='2' fill='currentColor' opacity={0.7} />
+          <text x='98' y={y + 4} textAnchor='middle' fontSize='11' fontWeight='700' fill='currentColor' fontFamily='inherit'>{[9, 7, 6, 4, 3][i]}</text>
+        </g>
+      ))}
     </svg>
   )
 }

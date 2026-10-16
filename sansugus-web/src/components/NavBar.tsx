@@ -1,12 +1,13 @@
 import { useEffect } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
-import { CalendarDays, Home, Trophy, Users } from 'lucide-react'
+import { CalendarDays, Home, ListOrdered, Trophy, Users } from 'lucide-react'
 import sansuguslogo from '../img/sansugus-logo.svg'
 
 const pages = [
   { name: 'Inicio', path: '/Home', Icon: Home },
   { name: 'Plantilla', path: '/Players', Icon: Users },
   { name: 'Partidos', path: '/Games', Icon: CalendarDays },
+  { name: 'Clasificación', short: 'Clasif.', path: '/Standings', Icon: ListOrdered },
   { name: 'Palmarés', path: '/Honors', Icon: Trophy },
 ]
 
@@ -58,19 +59,20 @@ function NavBar() {
 
       {/* Móvil: pestañas fijas abajo, al alcance del pulgar */}
       <nav aria-label='Secciones' className='fixed inset-x-0 bottom-0 z-50 border-t border-border bg-black/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden'>
-        <ul className='grid grid-cols-4'>
-          {pages.map(({ name, path, Icon }) => {
+        <ul className='grid grid-cols-5'>
+          {pages.map(({ name, short, path, Icon }) => {
             const active = isActive(path, pathname)
             return (
               <li key={path}>
                 <NavLink
                   to={path}
+                  aria-label={short ? name : undefined}
                   aria-current={active ? 'page' : undefined}
-                  className={`relative flex h-16 flex-col items-center justify-center gap-1 text-[11px] font-bold uppercase tracking-wider transition-colors ${active ? 'text-teamOrange' : 'text-white/60 hover:text-white'}`}
+                  className={`relative flex h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold uppercase tracking-wide transition-colors min-[400px]:text-[11px] ${active ? 'text-teamOrange' : 'text-white/60 hover:text-white'}`}
                 >
-                  {active && <span className='absolute inset-x-5 top-0 h-0.5 bg-teamOrange' aria-hidden />}
+                  {active && <span className='absolute inset-x-4 top-0 h-0.5 bg-teamOrange' aria-hidden />}
                   <Icon className='h-5 w-5' aria-hidden />
-                  {name}
+                  {short ?? name}
                 </NavLink>
               </li>
             )

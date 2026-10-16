@@ -38,6 +38,7 @@ function Footer(){
                     <Link className='text-sm text-white/70 hover:text-white' to='/Home'>Inicio</Link>
                     <Link className='text-sm text-white/70 hover:text-white' to='/Players'>Plantilla</Link>
                     <Link className='text-sm text-white/70 hover:text-white' to='/Games'>Partidos</Link>
+                    <Link className='text-sm text-white/70 hover:text-white' to='/Standings'>Clasificación</Link>
                     <Link className='text-sm text-white/70 hover:text-white' to='/Honors'>Palmarés</Link>
                 </div>
                 <div className='flex flex-col items-center gap-4 md:items-start'>

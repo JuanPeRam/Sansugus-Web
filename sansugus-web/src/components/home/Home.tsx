@@ -1,5 +1,5 @@
 import { Ranking } from './ranking/Ranking'
-import { BallIllustration, PodiumIllustration, ShirtIllustration } from './AccessIllustrations'
+import { PenaltyAreaIllustration, ShirtIllustration, TableIllustration } from './AccessIllustrations'
 import { SponsorsSection } from '@/components/sponsors/Sponsors'
 import { LastMatch } from './team/LastMatch'
 import { NextMatch } from './team/NextMatch'
@@ -84,8 +84,8 @@ function Home() {
                 <section className='grid gap-3 md:grid-cols-3 md:gap-6'>
                     {[
                         { to: '/Players', title: 'Plantilla', text: 'Estadísticas de cada jugador', Art: ShirtIllustration },
-                        { to: '/Games', title: 'Partidos', text: 'Resultados y actas', Art: BallIllustration },
-                        { to: '/Standings', title: 'Clasificación', text: 'La tabla de la liga, jornada a jornada', Art: PodiumIllustration },
+                        { to: '/Games', title: 'Partidos', text: 'Resultados y actas', Art: PenaltyAreaIllustration },
+                        { to: '/Standings', title: 'Clasificación', text: 'La tabla de la liga, jornada a jornada', Art: TableIllustration },
                     ].map((item) => (
                         <Link key={item.to} to={item.to} className='group relative isolate flex h-24 flex-col justify-center overflow-hidden rounded-sm border border-border bg-card px-5 transition hover:border-teamOrange md:h-48 md:justify-end md:p-6'>
                             <item.Art className='absolute right-3 top-1/2 -z-10 h-20 w-20 -translate-y-1/2 text-white/[0.08] transition duration-300 group-hover:-rotate-6 group-hover:scale-105 group-hover:text-teamOrange/30 md:right-4 md:top-4 md:h-32 md:w-32 md:translate-y-0' />
