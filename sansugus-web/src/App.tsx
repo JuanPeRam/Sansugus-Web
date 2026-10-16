@@ -15,7 +15,8 @@ const AdminArea = lazy(() => import('@/pages/admin/AdminArea'))
 
 function PublicSite() {
   return (
-    <>
+    // En móvil se deja sitio abajo para las pestañas fijas
+    <div className='flex min-h-screen flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0'>
       <NavBar />
       <main className='main-content'>
         <Routes>
@@ -29,7 +30,7 @@ function PublicSite() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

@@ -11,6 +11,10 @@
   color-scheme: dark;
 }
 
+@media (min-width: 768px) {
+  .page-container { padding: 2rem 1.25rem 4rem; }
+}
+
 body { margin: 0; min-width: 320px; background: var(--background-color); }
 #root { min-height: 100vh; display: flex; flex-direction: column; }
 * { box-sizing: border-box; }
@@ -26,6 +30,6 @@ body { margin: 0; min-width: 320px; background: var(--background-color); }
   width: 100%;
   max-width: 80rem;
   margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
+  padding: 1.5rem 1rem 3rem;
   animation: opacity .5s ease;
 }

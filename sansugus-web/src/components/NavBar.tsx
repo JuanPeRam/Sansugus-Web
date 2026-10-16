@@ -1,73 +1,80 @@
-import { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { useEffect } from 'react'
+import { NavLink, Link, useLocation } from 'react-router-dom'
+import { CalendarDays, Home, Trophy, Users } from 'lucide-react'
 import sansuguslogo from '../img/sansugus-logo.svg'
 
 const pages = [
-  { name: 'Inicio', path: '/Home' },
-  { name: 'Plantilla', path: '/Players' },
-  { name: 'Partidos', path: '/Games' },
-  { name: 'Palmarés', path: '/Honors' },
+  { name: 'Inicio', path: '/Home', Icon: Home },
+  { name: 'Plantilla', path: '/Players', Icon: Users },
+  { name: 'Partidos', path: '/Games', Icon: CalendarDays },
+  { name: 'Palmarés', path: '/Honors', Icon: Trophy },
 ]
 
+/** La portada vive en «/» y en «/Home»; el acta de un partido cuelga de «Partidos» */
+function isActive(path: string, pathname: string) {
+  if (path === '/Home') return pathname === '/' || pathname === '/Home'
+  if (path === '/Games') return pathname === '/Games' || pathname === '/Game'
+  return pathname === path
+}
+
 function NavBar() {
-  const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  // Al cambiar de sección se vuelve arriba
+  useEffect(() => window.scrollTo({ top: 0 }), [pathname])
 
   return (
-    <header className='sticky top-0 z-50 border-b border-border bg-black/90 backdrop-blur'>
-      <div className='h-1 w-full bg-teamOrange' />
-      <nav className='mx-auto flex h-16 max-w-7xl items-center justify-between px-5'>
-        <Link to='/' className='flex items-center gap-3' onClick={() => setOpen(false)}>
-          <img src={sansuguslogo} alt='Sansugus FC' className='h-10 w-10' />
-          <span className='font-display text-2xl text-white'>
-            Sansugus <span className='text-teamOrange'>FC</span>
-          </span>
-        </Link>
+    <>
+      <header className='sticky top-0 z-50 border-b border-border bg-black/90 backdrop-blur'>
+        <div className='h-1 w-full bg-teamOrange' />
+        <nav aria-label='Principal' className='mx-auto flex h-14 max-w-7xl items-center justify-between px-4 md:h-16 md:px-5'>
+          <Link to='/' className='flex items-center gap-3'>
+            <img src={sansuguslogo} alt='' className='h-9 w-9 md:h-10 md:w-10' />
+            <span className='font-display text-xl text-white md:text-2xl'>
+              Sansugus <span className='text-teamOrange'>FC</span>
+            </span>
+          </Link>
 
-        <ul className='hidden items-center gap-1 md:flex'>
-          {pages.map((page) => (
-            <li key={page.path}>
-              <NavLink
-                to={page.path}
-                className={({ isActive }) =>
-                  `relative block px-4 py-2 font-display text-lg transition-colors hover:text-teamOrange ${
-                    isActive ? 'text-teamOrange after:absolute after:inset-x-4 after:-bottom-[13px] after:h-[3px] after:bg-teamOrange' : 'text-white/80'
-                  }`
-                }
-              >
-                {page.name}
-              </NavLink>
-            </li>
-          ))}
+          <ul className='hidden items-center gap-1 md:flex'>
+            {pages.map((page) => (
+              <li key={page.path}>
+                <NavLink
+                  to={page.path}
+                  className={() =>
+                    `relative block px-4 py-2 font-display text-lg transition-colors hover:text-teamOrange ${
+                      isActive(page.path, pathname) ? 'text-teamOrange after:absolute after:inset-x-4 after:-bottom-[13px] after:h-[3px] after:bg-teamOrange' : 'text-white/80'
+                    }`
+                  }
+                >
+                  {page.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+
+      {/* Móvil: pestañas fijas abajo, al alcance del pulgar */}
+      <nav aria-label='Secciones' className='fixed inset-x-0 bottom-0 z-50 border-t border-border bg-black/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden'>
+        <ul className='grid grid-cols-4'>
+          {pages.map(({ name, path, Icon }) => {
+            const active = isActive(path, pathname)
+            return (
+              <li key={path}>
+                <NavLink
+                  to={path}
+                  aria-current={active ? 'page' : undefined}
+                  className={`relative flex h-16 flex-col items-center justify-center gap-1 text-[11px] font-bold uppercase tracking-wider transition-colors ${active ? 'text-teamOrange' : 'text-white/60 hover:text-white'}`}
+                >
+                  {active && <span className='absolute inset-x-5 top-0 h-0.5 bg-teamOrange' aria-hidden />}
+                  <Icon className='h-5 w-5' aria-hidden />
+                  {name}
+                </NavLink>
+              </li>
+            )
+          })}
         </ul>
-
-        <button
-          aria-label='Menú'
-          className='text-white md:hidden'
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X size={28} /> : <Menu size={28} />}
-        </button>
       </nav>
-
-      {open && (
-        <ul className='absolute left-0 top-full flex h-[calc(100vh-4.25rem)] w-full flex-col justify-center gap-2 bg-black/95 px-8 md:hidden'>
-          {pages.map((page) => (
-            <li key={page.path}>
-              <NavLink
-                to={page.path}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `block border-b border-border py-4 font-display text-5xl ${isActive ? 'text-teamOrange' : 'text-white'}`
-                }
-              >
-                {page.name}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      )}
-    </header>
+    </>
   )
 }
 

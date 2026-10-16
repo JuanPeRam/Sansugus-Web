@@ -26,8 +26,16 @@ const PlayerStats: React.FC<{ stats: playerData, totalStats: playerData }> = ({ 
 
     return (
       <>
-        <div className='panel flex flex-col gap-5 p-6' style={{ animation: 'fadeleft var(--fade-entry-time)' }}>
-            <h2 className='section-title'>Estadísticas</h2>
+        <div className='panel flex flex-col gap-5 p-4 md:p-6' style={{ animation: 'fadeleft var(--fade-entry-time)' }}>
+            <h2 className='section-title text-xl md:text-3xl'>Estadísticas</h2>
+            <div className='grid grid-cols-4 gap-2'>
+                {[['PJ', stats.Partidos], ['Goles', stats.Goles], ['Asist.', stats.Asistencias], ['MVP', stats.MVP]].map(([label, value]) => (
+                    <div key={label} className='flex flex-col items-center rounded-sm border border-border bg-black/40 py-3'>
+                        <span className='font-display text-3xl leading-none text-white md:text-4xl'>{value}</span>
+                        <span className='mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground'>{label}</span>
+                    </div>
+                ))}
+            </div>
             <StatComponent params={{stat: 'Goles',variable:stats.Goles,totalVariable:totalGoals,percent:totalGoalsPercent}}></StatComponent>
             {totalAssists>0 && matchPlayed &&<StatComponent params={{stat: 'Asistencias',variable:stats.Asistencias,totalVariable:totalAssists,percent:totalAssistsPercent}}></StatComponent>}
             {totalYellow > 0 && matchPlayed && <StatComponent params={{stat: 'Amarillas',variable:stats.Amarillas,totalVariable:totalYellow,percent:totalYellowsPercent}}></StatComponent>}
