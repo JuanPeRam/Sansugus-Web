@@ -192,3 +192,32 @@ export async function fetchPlayerStats(season: string): Promise<{ players: playe
         total: t ? mapPlayer({ ...t, jugador: 'Total', dorsal: null, propia_puerta: false }) : undefined,
     }
 }
+
+/* ─────────── Clasificación ─────────── */
+
+export type Standing = {
+    position: number, team: string, played: number, remaining: number,
+    won: number, drawn: number, lost: number, goalsFor: number, goalsAgainst: number, points: number,
+}
+
+type ClasificacionRow = {
+    posicion: number, equipo: string, jugados: number, por_jugar: number, ganados: number, empatados: number,
+    perdidos: number, goles_favor: number, goles_contra: number, puntos: number, actualizada: string
+}
+
+export const mapStanding = (r: ClasificacionRow): Standing => ({
+    position: r.posicion, team: r.equipo, played: r.jugados, remaining: r.por_jugar,
+    won: r.ganados, drawn: r.empatados, lost: r.perdidos,
+    goalsFor: r.goles_favor, goalsAgainst: r.goles_contra, points: r.puntos,
+})
+
+/** Clasificación de la temporada activa (vacía si aún no se ha cargado) */
+export async function fetchStandings(): Promise<{ rows: Standing[], updatedAt?: Date }> {
+    const rows = unwrap<ClasificacionRow[]>(
+        await supabase.from('clasificacion').select('*,temporadas!inner(activa)')
+            .eq('temporadas.activa', true)
+            .order('posicion', { ascending: true })
+    )
+    const last = rows.reduce<string | undefined>((max, r) => (!max || r.actualizada > max ? r.actualizada : max), undefined)
+    return { rows: rows.map(mapStanding), updatedAt: last ? new Date(last) : undefined }
+}

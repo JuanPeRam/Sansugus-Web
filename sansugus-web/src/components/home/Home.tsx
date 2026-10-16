@@ -1,3 +1,4 @@
+import { Ranking } from './ranking/Ranking'
 import { LastMatch } from './team/LastMatch'
 import { NextMatch } from './team/NextMatch'
 import { useEffect, useState } from 'react'
@@ -69,6 +70,12 @@ function Home() {
                         <h2 className='section-title p-5 pb-0'>Próximo partido</h2>
                         <NextMatch error={error} result={nextMatch} loading={isLoading} />
                     </article>
+                </section>
+
+                {/* CLASIFICACIÓN */}
+                <section>
+                    <h2 className='section-title mb-6'>Clasificación</h2>
+                    <Ranking />
                 </section>
 
                 {/* ACCESOS */}
