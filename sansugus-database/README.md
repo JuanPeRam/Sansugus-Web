@@ -33,6 +33,7 @@ de la temporada activa con la fecha de la última actualización.
 Migración: `sansugus-web/supabase/migrations/20261016120000_sansugus_clasificacion.sql`;
 carga inicial de 26/27: `sansugus-web/supabase/data/sansugus_clasificacion_26_27.sql`;
 jornada 2: `sansugus-web/supabase/data/sansugus_clasificacion_26_27_jornada_2.sql`.
+Calendario 26/27 (jornadas 3–15): `sansugus-web/supabase/data/sansugus_calendario_26_27.sql`.
 
 ## Patrocinadores
 
