@@ -31,7 +31,8 @@ equipo y se pulsa **Guardar clasificación**. Al tocar G/E/P se recalculan solos
 y goles a favor, y las flechas deshacen empates como lo haga la liga. Inicio muestra la clasificación
 de la temporada activa con la fecha de la última actualización.
 Migración: `sansugus-web/supabase/migrations/20261016120000_sansugus_clasificacion.sql`;
-carga inicial de 26/27: `sansugus-web/supabase/data/sansugus_clasificacion_26_27.sql`.
+carga inicial de 26/27: `sansugus-web/supabase/data/sansugus_clasificacion_26_27.sql`;
+jornada 2: `sansugus-web/supabase/data/sansugus_clasificacion_26_27_jornada_2.sql`.
 
 ## Patrocinadores
 
