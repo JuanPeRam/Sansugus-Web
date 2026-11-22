@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import sansuguslogo from '../img/sansugus-logo.svg'
+// Escudo en WebP pequeño (157×240): el SVG original pesa 208 kB y aquí se ve a ≤ 112 px
+import sansuguslogo from '@/img/sansugus-logo-sm.webp'
 import { SponsorsStrip } from './sponsors/Sponsors'
 
 function Footer(){
@@ -18,7 +19,7 @@ function Footer(){
             <div className='mx-auto grid max-w-7xl gap-8 px-5 py-8 md:grid-cols-[1fr_.7fr_1.5fr] md:gap-10 md:py-12'>
                 <div className='flex flex-col items-center gap-4 text-center md:items-start md:text-left'>
                     <div className='flex items-center gap-3'>
-                        <img src={sansuguslogo} alt='Sansugus FC' className='h-12 w-12 md:h-14 md:w-14' />
+                        <img src={sansuguslogo} alt='Sansugus FC' width={157} height={240} loading='lazy' className='h-12 w-12 object-contain md:h-14 md:w-14' />
                         <span className='font-display text-2xl text-white md:text-3xl'>Sansugus <span className='text-teamOrange'>FC</span></span>
                     </div>
                     <p className='max-w-xs text-sm text-muted-foreground'>Club de fútbol 7. Pasión, equipo y compromiso en cada partido.</p>

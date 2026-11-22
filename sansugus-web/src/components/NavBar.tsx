@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { CalendarDays, Home, ListOrdered, Trophy, Users } from 'lucide-react'
-import sansuguslogo from '../img/sansugus-logo.svg'
+// Escudo en WebP pequeño (157×240): el SVG original pesa 208 kB y aquí se ve a ≤ 112 px
+import sansuguslogo from '@/img/sansugus-logo-sm.webp'
 
 const pages = [
   { name: 'Inicio', path: '/Home', Icon: Home },
@@ -32,7 +33,7 @@ function NavBar() {
         <div className='h-1 w-full bg-teamOrange' />
         <nav aria-label='Principal' className='mx-auto flex h-14 max-w-7xl items-center justify-between px-4 md:h-16 md:px-5'>
           <Link to='/' className='flex items-center gap-3'>
-            <img src={sansuguslogo} alt='' className='h-9 w-9 md:h-10 md:w-10' />
+            <img src={sansuguslogo} alt='' width={157} height={240} className='h-9 w-9 object-contain md:h-10 md:w-10' />
             <span className='font-display text-xl text-white md:text-2xl'>
               Sansugus <span className='text-teamOrange'>FC</span>
             </span>
