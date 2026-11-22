@@ -10,7 +10,8 @@ const Stat: React.FC<{ label: string, value: any }> = ({ label, value }) => (
   </div>
 )
 
-const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: number }> = ({ player, onclick }) => {
+/** `eager`: tarjetas de la primera fila (visibles al entrar): su foto no se difiere, es la candidata a LCP */
+const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: number, eager?: boolean }> = ({ player, onclick, eager = false }) => {
 
   // Si una foto no existe o no carga se prueba la siguiente; al final, la silueta
   const [attempt, setAttempt] = useState(0)
@@ -28,8 +29,9 @@ const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: numbe
         <img
           src={playerImage}
           alt={player.Jugador + " Image"}
-          loading='lazy'
+          loading={eager ? 'eager' : 'lazy'}
           decoding='async'
+          {...(eager ? { fetchpriority: 'high' } : {})}
           onError={() => setAttempt((a) => a + 1)}
           className={`relative mx-auto h-full object-contain object-bottom transition duration-500 group-hover:scale-105 ${isNull ? 'empty-photo opacity-40 invert' : ''}`}
           style={{ maskImage: 'linear-gradient(black 80%, transparent)' }}

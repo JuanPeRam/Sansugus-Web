@@ -115,7 +115,7 @@ const Players = ()=> {
                 {!isLoading && filteredPlayers.length === 0 && <p className="col-span-full py-10 text-center text-muted-foreground">No se ha encontrado al jugador</p>}
                 {!isLoading && players &&
                     filteredPlayers.map((player:playerData, index:number) => (
-                        <PlayerCard player={player} key={index} onclick={()=>handleSetCurrentPlayer(player)} />
+                        <PlayerCard player={player} key={index} eager={index < 4} onclick={()=>handleSetCurrentPlayer(player)} />
                     ))
                 }
             </section>

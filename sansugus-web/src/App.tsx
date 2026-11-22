@@ -6,11 +6,14 @@ import NotFound from '@/components/NotFound'
 import Footer from '@/components/Footer'
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { fetchSeasons } from '@/data/api'
 
 // Inicio va en el paquete principal (es la entrada más habitual); el resto de secciones
 // se descargan al visitarlas, cada una en su propio archivo.
-const Players = lazy(() => import('./components/players/Players'))
-const Games = lazy(() => import('@/components/games/Games'))
+// Plantilla y Partidos necesitan las temporadas antes de pedir sus datos: se piden a la
+// vez que se descarga el código de la sección (fetchSeasons guarda la respuesta en caché)
+const Players = lazy(() => { void fetchSeasons().catch(() => undefined); return import('./components/players/Players') })
+const Games = lazy(() => { void fetchSeasons().catch(() => undefined); return import('@/components/games/Games') })
 const GameData = lazy(() => import('@/components/games/game_stats/GameData'))
 const Honors = lazy(() => import('@/components/honors/Honors').then((m) => ({ default: m.Honors })))
 const Standings = lazy(() => import('@/components/standings/Standings'))
