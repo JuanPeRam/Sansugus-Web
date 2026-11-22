@@ -5,7 +5,6 @@ const seasonsEndPoint = `${api}/seasons`
 
 const playersEndPoint:EndPointFunction = (season:string) =>{
     const endPoint = 'players'
-    console.log(getEndPointSeasonParam(season,endPoint))
     return getEndPointSeasonParam(season,endPoint)
 }
 

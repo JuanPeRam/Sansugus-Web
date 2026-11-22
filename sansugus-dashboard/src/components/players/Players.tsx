@@ -49,12 +49,15 @@ export const Players = () => {
   const [loading, setIsLoading] = useState<boolean>(false);
 
   useEffect(()=>{
-    if(season)
-    {
-      setIsLoading(true)
-      fetch(playersEndPoint(season)).then((res)=>res.json()).then((data)=>{setRawData(data) 
-        setPlayersData(JSON.parse(JSON.stringify(data)))}).catch((error)=>setError(error)).finally(()=>setIsLoading(false))
-    }
+    if(!season) return
+    // Al cambiar de temporada se cancela la petición anterior (no pisa los datos nuevos)
+    const controller = new AbortController()
+    setIsLoading(true)
+    fetch(playersEndPoint(season), { signal: controller.signal }).then((res)=>res.json()).then((data)=>{setRawData(data) 
+      setPlayersData(structuredClone(data))})
+      .catch((error)=>{ if (!controller.signal.aborted) setError(error) })
+      .finally(()=>{ if (!controller.signal.aborted) setIsLoading(false) })
+    return () => controller.abort()
   },[season])
   
   const handleSeasonChanged = (season:string) => {

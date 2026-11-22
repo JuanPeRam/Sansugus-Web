@@ -11,13 +11,11 @@ const loadingRowsNumber = 10;
 export const DataTable: React.FC<DataTableProps> = ({data,excludedRows,onDataChanged,isLoading,moreDetailsDir})=>{
 
   const [dataState,setDataState]:any = useState()
-  const loadingRows:any = []
-
-  if(dataState && dataState.length>0){
-    for(let i=0;i<loadingRowsNumber;i++){
-      loadingRows.push(<TableRowLoading numberOfColumns={Object.keys(dataState[0]).filter(key => !excludedRows?.includes(key)).length}></TableRowLoading>)
-    }
-  }
+  // Filas de carga con el número de columnas de la tabla (o uno por defecto en la primera carga)
+  const loadingColumns = dataState && dataState.length>0
+    ? Object.keys(dataState[0]).filter(key => !excludedRows?.includes(key)).length
+    : 6
+  const loadingRows = Array.from({ length: loadingRowsNumber }, (_, i) => <TableRowLoading key={i} numberOfColumns={loadingColumns}/>)
   
   useEffect(()=>{
     setDataState(data)
@@ -40,6 +38,10 @@ export const DataTable: React.FC<DataTableProps> = ({data,excludedRows,onDataCha
     <>
     {
         !dataState && <div>No hay datos para mostrar.</div>
+    }
+    {
+        isLoading && (!dataState || dataState.length===0) &&
+        <table className="border-collapse border w-full" aria-busy="true"><tbody>{loadingRows}</tbody></table>
     }
     {
         dataState && dataState.length>0 &&
