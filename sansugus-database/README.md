@@ -41,6 +41,12 @@ los muestra en Inicio (rejilla) y en el pie; con «Logo en blanco» se pintan en
 Migración: `sansugus-web/supabase/migrations/20261016130000_sansugus_patrocinadores.sql` (incluye los dos
 patrocinadores que había, con sus logos en `public/resources/img/sponsors/`).
 
+## Índices de rendimiento
+
+`temporada_id` indexado en `jugador_temporada` y `estadisticas_historicas` (plantilla y resumen del panel,
+`guardar_acta_partido` y borrados en cascada). Auditoría completa en `sansugus-web/docs/auditoria-rendimiento.md`.
+Migración: `sansugus-web/supabase/migrations/20261122100000_sansugus_indices_rendimiento.sql` (pendiente de aplicar).
+
 ## Carga inicial desde el Excel
 
 1. Exporta las hojas a `csv/` (`partidos`, `actas`, `jugadores`, `estadisticas`).
