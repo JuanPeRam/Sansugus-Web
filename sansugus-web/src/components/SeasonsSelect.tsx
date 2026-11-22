@@ -7,6 +7,7 @@ import {
   SelectItem,
 } from "./ui/select";
 import { fetchSeasons } from "@/data/api";
+import { Skeleton } from "./ui/skeleton";
 import { useSearchParams } from "react-router-dom";
 
 interface SeasonProps {
@@ -73,7 +74,8 @@ export const SeasonsSelect: React.FC<SeasonProps> = ({ onSeasonChange }) => {
   return (
     <>
       {
-        isLoading && <div>Cargando...</div>
+        // Mismo alto que el selector: no hay salto al aparecer
+        isLoading && <Skeleton className="h-10 w-full rounded-sm" aria-label="Cargando temporadas" />
       }
       {
         !isLoading && seasons && <Select

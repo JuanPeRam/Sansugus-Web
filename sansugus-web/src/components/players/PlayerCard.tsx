@@ -56,4 +56,15 @@ const PlayerCard: React.FC<{ player: playerData, onclick: () => void, key: numbe
   )
 }
 
+/** Hueco con la forma de la tarjeta mientras cargan los datos (evita saltos de diseño) */
+export const PlayerCardSkeleton: React.FC = () => (
+  <div aria-hidden className='flex flex-col overflow-hidden rounded-sm border border-border bg-card'>
+    <div className='h-44 animate-pulse bg-secondary/60 sm:h-64' />
+    <div className='flex flex-col gap-2 border-t-2 border-teamOrange/40 px-2.5 pb-2.5 pt-2 sm:gap-3 sm:px-4 sm:pb-4 sm:pt-3'>
+      <div className='h-5 w-3/4 animate-pulse rounded bg-white/10 sm:h-7' />
+      <div className='h-10 animate-pulse rounded bg-white/5 sm:h-12' />
+    </div>
+  </div>
+)
+
 export default PlayerCard

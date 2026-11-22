@@ -4,7 +4,7 @@ import { playerData } from "../types"
 import Player from "./Player"
 import { ArrowLeft } from "lucide-react"
 import { useLocation, useNavigate } from "react-router-dom"
-import PlayerCard from "./PlayerCard"
+import PlayerCard, { PlayerCardSkeleton } from "./PlayerCard"
 import { SeasonsSelect } from "../SeasonsSelect"
 
 
@@ -51,9 +51,12 @@ const Players = ()=> {
 
     useEffect(() => {
         if(!season) return
+        // Si se cambia de temporada antes de que llegue la respuesta anterior, esta se descarta
+        let current = true
         setIsLoading(true)
         fetchPlayerStats(season)
             .then(({players, total}) => {
+                if (!current) return
                 setTotalStats(total)
                 setPlayers(players)
             })
@@ -61,8 +64,9 @@ const Players = ()=> {
             console.error(err)
         })
         .finally(()=>{
-            setIsLoading(false)
+            if (current) setIsLoading(false)
         })
+        return () => { current = false }
     }, [season])
     function getFilteredPlayers(){
         if(!query || query==='') return players
@@ -107,7 +111,7 @@ const Players = ()=> {
                 </div>
             </div>
             <section className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-                {isLoading && <p className="col-span-full py-10 text-center text-muted-foreground">Cargando datos...</p>}
+                {isLoading && Array.from({ length: 8 }, (_, i) => <PlayerCardSkeleton key={i} />)}
                 {!isLoading && filteredPlayers.length === 0 && <p className="col-span-full py-10 text-center text-muted-foreground">No se ha encontrado al jugador</p>}
                 {!isLoading && players &&
                     filteredPlayers.map((player:playerData, index:number) => (
