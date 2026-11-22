@@ -2,3 +2,26 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# ─── Caché del navegador ────────────────────────────────────────────────────
+# El HTML sigue con la cabecera por defecto de Netlify (max-age=0, must-revalidate),
+# así cada visita ve la última versión publicada. No añadir aquí una regla "/*" con
+# Cache-Control: Netlify combina las cabeceras de todas las reglas que coinciden.
+
+# JS, CSS, fuentes e imágenes que genera Vite llevan hash en el nombre: no cambian nunca
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Escudos, camisetas, fotos y logos de public/ (sin hash): un día frescos y, después,
+# se sirven al momento mientras se revalidan en segundo plano durante una semana
+[[headers]]
+  for = "/resources/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/favicon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
