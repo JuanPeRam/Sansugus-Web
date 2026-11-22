@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/db'
 import { matchData, matchPlayerInfo, playerData } from '@/components/types'
 import { Game } from '@/types/games'
 
@@ -14,7 +14,7 @@ export type Season = { name: string, active: boolean }
 
 export async function fetchSeasons(): Promise<Season[]> {
     const rows = unwrap<{ nombre: string, activa: boolean }[]>(
-        await supabase.from('temporadas').select('nombre,activa').order('nombre', { ascending: true })
+        await db.from('temporadas').select('nombre,activa').order('nombre', { ascending: true })
     )
     return rows.map(r => ({ name: r.nombre, active: r.activa }))
 }
@@ -53,7 +53,7 @@ function mapMatch(r: PartidoRow): matchData {
 
 export async function fetchMatches(season: string): Promise<matchData[]> {
     const rows = unwrap<PartidoRow[]>(
-        await supabase.from('partidos').select(PARTIDO_COLUMNS)
+        await db.from('partidos').select(PARTIDO_COLUMNS)
             .eq('temporadas.nombre', season)
             .order('fecha', { ascending: false, nullsFirst: false })
     )
@@ -68,7 +68,7 @@ export function parseMatchId(raw: string | null): number | undefined {
 
 export async function fetchMatch(id: number): Promise<matchData | undefined> {
     const rows = unwrap<PartidoRow[]>(
-        await supabase.from('partidos').select(PARTIDO_COLUMNS).eq('id', id).limit(1)
+        await db.from('partidos').select(PARTIDO_COLUMNS).eq('id', id).limit(1)
     )
     return rows[0] ? mapMatch(rows[0]) : undefined
 }
@@ -81,7 +81,7 @@ type ActaRow = {
 
 export async function fetchActa(matchId: number): Promise<matchPlayerInfo[]> {
     const rows = unwrap<ActaRow[]>(
-        await supabase.from('actas')
+        await db.from('actas')
             .select('jugador_id,titular,posicion,goles,asistencias,amarillas,rojas,mvp,dorsal,jugadores!inner(nombre,alias)')
             .eq('partido_id', matchId)
     )
@@ -106,11 +106,11 @@ export async function fetchActa(matchId: number): Promise<matchPlayerInfo[]> {
 async function fetchActaShirts(matchId: number, playerIds: number[]): Promise<Map<number, string>> {
     if (!playerIds.length) return new Map()
     const match = unwrap<{ temporada_id: number }[]>(
-        await supabase.from('partidos').select('temporada_id').eq('id', matchId).limit(1)
+        await db.from('partidos').select('temporada_id').eq('id', matchId).limit(1)
     )[0]
     if (!match) return new Map()
     const rows = unwrap<{ jugador_id: number, dorsal_url: string | null }[]>(
-        await supabase.from('jugador_temporada').select('jugador_id,dorsal_url')
+        await db.from('jugador_temporada').select('jugador_id,dorsal_url')
             .eq('temporada_id', match.temporada_id).in('jugador_id', playerIds).not('dorsal_url', 'is', null)
     )
     return new Map(rows.map(r => [r.jugador_id, r.dorsal_url as string]))
@@ -139,10 +139,10 @@ function mapGame(r: PartidoRow): Game {
 
 export async function fetchHomeMatches(): Promise<{ last?: Game, next?: Game }> {
     const [last, next] = await Promise.all([
-        supabase.from('partidos').select(PARTIDO_COLUMNS)
+        db.from('partidos').select(PARTIDO_COLUMNS)
             .eq('jugado', true).not('fecha', 'is', null)
             .order('fecha', { ascending: false }).limit(1),
-        supabase.from('partidos').select(PARTIDO_COLUMNS)
+        db.from('partidos').select(PARTIDO_COLUMNS)
             .eq('jugado', false).gte('fecha', new Date().toISOString())
             .order('fecha', { ascending: true }).limit(1),
     ])
@@ -177,13 +177,13 @@ const mapPlayer = (r: EstadisticaRow): playerData => ({
 
 export async function fetchPlayerStats(season: string): Promise<{ players: playerData[], total: playerData | undefined }> {
     const [players, total] = await Promise.all([
-        supabase.from('estadisticas_jugador').select('*')
+        db.from('estadisticas_jugador').select('*')
             .eq('temporada', season)
             .order('goles', { ascending: false })
             .order('asistencias', { ascending: false })
             .order('partidos', { ascending: false })
             .order('jugador', { ascending: true }),
-        supabase.from('estadisticas_equipo').select('*').eq('temporada', season).limit(1),
+        db.from('estadisticas_equipo').select('*').eq('temporada', season).limit(1),
     ])
     const rows = unwrap<EstadisticaRow[]>(players).filter(r => !r.propia_puerta)
     const t = unwrap<Omit<EstadisticaRow, 'jugador' | 'dorsal' | 'propia_puerta'>[]>(total)[0]
@@ -214,7 +214,7 @@ export const mapStanding = (r: ClasificacionRow): Standing => ({
 /** Clasificación de la temporada activa (vacía si aún no se ha cargado) */
 export async function fetchStandings(): Promise<{ rows: Standing[], updatedAt?: Date, season?: string }> {
     const rows = unwrap<(ClasificacionRow & { temporadas: { nombre: string } | null })[]>(
-        await supabase.from('clasificacion').select('*,temporadas!inner(activa,nombre)')
+        await db.from('clasificacion').select('*,temporadas!inner(activa,nombre)')
             .eq('temporadas.activa', true)
             .order('posicion', { ascending: true })
     )
@@ -231,7 +231,7 @@ type PatrocinadorRow = { id: number, nombre: string, logo_url: string | null, we
 /** Patrocinadores visibles, en el orden elegido en el panel */
 export async function fetchSponsors(): Promise<Sponsor[]> {
     const rows = unwrap<PatrocinadorRow[]>(
-        await supabase.from('patrocinadores').select('id,nombre,logo_url,web_url,monocromo')
+        await db.from('patrocinadores').select('id,nombre,logo_url,web_url,monocromo')
             .eq('activo', true)
             .order('orden', { ascending: true })
             .order('id', { ascending: true })

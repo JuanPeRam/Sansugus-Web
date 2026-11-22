@@ -1,14 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
+import { SUPABASE_KEY, SUPABASE_SCHEMA, SUPABASE_URL } from './supabaseConfig'
 
-// Proyecto de Supabase compartido con AITOR FS; los datos de Sansugus viven en el esquema `sansugus`.
-// La URL y la clave publicable son públicas por diseño (van en el JavaScript de la web):
-// solo permiten leer; las escrituras exigen un administrador con sesión iniciada (RLS).
-const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL as string | undefined)
-    ?? 'https://fcqwmxbogdpcybperjhi.supabase.co'
-const SUPABASE_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined)
-    ?? 'sb_publishable_RBgGBPn0QwYzKQx1-lrTKA_4mX0hayM'
-
+// Cliente completo (sesión, almacenamiento, RPC con usuario): solo lo usa el área de
+// administración, que se carga aparte. La web pública lee con `db` (lib/db.ts).
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
-    db: { schema: 'sansugus' },
+    db: { schema: SUPABASE_SCHEMA },
     auth: { persistSession: true, autoRefreshToken: true },
 })
