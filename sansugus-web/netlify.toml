@@ -3,6 +3,35 @@
   to = "/index.html"
   status = 200
 
+# ─── Cabeceras de seguridad ─────────────────────────────────────────────────
+# Para toda la web, incluido el panel /admin (login con Supabase Auth). Netlify las
+# combina con las de caché de abajo (esta regla no lleva Cache-Control). Las rutas que
+# se reescriben a /index.html (React Router) también las reciben.
+#
+# CSP ajustada a lo que carga la web de verdad (revisar si se añade algo nuevo):
+# - script-src 'self': solo el JS que genera Vite; no hay scripts en línea ni terceros.
+# - style-src 'unsafe-inline': atributos style de React y los <style> que inyectan Radix
+#   y framer-motion.
+# - img-src: imágenes propias, data: (SVG de fondo de Tailwind), blob: (vista previa al
+#   subir un logo en el panel) y Supabase Storage (fotos, camisetas, logos de
+#   patrocinadores). Los escudos de los rivales están en /resources. Si algún día se
+#   enlaza una imagen de otro dominio desde la base de datos, hay que añadirlo aquí.
+# - connect-src: Supabase (API REST de la web pública; Auth y Storage del panel). Se usa
+#   el comodín *.supabase.co para no tener que tocar esto si se cambia de proyecto
+#   (VITE_SUPABASE_URL). No se usa Realtime: si se añade, sumar wss://*.supabase.co.
+# - media-src 'self': el aplauso (mp3) de la última victoria.
+# - frame-ancestors 'none' + X-Frame-Options: nadie puede meter la web en un iframe.
+# HSTS no se pone aquí: Netlify ya la envía en *.netlify.app
+# (max-age=31536000; includeSubDomains; preload).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co; font-src 'self'; connect-src 'self' https://*.supabase.co; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
 # ─── Caché del navegador ────────────────────────────────────────────────────
 # El HTML sigue con la cabecera por defecto de Netlify (max-age=0, must-revalidate),
 # así cada visita ve la última versión publicada. No añadir aquí una regla "/*" con

@@ -61,3 +61,20 @@ Ninguno: el panel no tiene despliegue ni base de datos propia en este repo.
 
 1. **Decidir si se archiva.** El panel real es `sansugus-web` → `/admin` (Supabase). Mantener dos paneles confunde y este no guarda cambios. Si se quiere conservar, el siguiente paso sería conectarlo a Supabase (mismo esquema `sansugus`) en lugar de `localhost:3000`.
 2. Si se sigue usando: aligerar `DataTable` (estado por fila y edición sin copiar toda la tabla), quitar `PlayersTable.tsx` (no se usa) y los 10 errores de lint previos.
+
+## Segunda ronda (diagnóstico)
+
+Fecha: 22/11/2026 · Commit `297c9f6`. Solo dependencias: el panel no se despliega, así que **no necesita cabeceras de seguridad** (si algún día se publica en Netlify, copiar el bloque `[[headers]] for = "/*"` de `sansugus-web/netlify.toml` y adaptar `connect-src` a su API).
+
+| `npm audit` | Total | Críticas | Altas | Moderadas | Bajas | Solo producción |
+|---|---|---|---|---|---|---|
+| Antes | 30 | 0 | 22 | 7 | 1 | 16 |
+| Después | **0** | 0 | 0 | 0 | 0 | **0** |
+
+- `npm audit fix` (dos pasadas): react-router 6.30, postcss, nanoid, glob, braces, cross-spawn, sucrase, babel…
+- Saltos de versión mayor, los mismos que en la web: `react-router-dom` 6 → **7.18.6** (redirección abierta con `\`, solo corregida en la 7; el panel solo usa `BrowserRouter`, `Routes`, `Route` y `NavLink`), `vite` 5 → **6.4.6** con `@vitejs/plugin-react` 4.7 (vulnerabilidades del servidor de desarrollo).
+- `@typescript-eslint/*` 6 → **8.73** y `eslint` 8.56 → 8.57.1: la versión 6 arrastraba un `minimatch` con ReDoS (alta, solo en el lint). La configuración `.eslintrc.cjs` sigue sirviendo sin cambios.
+
+Comprobado: `tsc` y `npm run build` correctos; `vite preview` + Playwright en `/`, `/players`, `/games` y una 404, y navegación con la barra lateral: pintan igual que antes y los únicos errores de consola son los de `localhost:3000/acl-api` (la API no existe en este entorno). `npm run lint`: 15 problemas (12 errores) frente a 13 (10): los 2 nuevos son reglas nuevas de typescript-eslint 8 (`no-empty-object-type` en `ui/input.tsx` y `no-unused-vars` para `actionTypes` en `ui/use-toast.ts`) sobre código que ya estaba; no se han tocado.
+
+JS inicial: 93,8 → 100,6 kB gzip (+6,8 kB, casi todo de react-router 7). Al ser un prototipo sin usuarios, no se ha medido en móvil.
