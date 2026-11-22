@@ -6,7 +6,7 @@ export const Honors = () => {
         {
             name: 'Liga de Apertura Moralzarzal',
             year: '2024',
-            img: '/resources/img/trophys/laliga-trophy.png'
+            img: '/resources/img/trophys/laliga-trophy.webp'
         },
     ]
     return (
@@ -40,7 +40,7 @@ export const Honors = () => {
                                     {honor.name}
                                 </CardItem>
                                 <CardItem translateZ={100}>
-                                    <img src={honor.img} alt={honor.name} className="h-72 object-contain" />
+                                    <img src={honor.img} alt={honor.name} width={348} height={442} loading="lazy" decoding="async" className="h-72 w-auto object-contain" />
                                 </CardItem>
                             </CardBody>
                         </CardContainer>

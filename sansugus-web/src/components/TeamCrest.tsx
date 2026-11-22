@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { getShieldImage } from '@/rendering/teams_img'
-import sansuguslogo from '@/img/sansugus-logo.svg'
+// Escudo en WebP pequeño (157×240): el SVG original pesa 208 kB y aquí se ve a ≤ 112 px
+import sansuguslogo from '@/img/sansugus-logo-sm.webp'
 
 const CLUB = 'Sansugus FC'
 

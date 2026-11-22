@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { cn } from '@/lib/utils'
 import { Spinner } from '@/components/admin/ui'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
-import sansuguslogo from '@/img/sansugus-logo.svg'
+import sansuguslogo from '@/img/sansugus-logo-sm.webp'
 import { unsavedContext, createUnsavedRegistry, useConfirmLeave } from './adminUtils'
 
 const ITEMS = [
@@ -84,7 +84,7 @@ function AdminShell() {
 
   const brand = (
     <Link to="/admin" onClick={guard} className="flex items-center gap-3">
-      <img src={sansuguslogo} alt="" className="size-9 lg:size-10" />
+      <img src={sansuguslogo} alt="" className="size-9 object-contain lg:size-10" />
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg text-white lg:text-xl">Sansugus <span className="text-teamOrange">FC</span></span>
         <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.3em] text-teamOrange">Gestión</span>

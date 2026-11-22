@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { toWebp } from '@/lib/images'
-import { mapStanding, Standing } from '@/data/api'
+import { CLASIFICACION_COLUMNS, clearPublicCache, mapStanding, Standing } from '@/data/api'
 
 /** Lanza un Error legible si la consulta de Supabase falla */
 function unwrap<T>(res: { data: unknown; error: { message: string; code?: string } | null }): T {
@@ -22,6 +22,8 @@ function friendly(err: { message: string; code?: string }): string {
 
 const check = (res: { error: { message: string; code?: string } | null }) => {
     if (res.error) throw new Error(friendly(res.error))
+    // Tras un cambio en el panel, la web pública vuelve a leer los datos (sin esperar a la caché)
+    clearPublicCache()
 }
 
 /* ─────────── Sesión ─────────── */
@@ -221,6 +223,7 @@ type PartidoRow = {
     penaltis_local: number | null, penaltis_visitante: number | null,
     campo: number | null, competicion: string, jornada: string, jugado: boolean, temporada_id: number
 }
+const PARTIDO_COLUMNS = 'id,local,visitante,fecha,goles_local,goles_visitante,penaltis_local,penaltis_visitante,campo,competicion,jornada,jugado,temporada_id'
 
 const mapMatch = (r: PartidoRow, withActa: Set<number>): MatchRecord => ({
     id: r.id, home: r.local, away: r.visitante, date: r.fecha,
@@ -231,20 +234,18 @@ const mapMatch = (r: PartidoRow, withActa: Set<number>): MatchRecord => ({
 })
 
 export async function fetchSeasonMatches(seasonId: number): Promise<MatchRecord[]> {
-    const rows = unwrap<PartidoRow[]>(
-        await supabase.from('partidos').select('*').eq('temporada_id', seasonId)
+    // Una sola petición: de cada partido basta saber si tiene al menos una fila de acta
+    const rows = unwrap<(PartidoRow & { actas: { partido_id: number }[] | null })[]>(
+        await supabase.from('partidos').select(`${PARTIDO_COLUMNS},actas(partido_id)`).eq('temporada_id', seasonId)
             .order('fecha', { ascending: false, nullsFirst: false })
+            .limit(1, { referencedTable: 'actas' })
     )
-    const ids = rows.map(r => r.id)
-    const actas = ids.length
-        ? unwrap<{ partido_id: number }[]>(await supabase.from('actas').select('partido_id').in('partido_id', ids))
-        : []
-    const withActa = new Set(actas.map(a => a.partido_id))
+    const withActa = new Set(rows.filter(r => r.actas?.length).map(r => r.id))
     return rows.map(r => mapMatch(r, withActa))
 }
 
 export async function fetchMatchById(id: number): Promise<MatchRecord | undefined> {
-    const rows = unwrap<PartidoRow[]>(await supabase.from('partidos').select('*').eq('id', id).limit(1))
+    const rows = unwrap<PartidoRow[]>(await supabase.from('partidos').select(PARTIDO_COLUMNS).eq('id', id).limit(1))
     return rows[0] ? mapMatch(rows[0], new Set()) : undefined
 }
 
@@ -291,7 +292,7 @@ type ActaRow = {
 }
 
 export async function fetchActaEntries(matchId: number): Promise<ActaEntry[]> {
-    const rows = unwrap<ActaRow[]>(await supabase.from('actas').select('*').eq('partido_id', matchId))
+    const rows = unwrap<ActaRow[]>(await supabase.from('actas').select('jugador_id,titular,posicion,dorsal,goles,asistencias,amarillas,rojas,mvp').eq('partido_id', matchId))
     return rows.map(r => ({
         playerId: r.jugador_id, starter: r.titular, position: r.posicion ?? '', number: r.dorsal,
         goals: r.goles, assists: r.asistencias, yellows: r.amarillas, reds: r.rojas, mvp: r.mvp,
@@ -315,7 +316,7 @@ export async function fetchDashboard(seasonId: number) {
     const [matches, roster, team, historic] = await Promise.all([
         fetchSeasonMatches(seasonId),
         supabase.from('jugador_temporada').select('jugador_id', { count: 'exact', head: true }).eq('temporada_id', seasonId),
-        supabase.from('estadisticas_equipo').select('*').eq('temporada_id', seasonId).limit(1),
+        supabase.from('estadisticas_equipo').select('goles,asistencias,mvp').eq('temporada_id', seasonId).limit(1),
         supabase.from('estadisticas_historicas').select('jugador_id', { count: 'exact', head: true }).eq('temporada_id', seasonId),
     ])
     check(roster)
@@ -334,7 +335,7 @@ export type StandingInput = Omit<Standing, 'position'>
 
 export async function fetchSeasonStandings(seasonId: number): Promise<{ rows: Standing[], updatedAt: string | null }> {
     const rows = unwrap<Parameters<typeof mapStanding>[0][]>(
-        await supabase.from('clasificacion').select('*').eq('temporada_id', seasonId).order('posicion', { ascending: true })
+        await supabase.from('clasificacion').select(CLASIFICACION_COLUMNS).eq('temporada_id', seasonId).order('posicion', { ascending: true })
     )
     const updatedAt = rows.reduce<string | null>((max, r) => (!max || r.actualizada > max ? r.actualizada : max), null)
     return { rows: rows.map(mapStanding), updatedAt }

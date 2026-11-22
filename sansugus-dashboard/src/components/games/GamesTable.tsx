@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { SeasonsSelect } from "../SeasonsSelect"
 import { gamesEndPoint, seasonsEndPoint } from "@/constants/api"
 import { TableDashboard } from "../templates/TableDashboard"
 import { useToast } from "../ui/use-toast"
@@ -46,12 +45,15 @@ export const GamesTable = () => {
     const [loading, setIsLoading] = useState<boolean>(false);
 
     useEffect(()=>{
-        if(season)
-        {
+        if(!season) return
+        // Al cambiar de temporada se cancela la petición anterior (no pisa los datos nuevos)
+        const controller = new AbortController()
         setIsLoading(true)
-        fetch(gamesEndPoint(season)).then((res)=>res.json()).then((data)=>{setRawData(data) 
-            setGamesData(JSON.parse(JSON.stringify(data)))}).catch((error)=>setError(error)).finally(()=>setIsLoading(false))
-        }
+        fetch(gamesEndPoint(season), { signal: controller.signal }).then((res)=>res.json()).then((data)=>{setRawData(data) 
+            setGamesData(structuredClone(data))})
+            .catch((error)=>{ if (!controller.signal.aborted) setError(error) })
+            .finally(()=>{ if (!controller.signal.aborted) setIsLoading(false) })
+        return () => controller.abort()
     },[season])
     
     const handleSeasonChanged = (season:string) => {
@@ -84,6 +86,7 @@ export const GamesTable = () => {
     }
     return (
         <>
+        {error && <div>Ha ocurrido un error</div>}
         <TableDashboard season={season} handleSeasonChanged={handleSeasonChanged} handleConfirm={handleConfirm} seasonsEndPoint={seasonsEndPoint}
         tableProps={{data: gamesData,isLoading: loading,onDataChanged: onDataChanged,excludedRows: excludedRows, moreDetailsDir: '/game'}}/>
         </>

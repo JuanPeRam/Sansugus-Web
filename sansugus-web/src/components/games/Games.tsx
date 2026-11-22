@@ -12,15 +12,18 @@ export default function Games(){
 
     useEffect(() => {
         if(!season) return
+        // Si se cambia de temporada antes de que llegue la respuesta anterior, esta se descarta
+        let current = true
         setIsLoading(true)
         fetchMatches(season)
-            .then(setGames)
+            .then((list) => { if (current) setGames(list) })
             .catch((err)=>{
                 console.error(err)
             })
             .finally(()=>{
-                setIsLoading(false)
+                if (current) setIsLoading(false)
             })
+        return () => { current = false }
     }, [season])
 
     return(

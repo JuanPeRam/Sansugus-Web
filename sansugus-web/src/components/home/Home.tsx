@@ -57,7 +57,8 @@ function Home() {
                             <Link to='/Players' className='btn-ghost justify-center px-3 sm:px-6'>Plantilla</Link>
                         </div>
                     </div>
-                    <img src={sansuguslogo} alt='Escudo Sansugus FC' className='h-28 w-28 drop-shadow-[0_0_40px_rgba(227,127,12,.45)] md:h-72 md:w-72' />
+                    {/* Candidata a LCP: se pide con prioridad alta (atributo en minúsculas: React 18.2 aún no conoce fetchPriority) */}
+                    <img src={sansuguslogo} alt='Escudo Sansugus FC' width={530} height={811} decoding='async' {...{ fetchpriority: 'high' }} className='h-28 w-28 object-contain drop-shadow-[0_0_40px_rgba(227,127,12,.45)] md:h-72 md:w-72' />
                 </div>
             </section>
 

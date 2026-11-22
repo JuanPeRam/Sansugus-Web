@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
 import { Field, Input, Spinner } from '@/components/admin/ui'
-import sansuguslogo from '@/img/sansugus-logo.svg'
+import sansuguslogo from '@/img/sansugus-logo-sm.webp'
 
 export default function AdminLoginPage() {
   const { session, isAdmin, loading, signIn, signOut } = useAuth()
@@ -43,7 +43,7 @@ export default function AdminLoginPage() {
       <div className="absolute -right-24 top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-teamOrange/20 blur-3xl" aria-hidden />
       <div className="relative w-full max-w-sm overflow-hidden rounded-sm border border-border bg-card shadow-2xl">
         <div className="flex items-center gap-3 border-b-4 border-teamOrange bg-black px-6 py-5">
-          <img src={sansuguslogo} alt="" className="h-12 w-12" />
+          <img src={sansuguslogo} alt="" className="h-12 w-12 object-contain" />
           <div>
             <p className="font-display text-2xl leading-none text-white">Sansugus <span className="text-teamOrange">FC</span></p>
             <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.3em] text-teamOrange">Panel de gestión</p>
